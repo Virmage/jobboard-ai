@@ -1,0 +1,35 @@
+{
+  "name": "jobboard-ai-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for JobBoard AI — search AI/tech jobs from Claude Desktop",
+  "type": "module",
+  "bin": {
+    "jobboard-ai-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "jobboard",
+    "ai",
+    "jobs",
+    "claude",
+    "model-context-protocol"
+  ]
+}

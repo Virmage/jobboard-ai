@@ -14,7 +14,7 @@ export async function GET() {
     },
     servers: [
       {
-        url: process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.jobboard.ai",
+        url: process.env.NEXT_PUBLIC_API_BASE_URL || "https://jobboard-ai-rllv.vercel.app",
         description: "Production",
       },
     ],

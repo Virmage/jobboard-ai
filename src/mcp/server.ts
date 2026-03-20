@@ -184,7 +184,7 @@ const TOOLS: Tool[] = [
 // Tool handlers
 // ---------------------------------------------------------------------------
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://jobboardai.com";
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://jobboard-ai-rllv.vercel.app";
 
 async function handleSearchJobs(
   db: Db,
