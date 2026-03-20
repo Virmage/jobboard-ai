@@ -314,10 +314,16 @@ async function runSource(
   name: string,
   fn: () => Promise<RawJob[]>,
   errors: Array<{ source: string; message: string }>,
+  timeoutMs = 120_000,
 ): Promise<RawJob[]> {
   try {
     console.log(`  [${name}] scanning...`);
-    const result = await fn();
+    const result = await Promise.race([
+      fn(),
+      new Promise<RawJob[]>((_, reject) =>
+        setTimeout(() => reject(new Error(`Timeout after ${timeoutMs / 1000}s`)), timeoutMs),
+      ),
+    ]);
     console.log(`  [${name}] found ${result.length} jobs`);
     return result;
   } catch (err) {
@@ -452,7 +458,7 @@ export async function runFullScan(
   // ===== Batch 1: Crypto board sites (different hosts, safe to parallelize) =====
   console.log("\n--- Batch 1: Crypto boards ---");
   const [web3Jobs, cryptoJobs, remote3Jobs] = await Promise.all([
-    runSource("web3.career", () => scanWeb3Career([...allWeb3Slugs]), errors),
+    runSource("web3.career", () => scanWeb3Career([...allWeb3Slugs].slice(0, 15)), errors),
     runSource("cryptocurrencyjobs.co", () => scanCryptoJobs([...allCryptoJobsCats]), errors),
     runSource("remote3.co", () => scanRemote3(), errors),
   ]);
@@ -791,37 +797,21 @@ export async function runFullScan(
   const matched = [...dedupMap.values()];
   console.log(`After dedup + matching: ${matched.length} jobs`);
 
-  // --- Upsert into DB ---
+  // --- Upsert into DB (batched for performance) ---
   let newCount = 0;
   const now = new Date();
+  const BATCH_SIZE = 50;
 
-  for (const job of matched) {
-    // Look up industry via taxonomy
-    let industryId: string | null = null;
-    if (job.taxonomyId) {
-      const tax = taxonomyRows.find((t) => t.id === job.taxonomyId);
-      industryId = tax?.industryId ?? null;
-    }
-
-    // Try to find existing job by dedup key
-    const existing = await db
-      .select({ id: jobs.id })
-      .from(jobs)
-      .where(eq(jobs.dedupKey, job.dedupKey))
-      .limit(1);
-
-    if (existing.length > 0) {
-      // Update lastSeenAt + reactivate if previously stale
-      await db
-        .update(jobs)
-        .set({ lastSeenAt: now, isActive: true })
-        .where(eq(jobs.id, existing[0].id));
-    } else {
-      // Parse salary into structured fields
+  for (let i = 0; i < matched.length; i += BATCH_SIZE) {
+    const batch = matched.slice(i, i + BATCH_SIZE);
+    const values = batch.map((job) => {
+      let industryId: string | null = null;
+      if (job.taxonomyId) {
+        const tax = taxonomyRows.find((t) => t.id === job.taxonomyId);
+        industryId = tax?.industryId ?? null;
+      }
       const parsed = parseSalary(job.salary);
-
-      // Insert new job
-      await db.insert(jobs).values({
+      return {
         title: job.title,
         company: job.company,
         location: job.location,
@@ -841,8 +831,37 @@ export async function runFullScan(
         lastSeenAt: now,
         dedupKey: job.dedupKey,
         isActive: true,
-      });
-      newCount++;
+      };
+    });
+
+    try {
+      const result = await db
+        .insert(jobs)
+        .values(values)
+        .onConflictDoUpdate({
+          target: jobs.dedupKey,
+          set: { lastSeenAt: now, isActive: true },
+        });
+      // Count new inserts (approximate — all non-conflict rows)
+      newCount += batch.length;
+    } catch (err) {
+      // Fall back to one-by-one if batch fails
+      console.error(`  Batch ${i / BATCH_SIZE + 1} error, falling back to sequential...`);
+      for (const v of values) {
+        try {
+          await db.insert(jobs).values(v).onConflictDoUpdate({
+            target: jobs.dedupKey,
+            set: { lastSeenAt: now, isActive: true },
+          });
+          newCount++;
+        } catch {
+          // skip individual failures
+        }
+      }
+    }
+
+    if (i % 500 === 0 && i > 0) {
+      console.log(`  Upserted ${i}/${matched.length} jobs...`);
     }
   }
 
@@ -876,4 +895,32 @@ export async function runFullScan(
   );
 
   return stats;
+}
+
+// ---------------------------------------------------------------------------
+// CLI entry point — run with: npx tsx src/scanner/index.ts
+// ---------------------------------------------------------------------------
+import { fileURLToPath } from "node:url";
+
+const isMain =
+  process.argv[1] &&
+  fileURLToPath(import.meta.url).endsWith(process.argv[1].replace(/.*\//, ""));
+
+if (isMain) {
+  const { config } = await import("dotenv");
+  config({ path: ".env.local" });
+  config({ path: ".env" });
+
+  const { db } = await import("@/db/index");
+
+  console.log("Starting full scan...\n");
+  runFullScan(db, [])
+    .then((stats) => {
+      console.log("\nDone!", JSON.stringify(stats, null, 2));
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error("Scan failed:", err);
+      process.exit(1);
+    });
 }
