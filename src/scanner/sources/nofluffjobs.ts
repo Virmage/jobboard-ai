@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, fetchJSON, sleep, titleMatchesCreativeLeadership } from "../utils";
+import { fetchText, fetchJSON, sleep } from "../utils";
 
 /**
  * No Fluff Jobs API response shape.
@@ -49,7 +49,7 @@ export async function scanNoFluffJobs(): Promise<RawJob[]> {
       if (apiData?.postings?.length) {
         for (const posting of apiData.postings) {
           const title = posting.title || posting.name || "";
-          if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
           const id = posting.id || "";
           if (!id || seenIds.has(id)) continue;
@@ -126,7 +126,7 @@ export async function scanNoFluffJobs(): Promise<RawJob[]> {
           .trim();
 
         if (!title || !href) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href.startsWith("http")
           ? href

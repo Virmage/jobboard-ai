@@ -3,7 +3,6 @@ import type { RawJob } from "../types";
 import {
   fetchText,
   sleep,
-  titleMatchesCreativeLeadership,
   ALL_SEARCH_QUERIES,
 } from "../utils";
 
@@ -66,7 +65,7 @@ export async function scanComputrabajo(): Promise<RawJob[]> {
             $el.find("[class*='location'], [class*='ubicacion'], .fs13").first().text().trim();
 
           if (!title) return;
-          if (!titleMatchesCreativeLeadership(title)) return;
+
 
           const fullLink = href
             ? href.startsWith("http")

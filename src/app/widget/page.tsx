@@ -144,7 +144,7 @@ function WidgetPreview({
               isDark ? "text-gray-500" : "text-gray-400"
             }`}
           >
-            Powered by JobBoard AI
+            Powered by AgentJobs
           </span>
         </div>
       </div>
@@ -200,7 +200,7 @@ function WidgetPreview({
             isDark ? "text-blue-400" : "text-blue-600"
           }`}
         >
-          View all jobs on JobBoard AI &rarr;
+          View all jobs on AgentJobs &rarr;
         </span>
       </div>
     </div>
@@ -223,7 +223,7 @@ export default function WidgetPage() {
     if (market) params.set("market", market);
     params.set("max", String(limit));
     params.set("theme", theme);
-    return `<script\n  src="https://jobboard-ai.com/api/widget?${params.toString()}"\n  async>\n</script>`;
+    return `<script\n  src="https://agentjobs.com/api/widget?${params.toString()}"\n  async>\n</script>`;
   }, [industry, market, limit, theme]);
 
   function handleCopy() {

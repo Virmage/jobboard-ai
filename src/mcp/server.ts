@@ -46,7 +46,7 @@ const TOOLS: Tool[] = [
   {
     name: "search_jobs",
     description:
-      "Search the JobBoard AI database for job listings. Supports free-text search across titles, companies, and descriptions. Filter by industry, market/region, remote status, and role type. Results are sorted by featured status then posting date. Use this tool when a user is looking for jobs, exploring opportunities, or wants to see what's available.",
+      "Search the AgentJobs database for job listings. Supports free-text search across titles, companies, and descriptions. Filter by industry, market/region, remote status, and role type. Results are sorted by featured status then posting date. Use this tool when a user is looking for jobs, exploring opportunities, or wants to see what's available.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -123,7 +123,7 @@ const TOOLS: Tool[] = [
   {
     name: "get_market_stats",
     description:
-      "Get statistics about the job market on JobBoard AI. Shows total jobs, breakdowns by industry and market/region, trending roles, and salary ranges. Useful for understanding the landscape before searching, or for market research. Can be filtered to a specific industry or market.",
+      "Get statistics about the job market on AgentJobs. Shows total jobs, breakdowns by industry and market/region, trending roles, and salary ranges. Useful for understanding the landscape before searching, or for market research. Can be filtered to a specific industry or market.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -184,7 +184,7 @@ const TOOLS: Tool[] = [
 // Tool handlers
 // ---------------------------------------------------------------------------
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://jobboard-ai-rllv.vercel.app";
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://agentjobs.vercel.app";
 
 async function handleSearchJobs(
   db: Db,
@@ -724,7 +724,7 @@ async function handleSubscribeAlerts(
   // In a full implementation this would persist to a subscriptions table.
   // For now, we log and return the subscription confirmation.
   console.error(
-    `[jobboard-ai-mcp] New alert subscription: ${subId} for ${email}`
+    `[agentjobs-mcp] New alert subscription: ${subId} for ${email}`
   );
 
   const result = {
@@ -753,7 +753,7 @@ export function createMcpServer(): Server {
 
   const server = new Server(
     {
-      name: "jobboard-ai",
+      name: "agentjobs",
       version: "1.0.0",
     },
     {
@@ -796,7 +796,7 @@ export function createMcpServer(): Server {
     } catch (error) {
       const message =
         error instanceof Error ? error.message : String(error);
-      console.error(`[jobboard-ai-mcp] Error in ${name}:`, error);
+      console.error(`[agentjobs-mcp] Error in ${name}:`, error);
       return {
         content: [
           {

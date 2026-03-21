@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { fetchJSON, sleep, titleMatchesCreativeLeadership, isWithinCutoff } from "../utils";
+import { fetchJSON, sleep, isWithinCutoff } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
@@ -46,7 +46,7 @@ export async function scanRemoteOK(): Promise<RawJob[]> {
   for (const job of listings) {
     if (!job.id || !job.position) continue;
     if (seenIds.has(job.id)) continue;
-    if (!titleMatchesCreativeLeadership(job.position)) continue;
+
 
     // Date filter
     const postedDate = job.epoch

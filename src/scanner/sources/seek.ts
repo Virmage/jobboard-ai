@@ -1,13 +1,13 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership, ALL_SEARCH_QUERIES } from "../utils";
+import { fetchText, sleep, ALL_SEARCH_QUERIES } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
 /**
  * Search keywords — covers all major job categories.
  */
-const SEARCH_QUERIES = ALL_SEARCH_QUERIES;
+const SEARCH_QUERIES = ALL_SEARCH_QUERIES.filter((_,i) => i % 5 === 0);
 
 /**
  * Scan seek.com.au for creative/marketing/brand leadership roles.
@@ -54,7 +54,7 @@ export async function scanSeek(): Promise<RawJob[]> {
           const posted = job?.datePosted;
 
           if (!title || !link) return;
-          if (!titleMatchesCreativeLeadership(title)) return;
+
           if (seenLinks.has(link)) return;
 
           seenLinks.add(link);
@@ -98,7 +98,7 @@ export async function scanSeek(): Promise<RawJob[]> {
           .trim();
 
         if (!title || !href) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href.startsWith("http")
           ? href

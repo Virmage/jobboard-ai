@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership, ALL_SEARCH_QUERIES } from "../utils";
+import { fetchText, sleep, ALL_SEARCH_QUERIES } from "../utils";
 
 /**
  * Subset of queries for US state/local government jobs.
@@ -66,7 +66,7 @@ export async function scanGovernmentJobs(): Promise<RawJob[]> {
           .trim();
 
         if (!title || !href) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href.startsWith("http")
           ? href
@@ -94,7 +94,7 @@ export async function scanGovernmentJobs(): Promise<RawJob[]> {
             const job = item?.item || item;
             if (job?.["@type"] !== "JobPosting") continue;
             const title = job?.title || job?.name;
-            if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
             const link = job?.url;
             if (!link || seenLinks.has(link)) continue;

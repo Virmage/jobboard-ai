@@ -4,7 +4,7 @@ import { jobs } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { generateRSS } from "@/lib/rss";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jobboardai.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://agentjobs.com";
 
 export async function GET() {
   const rows = await db
@@ -25,9 +25,9 @@ export async function GET() {
     .limit(50);
 
   const xml = generateRSS({
-    title: "JobBoard AI \u2014 Latest Jobs",
+    title: "AgentJobs \u2014 Latest Jobs",
     description:
-      "The latest 50 jobs from JobBoard AI \u2014 structured, real-time job data for AI agents.",
+      "The latest 50 jobs from AgentJobs \u2014 structured, real-time job data for AI agents.",
     link: SITE_URL,
     jobs: rows,
   });

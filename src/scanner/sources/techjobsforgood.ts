@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership } from "../utils";
+import { fetchText, sleep } from "../utils";
 
 /**
  * Scan Tech Jobs for Good for tech roles at nonprofits and social impact orgs.
@@ -53,7 +53,7 @@ export async function scanTechJobsForGood(): Promise<RawJob[]> {
           .trim();
 
         if (!title || !href) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href.startsWith("http")
           ? href
@@ -79,7 +79,7 @@ export async function scanTechJobsForGood(): Promise<RawJob[]> {
             const job = item?.item || item;
             if (job?.["@type"] !== "JobPosting") continue;
             const title = job?.title || job?.name;
-            if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
             const link = job?.url;
             if (!link || seenLinks.has(link)) continue;

@@ -9,7 +9,7 @@ import { handleExpireFeatures } from "./expire-features-job";
 // ---------------------------------------------------------------------------
 
 const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
-const QUEUE_NAME = "jobboard-worker";
+const QUEUE_NAME = "agentjobs-worker";
 
 // ---------------------------------------------------------------------------
 // Redis connection
@@ -172,7 +172,7 @@ process.on("SIGINT", () => shutdown("SIGINT"));
 // ---------------------------------------------------------------------------
 
 async function main(): Promise<void> {
-  console.log("[worker] JobBoard AI Worker starting...");
+  console.log("[worker] AgentJobs Worker starting...");
   console.log(`[worker] Redis URL: ${REDIS_URL.replace(/\/\/.*@/, "//***@")}`);
   console.log(`[worker] Queue: ${QUEUE_NAME}`);
 

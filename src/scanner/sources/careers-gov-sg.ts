@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, fetchJSON, sleep, titleMatchesCreativeLeadership, ALL_SEARCH_QUERIES } from "../utils";
+import { fetchText, fetchJSON, sleep, ALL_SEARCH_QUERIES } from "../utils";
 
 /**
  * Subset of search queries for the Singapore government portal.
@@ -45,7 +45,7 @@ export async function scanCareersGovSG(): Promise<RawJob[]> {
         const items = apiData.jobs || apiData.data || apiData.results || [];
         for (const item of items) {
           const title = item.title || "";
-          if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
           const link = item.url || (item.id ? `https://www.careers.gov.sg/job/${item.id}` : "");
           if (!link || seenLinks.has(link)) continue;
@@ -101,7 +101,7 @@ export async function scanCareersGovSG(): Promise<RawJob[]> {
           .trim();
 
         if (!title || !href) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href.startsWith("http")
           ? href
@@ -127,7 +127,7 @@ export async function scanCareersGovSG(): Promise<RawJob[]> {
           for (const job of items) {
             if (job?.["@type"] !== "JobPosting") continue;
             const title = job?.title || job?.name;
-            if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
             const link = job?.url;
             if (!link || seenLinks.has(link)) continue;

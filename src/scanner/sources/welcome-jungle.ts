@@ -3,7 +3,6 @@ import type { RawJob } from "../types";
 import {
   fetchText,
   sleep,
-  titleMatchesCreativeLeadership,
 } from "../utils";
 
 /**
@@ -70,7 +69,7 @@ export async function scanWelcomeJungle(): Promise<RawJob[]> {
 
         for (const hit of hits) {
           const title = hit?.name || hit?.title;
-          if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
           const slug = hit?.slug || hit?.reference;
           const orgSlug =
@@ -127,7 +126,7 @@ export async function scanWelcomeJungle(): Promise<RawJob[]> {
         .trim();
 
       if (!title || !href) return;
-      if (!titleMatchesCreativeLeadership(title)) return;
+
 
       const fullLink = href.startsWith("http")
         ? href

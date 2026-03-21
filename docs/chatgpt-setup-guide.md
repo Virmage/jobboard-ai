@@ -1,11 +1,11 @@
-# Setting Up JobBoard AI as a ChatGPT Custom GPT
+# Setting Up AgentJobs as a ChatGPT Custom GPT
 
-A step-by-step guide to creating the JobBoard AI GPT in the ChatGPT builder.
+A step-by-step guide to creating the AgentJobs GPT in the ChatGPT builder.
 
 ## Prerequisites
 
 - A ChatGPT Plus, Team, or Enterprise account (custom GPTs require a paid plan)
-- The API is live at `https://jobboard-ai-rllv.vercel.app`
+- The API is live at `https://agentjobs.vercel.app`
 
 ## Steps
 
@@ -16,14 +16,14 @@ A step-by-step guide to creating the JobBoard AI GPT in the ChatGPT builder.
 
 | Field           | Value |
 |-----------------|-------|
-| **Name**        | JobBoard AI |
+| **Name**        | AgentJobs |
 | **Description** | Search AI & tech jobs in real-time. Find positions, explore roles, and get apply links — powered by 400+ career page scanners. |
 
 5. In the **Instructions** box, paste the full instructions from [`chatgpt-gpt-instructions.md`](./chatgpt-gpt-instructions.md) (everything below the `---` line)
 6. Scroll down to **Actions** and click **"Create new action"**
 7. Click **"Import from URL"** and paste:
    ```
-   https://jobboard-ai-rllv.vercel.app/api/openapi.json
+   https://agentjobs.vercel.app/api/openapi.json
    ```
 8. The schema will auto-populate with the available endpoints (searchJobs, suggestRoles, getJobById, listIndustries)
 9. For **Authentication**, select **"None"** — the API allows anonymous access with rate limiting
@@ -39,7 +39,7 @@ A step-by-step guide to creating the JobBoard AI GPT in the ChatGPT builder.
   - "What roles exist in fintech?"
   - "I build ML pipelines — what should I search for?"
   - "Show me the freshest data science listings"
-- **Profile picture** — upload a logo or icon that represents JobBoard AI
+- **Profile picture** — upload a logo or icon that represents AgentJobs
 
 ## Testing
 
@@ -58,7 +58,7 @@ After saving, open the GPT and try these queries:
 Required if you publish the GPT publicly in the GPT Store:
 
 ```
-https://jobboard-ai-rllv.vercel.app/privacy
+https://agentjobs.vercel.app/privacy
 ```
 
 Add this under **Settings > Additional Settings > Privacy Policy URL** in the GPT editor.

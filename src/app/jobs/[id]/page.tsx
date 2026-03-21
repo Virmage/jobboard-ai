@@ -21,10 +21,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const job = await getJobById(id);
   if (!job) return { title: "Job Not Found" };
 
-  const title = `${job.title} at ${job.company} — JobBoard AI`;
+  const title = `${job.title} at ${job.company} — AgentJobs`;
   const description = job.description
     ? job.description.slice(0, 160)
-    : `${job.title} position at ${job.company}. Found by JobBoard AI.`;
+    : `${job.title} position at ${job.company}. Found by AgentJobs.`;
 
   return {
     title,

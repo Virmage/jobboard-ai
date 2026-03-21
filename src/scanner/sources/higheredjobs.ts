@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership, isWithinCutoff } from "../utils";
+import { fetchText, sleep, isWithinCutoff } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
@@ -97,7 +97,7 @@ export async function scanHigherEdJobs(): Promise<RawJob[]> {
       if (!item.title) continue;
 
       const { jobTitle, institution } = extractInstitution(item.title);
-      if (!titleMatchesCreativeLeadership(jobTitle)) continue;
+
 
       // Date filter
       const postedDate = item.pubDate ? new Date(item.pubDate) : null;

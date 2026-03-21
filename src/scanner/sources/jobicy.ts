@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { fetchJSON, fetchText, sleep, titleMatchesCreativeLeadership, isWithinCutoff } from "../utils";
+import { fetchJSON, fetchText, sleep, isWithinCutoff } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
@@ -85,7 +85,7 @@ export async function scanJobicy(): Promise<RawJob[]> {
 
     for (const job of data.jobs) {
       if (seenIds.has(job.id)) continue;
-      if (!titleMatchesCreativeLeadership(job.jobTitle)) continue;
+
 
       // Date filter
       const postedDate = job.pubDate ? new Date(job.pubDate) : null;
@@ -130,7 +130,7 @@ export async function scanJobicy(): Promise<RawJob[]> {
       const pubDate = block.match(/<pubDate>(.*?)<\/pubDate>/)?.[1] || "";
 
       if (!link || !title) continue;
-      if (!titleMatchesCreativeLeadership(title)) continue;
+
 
       const postedDate = pubDate ? new Date(pubDate) : null;
       if (postedDate && !isWithinCutoff(postedDate, CUTOFF_DAYS)) continue;

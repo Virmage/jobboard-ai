@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * JobBoard AI — MCP Server entry point
+ * AgentJobs — MCP Server entry point
  *
  * Detects transport mode from CLI args or environment:
  *
@@ -56,7 +56,7 @@ const httpPort = cliPort ?? parseInt(process.env.MCP_PORT ?? "3100", 10);
 // ---------------------------------------------------------------------------
 if (!process.env.DATABASE_URL) {
   console.error(
-    "[jobboard-ai-mcp] Error: DATABASE_URL environment variable is required."
+    "[agentjobs-mcp] Error: DATABASE_URL environment variable is required."
   );
   process.exit(1);
 }
@@ -101,7 +101,7 @@ async function main() {
       if (url.pathname === "/sse" && req.method === "GET") {
         sseTransport = new SSEServerTransport("/messages", res);
         await server.connect(sseTransport);
-        console.error("[jobboard-ai-mcp] SSE client connected");
+        console.error("[agentjobs-mcp] SSE client connected");
         return;
       }
 
@@ -123,7 +123,7 @@ async function main() {
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(
           JSON.stringify({
-            name: "JobBoard AI MCP Server",
+            name: "AgentJobs MCP Server",
             version: "1.0.0",
             transport: "http+sse",
             endpoints: {
@@ -142,10 +142,10 @@ async function main() {
 
     httpServer.listen(httpPort, () => {
       console.error(
-        `[jobboard-ai-mcp] HTTP+SSE server listening on http://localhost:${httpPort}`
+        `[agentjobs-mcp] HTTP+SSE server listening on http://localhost:${httpPort}`
       );
       console.error(
-        `[jobboard-ai-mcp] Connect SSE at http://localhost:${httpPort}/sse`
+        `[agentjobs-mcp] Connect SSE at http://localhost:${httpPort}/sse`
       );
     });
   } else {
@@ -155,12 +155,12 @@ async function main() {
     );
     const stdioTransport = new StdioServerTransport();
     await server.connect(stdioTransport);
-    console.error("[jobboard-ai-mcp] Server started on stdio transport");
+    console.error("[agentjobs-mcp] Server started on stdio transport");
   }
 
   // Graceful shutdown
   const shutdown = async () => {
-    console.error("[jobboard-ai-mcp] Shutting down...");
+    console.error("[agentjobs-mcp] Shutting down...");
     await server.close();
     process.exit(0);
   };
@@ -170,6 +170,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("[jobboard-ai-mcp] Fatal error:", error);
+  console.error("[agentjobs-mcp] Fatal error:", error);
   process.exit(1);
 });

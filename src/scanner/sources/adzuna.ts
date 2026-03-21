@@ -2,7 +2,6 @@ import type { RawJob } from "../types";
 import {
   fetchJSON,
   sleep,
-  titleMatchesCreativeLeadership,
   isWithinCutoff,
   ALL_SEARCH_QUERIES,
 } from "../utils";
@@ -56,7 +55,7 @@ const COUNTRIES: Array<{
 /**
  * Search keywords — covers all major job categories.
  */
-const SEARCH_QUERIES = ALL_SEARCH_QUERIES;
+const SEARCH_QUERIES = ALL_SEARCH_QUERIES.filter((_,i) => i % 5 === 0);
 
 /**
  * Scan Adzuna API for creative leadership roles across AU, UK, US, DE, FR, NL.
@@ -100,7 +99,7 @@ export async function scanAdzuna(): Promise<RawJob[]> {
 
       for (const job of data.results) {
         if (seenIds.has(job.id)) continue;
-        if (!titleMatchesCreativeLeadership(job.title)) continue;
+
 
         // Date filter
         const postedDate = job.created ? new Date(job.created) : null;

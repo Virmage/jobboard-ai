@@ -8,6 +8,7 @@ import {
   notFound,
   handleCorsOptions,
 } from "@/lib/api-response";
+import { withAuth, type ValidateResult } from "@/lib/api-auth";
 
 // ---------------------------------------------------------------------------
 // Param validation
@@ -17,11 +18,12 @@ const uuidSchema = z.string().uuid("id must be a valid UUID");
 // ---------------------------------------------------------------------------
 // GET /api/v1/jobs/:id
 // ---------------------------------------------------------------------------
-export async function GET(
+export const GET = withAuth(async function GET(
   _request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  _auth: ValidateResult,
+  ctx: unknown,
 ) {
-  const { id } = await params;
+  const { id } = await (ctx as { params: Promise<{ id: string }> }).params;
 
   const parsed = uuidSchema.safeParse(id);
   if (!parsed.success) {
@@ -41,7 +43,7 @@ export async function GET(
   return jsonOk({
     job: { ...job, freshness },
   });
-}
+});
 
 // ---------------------------------------------------------------------------
 // OPTIONS — CORS preflight

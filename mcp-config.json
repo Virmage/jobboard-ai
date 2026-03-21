@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "jobboard-ai": {
+    "agentjobs": {
       "command": "npx",
       "args": ["tsx", "src/mcp/index.ts"],
-      "cwd": "/path/to/jobboard-ai",
+      "cwd": "/path/to/agentjobs",
       "env": {
         "DATABASE_URL": "postgresql://user:pass@host:5432/dbname"
       }

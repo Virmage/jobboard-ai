@@ -689,7 +689,7 @@ function DashboardContent() {
             </div>
             <div className="flex items-center gap-3">
               <code className="flex-1 rounded-lg border border-border bg-[#0a0a0a] px-4 py-2.5 text-sm text-text-tertiary font-mono">
-                jbai_****************************
+                aj_******************************
               </code>
               <button className="shrink-0 rounded-lg border border-border px-3 py-2.5 text-xs text-text-secondary transition-colors hover:border-border-hover hover:text-text-primary">
                 Reveal

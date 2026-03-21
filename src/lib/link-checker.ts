@@ -3,7 +3,7 @@ import { db } from "@/db/index";
 import { jobs } from "@/db/schema";
 
 const UA =
-  "Mozilla/5.0 (compatible; JobBoardAI/1.0; +https://jobboardai.com)";
+  "Mozilla/5.0 (compatible; AgentJobs/1.0; +https://agentjobs.com)";
 
 /**
  * HEAD-check a single URL. Returns true if the link responds 2xx/3xx.

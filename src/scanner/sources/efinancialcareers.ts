@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership, isWithinCutoff, parseRelativeAge } from "../utils";
+import { fetchText, sleep, isWithinCutoff, parseRelativeAge } from "../utils";
 
 const CUTOFF_DAYS = 14;
 const BASE_URL = "https://www.efinancialcareers.com";
@@ -63,7 +63,7 @@ export async function scanEFinancialCareers(): Promise<RawJob[]> {
         || $el.find("a").first().text().trim();
 
       if (!title) return;
-      if (!titleMatchesCreativeLeadership(title)) return;
+
 
       // Extract link
       let link = $el.find("a").first().attr("href") || $el.attr("href") || "";

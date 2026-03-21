@@ -2,7 +2,6 @@ import type { RawJob } from "../types";
 import {
   fetchJSON,
   sleep,
-  titleMatchesCreativeLeadership,
   isWithinCutoff,
   ALL_SEARCH_QUERIES,
 } from "../utils";
@@ -75,7 +74,7 @@ export async function scanMyCareersFuture(): Promise<RawJob[]> {
 
     for (const job of data.results) {
       if (!job.uuid || seenIds.has(job.uuid)) continue;
-      if (!titleMatchesCreativeLeadership(job.title)) continue;
+
 
       // Date filter
       const postedDate = job.metadata?.newPostingDate

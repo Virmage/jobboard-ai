@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership, isWithinCutoff } from "../utils";
+import { fetchText, sleep, isWithinCutoff } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
@@ -103,7 +103,7 @@ export async function scanRemotive(): Promise<RawJob[]> {
 
       // Clean title (remove "at Company" suffix for matching)
       const cleanTitle = item.title.replace(/\s+at\s+.+$/i, "").trim();
-      if (!titleMatchesCreativeLeadership(cleanTitle)) continue;
+
 
       // Date filter
       const postedDate = item.pubDate ? new Date(item.pubDate) : null;

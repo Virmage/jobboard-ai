@@ -46,12 +46,16 @@ export async function POST(request: NextRequest) {
     const [key] = await db
       .insert(apiKeys)
       .values({
+        email: auth.email,
+        key: raw,
         keyHash: hash,
         keyPrefix: prefix,
         name: name ?? null,
         ownerId: auth.employerId,
         tier,
         rateLimit: tierLimits[tier] ?? 100,
+        monthlyLimit: tierLimits[tier] ?? 100,
+        requestCount: 0,
         isActive: true,
       })
       .returning({

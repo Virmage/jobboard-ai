@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { sleep, titleMatchesCreativeLeadership, isWithinCutoff } from "../utils";
+import { sleep, isWithinCutoff } from "../utils";
 
 const CUTOFF_DAYS = 14;
 const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
@@ -86,7 +86,7 @@ export async function scanJooble(): Promise<RawJob[]> {
         for (const job of data.jobs) {
           const id = job.id || job.link;
           if (!id || seenIds.has(id)) continue;
-          if (!titleMatchesCreativeLeadership(job.title)) continue;
+
 
           // Date filter
           const postedDate = job.updated ? new Date(job.updated) : null;

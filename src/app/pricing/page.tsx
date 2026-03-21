@@ -2,11 +2,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { CheckoutButton } from "./checkout-button";
 
 export const metadata: Metadata = {
-  title: "Pricing — JobBoard AI",
+  title: "Pricing — AgentJobs",
   description:
-    "Simple, transparent pricing for JobBoard AI. Free tier for hobbyists, Pro for power users, Enterprise for scale.",
+    "Simple, transparent pricing for AgentJobs. Free tier for hobbyists, Pro for power users, Enterprise for scale.",
 };
 
 // ---------------------------------------------------------------------------
@@ -37,23 +38,24 @@ export default function PricingPage() {
       period: "forever",
       description: "Perfect for hobbyists and testing the API.",
       features: [
-        "100 queries per day",
+        "100 searches per month",
         "Basic search with filters",
         "20 results per query",
         "Role intelligence (read-only)",
         "Community support",
       ],
-      cta: "Get Free API Key",
+      cta: "Get API Key",
       ctaHref: "/docs#authentication",
       highlight: false,
+      plan: null as null,
     },
     {
       name: "Pro",
-      price: "$49",
+      price: "$29",
       period: "/month",
       description: "For developers building AI-powered job tools.",
       features: [
-        "10,000 queries per day",
+        "5,000 searches per month",
         "100 results per query",
         "Full role intelligence API",
         "Job alerts via webhook",
@@ -61,17 +63,18 @@ export default function PricingPage() {
         "Priority support",
         "Custom search presets",
       ],
-      cta: "Start Pro Trial",
-      ctaHref: "/docs#authentication",
+      cta: "Upgrade to Pro",
+      ctaHref: null,
       highlight: true,
+      plan: "pro" as const,
     },
     {
       name: "Enterprise",
-      price: "$499",
+      price: "$99",
       period: "/month",
-      description: "Unlimited access with dedicated support and SLAs.",
+      description: "Maximum volume with dedicated support.",
       features: [
-        "Unlimited queries",
+        "100,000 searches per month",
         "Unlimited results per query",
         "Custom role taxonomies",
         "Dedicated account manager",
@@ -80,9 +83,10 @@ export default function PricingPage() {
         "White-label widget",
         "Priority feature requests",
       ],
-      cta: "Contact Sales",
-      ctaHref: "mailto:hello@jobboard-ai.com",
+      cta: "Upgrade to Enterprise",
+      ctaHref: null,
       highlight: false,
+      plan: "enterprise" as const,
     },
   ];
 
@@ -148,16 +152,20 @@ export default function PricingPage() {
                 ))}
               </ul>
 
-              <Link
-                href={tier.ctaHref}
-                className={`mt-8 block rounded-lg py-2.5 text-center text-sm font-medium transition-colors ${
-                  tier.highlight
-                    ? "bg-accent text-white hover:bg-accent-hover"
-                    : "border border-border bg-surface-hover text-text-primary hover:border-border-hover"
-                }`}
-              >
-                {tier.cta}
-              </Link>
+              {tier.plan ? (
+                <CheckoutButton
+                  plan={tier.plan}
+                  highlight={tier.highlight}
+                  label={tier.cta}
+                />
+              ) : (
+                <Link
+                  href={tier.ctaHref!}
+                  className="mt-8 block rounded-lg border border-border bg-surface-hover py-2.5 text-center text-sm font-medium text-text-primary transition-colors hover:border-border-hover"
+                >
+                  {tier.cta}
+                </Link>
+              )}
             </div>
           ))}
         </div>

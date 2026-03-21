@@ -10,24 +10,17 @@ import {
 // Configuration
 // ---------------------------------------------------------------------------
 const BASE_URL =
-  process.env.JOBBOARD_API_URL || "https://jobboard-ai-rllv.vercel.app";
+  process.env.AGENTJOBS_API_URL || "https://agentjobs.vercel.app";
 
 // ---------------------------------------------------------------------------
 // HTTP helper
 // ---------------------------------------------------------------------------
-async function api(
-  path: string,
-  options?: { method?: string; body?: unknown }
-): Promise<unknown> {
+async function api(path: string): Promise<unknown> {
   const url = `${BASE_URL}${path}`;
-  const init: RequestInit = {
-    method: options?.method ?? "GET",
+  const res = await fetch(url, {
+    method: "GET",
     headers: { "Content-Type": "application/json" },
-  };
-  if (options?.body) {
-    init.body = JSON.stringify(options.body);
-  }
-  const res = await fetch(url, init);
+  });
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     throw new Error(`API ${res.status}: ${text || res.statusText}`);
@@ -36,13 +29,13 @@ async function api(
 }
 
 // ---------------------------------------------------------------------------
-// Tool definitions (same names/descriptions as the DB-backed server)
+// Tool definitions
 // ---------------------------------------------------------------------------
 const TOOLS: Tool[] = [
   {
     name: "search_jobs",
     description:
-      "Search the JobBoard AI database for job listings. Supports free-text search across titles, companies, and descriptions. Filter by industry, market/region, remote status, and role type. Results are sorted by featured status then posting date. Use this tool when a user is looking for jobs, exploring opportunities, or wants to see what's available.",
+      "Search the AgentJobs database for job listings. Supports free-text search across titles, companies, and descriptions. Filter by industry, role type, region, remote status, and salary range. Results are sorted by featured status then posting date.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -52,34 +45,32 @@ const TOOLS: Tool[] = [
             "Free-text search query to match against job titles, companies, and descriptions (e.g. 'machine learning engineer', 'product manager crypto')",
         },
         industry: {
-          type: "array",
-          items: { type: "string" },
+          type: "string",
           description:
-            "Filter by industry slugs (e.g. ['tech', 'finance']). Use get_market_stats to see available industries.",
+            "Filter by industry slug (e.g. 'tech', 'finance'). Use list_industries to see available options.",
         },
-        market: {
-          type: "array",
-          items: { type: "string" },
+        role: {
+          type: "string",
           description:
-            "Filter by geographic market/region (e.g. ['US', 'EU']). Valid values: US, EU, APAC, LATAM, Global.",
+            "Filter by role taxonomy slug (e.g. 'software-engineer', 'product-manager'). Use list_roles to discover role types.",
+        },
+        region: {
+          type: "string",
+          description:
+            "Filter by geographic region (e.g. 'US', 'EU', 'APAC', 'LATAM', 'Global').",
         },
         remote: {
           type: "boolean",
-          description: "When true, only return remote-friendly positions",
-        },
-        role_type: {
-          type: "string",
-          description:
-            "Filter by role taxonomy slug (e.g. 'software-engineer', 'product-manager'). Use suggest_roles to discover role types.",
-        },
-        limit: {
-          type: "number",
-          description:
-            "Maximum number of results to return (default: 10, max: 25)",
+          description: "When true, only return remote-friendly positions.",
         },
         page: {
           type: "number",
-          description: "Page number for pagination (default: 1)",
+          description: "Page number for pagination (default: 1).",
+        },
+        per_page: {
+          type: "number",
+          description:
+            "Results per page (default: 10, max: 25).",
         },
       },
       required: [],
@@ -95,84 +86,40 @@ const TOOLS: Tool[] = [
         job_id: {
           type: "string",
           description:
-            "The UUID of the job to retrieve (from search_jobs results)",
+            "The UUID of the job to retrieve (from search_jobs results).",
         },
       },
       required: ["job_id"],
     },
   },
   {
-    name: "suggest_roles",
+    name: "list_industries",
     description:
-      "The role intelligence engine. Given a natural language description of what someone actually does (NOT a job title), suggests matching role titles grouped by confidence level. This is the KEY FEATURE for career exploration — helps users discover roles they might not have considered. Example input: 'I lead brand strategy and creative campaigns for tech companies' returns grouped suggestions like Creative Director, Head of Brand, VP Marketing, etc.",
+      "List all available industries with their slugs, names, and job counts. Use this to discover valid industry filter values for search_jobs.",
     inputSchema: {
       type: "object" as const,
-      properties: {
-        description: {
-          type: "string",
-          description:
-            "A natural language description of what the person does, their skills, experience, or interests. NOT a job title — describe the actual work. (e.g. 'I build and deploy machine learning models for fraud detection at a fintech company')",
-        },
-      },
-      required: ["description"],
-    },
-  },
-  {
-    name: "get_market_stats",
-    description:
-      "Get statistics about the job market on JobBoard AI. Shows total jobs, breakdowns by industry and market/region, trending roles, and salary ranges. Useful for understanding the landscape before searching, or for market research. Can be filtered to a specific industry or market.",
-    inputSchema: {
-      type: "object" as const,
-      properties: {
-        industry: {
-          type: "string",
-          description:
-            "Optional: filter stats to a specific industry slug (e.g. 'tech', 'finance')",
-        },
-        market: {
-          type: "string",
-          description:
-            "Optional: filter stats to a specific region (US, EU, APAC, LATAM, Global)",
-        },
-      },
+      properties: {},
       required: [],
     },
   },
   {
-    name: "subscribe_alerts",
+    name: "list_roles",
     description:
-      "Set up job alert preferences for email notifications. Stores the user's preferences so they can be notified when new matching jobs are posted. Returns a subscription ID for managing the alert later.",
+      "List all role taxonomies (canonical role titles) with their slugs, related titles, and job counts. Use this to discover valid role filter values for search_jobs, or to explore what kinds of roles exist.",
     inputSchema: {
       type: "object" as const,
-      properties: {
-        email: {
-          type: "string",
-          description: "Email address to send job alerts to",
-        },
-        roles: {
-          type: "array",
-          items: { type: "string" },
-          description:
-            "Role titles or taxonomy slugs to watch (e.g. ['software-engineer', 'product-manager'])",
-        },
-        industries: {
-          type: "array",
-          items: { type: "string" },
-          description:
-            "Industry slugs to watch (e.g. ['tech', 'crypto'])",
-        },
-        markets: {
-          type: "array",
-          items: { type: "string" },
-          description:
-            "Market/region codes to watch (e.g. ['US', 'EU'])",
-        },
-        remote_only: {
-          type: "boolean",
-          description: "When true, only alert for remote positions",
-        },
-      },
-      required: ["email"],
+      properties: {},
+      required: [],
+    },
+  },
+  {
+    name: "get_market_overview",
+    description:
+      "Get a summary overview of the job market: total jobs, breakdowns by industry, region, and source. Useful for understanding the landscape before searching.",
+    inputSchema: {
+      type: "object" as const,
+      properties: {},
+      required: [],
     },
   },
 ];
@@ -187,20 +134,12 @@ async function handleSearchJobs(
   const params = new URLSearchParams();
 
   if (args.query) params.set("q", String(args.query));
+  if (args.industry) params.set("industry", String(args.industry));
+  if (args.role) params.set("role", String(args.role));
+  if (args.region) params.set("region", String(args.region));
   if (args.remote === true) params.set("remote", "true");
-  if (args.role_type) params.set("role_type", String(args.role_type));
-  if (args.limit) params.set("limit", String(args.limit));
   if (args.page) params.set("page", String(args.page));
-
-  const industryArr = args.industry as string[] | undefined;
-  if (industryArr?.length) {
-    for (const ind of industryArr) params.append("industry", ind);
-  }
-
-  const marketArr = args.market as string[] | undefined;
-  if (marketArr?.length) {
-    for (const m of marketArr) params.append("market", m);
-  }
+  if (args.per_page) params.set("per_page", String(args.per_page));
 
   const qs = params.toString();
   const data = (await api(`/api/v1/jobs${qs ? `?${qs}` : ""}`)) as Record<
@@ -208,7 +147,7 @@ async function handleSearchJobs(
     unknown
   >;
 
-  // Rewrite apply_url to use the redirect endpoint
+  // Ensure apply_url uses the redirect endpoint
   const jobs = (data.jobs as Array<Record<string, unknown>>) ?? [];
   for (const job of jobs) {
     if (job.id) {
@@ -238,8 +177,9 @@ async function handleGetJobDetails(
   >;
 
   // Ensure apply_url uses the redirect endpoint
-  if (data.id) {
-    data.apply_url = `${BASE_URL}/go/${data.id}`;
+  const job = data.job as Record<string, unknown> | undefined;
+  if (job?.id) {
+    job.apply_url = `${BASE_URL}/go/${job.id}`;
   }
 
   return {
@@ -247,69 +187,22 @@ async function handleGetJobDetails(
   };
 }
 
-async function handleSuggestRoles(
-  args: Record<string, unknown>
-): Promise<CallToolResult> {
-  const description = args.description as string;
-  if (!description) {
-    return {
-      content: [{ type: "text", text: "Error: description is required." }],
-      isError: true,
-    };
-  }
-
-  const data = await api(
-    `/api/v1/roles/suggest?q=${encodeURIComponent(description)}`
-  );
-
+async function handleListIndustries(): Promise<CallToolResult> {
+  const data = await api("/api/v1/industries");
   return {
     content: [{ type: "text", text: JSON.stringify(data) }],
   };
 }
 
-async function handleGetMarketStats(
-  args: Record<string, unknown>
-): Promise<CallToolResult> {
-  // Fetch industries list and construct stats from the response
-  const params = new URLSearchParams();
-  if (args.industry) params.set("industry", String(args.industry));
-  if (args.market) params.set("market", String(args.market));
-
-  const qs = params.toString();
-  const data = await api(`/api/v1/industries${qs ? `?${qs}` : ""}`);
-
+async function handleListRoles(): Promise<CallToolResult> {
+  const data = await api("/api/v1/taxonomy");
   return {
     content: [{ type: "text", text: JSON.stringify(data) }],
   };
 }
 
-async function handleSubscribeAlerts(
-  args: Record<string, unknown>
-): Promise<CallToolResult> {
-  const email = args.email as string;
-  if (!email) {
-    return {
-      content: [{ type: "text", text: "Error: email is required." }],
-      isError: true,
-    };
-  }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return {
-      content: [{ type: "text", text: "Error: invalid email format." }],
-      isError: true,
-    };
-  }
-
-  const body: Record<string, unknown> = { email };
-  if (args.roles) body.roles = args.roles;
-  if (args.industries) body.industries = args.industries;
-  if (args.markets) body.markets = args.markets;
-  if (args.remote_only !== undefined) body.remote_only = args.remote_only;
-
-  const data = await api("/api/alerts", { method: "POST", body });
-
+async function handleGetMarketOverview(): Promise<CallToolResult> {
+  const data = await api("/api/stats");
   return {
     content: [{ type: "text", text: JSON.stringify(data) }],
   };
@@ -321,7 +214,7 @@ async function handleSubscribeAlerts(
 export function createMcpServer(): Server {
   const server = new Server(
     {
-      name: "jobboard-ai",
+      name: "agentjobs",
       version: "1.0.0",
     },
     {
@@ -345,12 +238,12 @@ export function createMcpServer(): Server {
           return await handleSearchJobs(toolArgs);
         case "get_job_details":
           return await handleGetJobDetails(toolArgs);
-        case "suggest_roles":
-          return await handleSuggestRoles(toolArgs);
-        case "get_market_stats":
-          return await handleGetMarketStats(toolArgs);
-        case "subscribe_alerts":
-          return await handleSubscribeAlerts(toolArgs);
+        case "list_industries":
+          return await handleListIndustries();
+        case "list_roles":
+          return await handleListRoles();
+        case "get_market_overview":
+          return await handleGetMarketOverview();
         default:
           return {
             content: [
@@ -362,7 +255,7 @@ export function createMcpServer(): Server {
     } catch (error) {
       const message =
         error instanceof Error ? error.message : String(error);
-      console.error(`[jobboard-ai-mcp] Error in ${name}:`, error);
+      console.error(`[agentjobs-mcp] Error in ${name}:`, error);
       return {
         content: [
           {

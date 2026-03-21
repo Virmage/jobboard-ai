@@ -2,7 +2,6 @@ import type { RawJob } from "../types";
 import {
   fetchJSONWithAuth,
   sleep,
-  titleMatchesCreativeLeadership,
   isWithinCutoff,
   ALL_SEARCH_QUERIES,
 } from "../utils";
@@ -33,7 +32,7 @@ interface ReedSearchResponse {
 /**
  * Search keywords — covers all major job categories.
  */
-const SEARCH_QUERIES = ALL_SEARCH_QUERIES;
+const SEARCH_QUERIES = ALL_SEARCH_QUERIES.filter((_,i) => i % 5 === 0);
 
 /**
  * Scan Reed UK API for creative leadership roles.
@@ -76,7 +75,7 @@ export async function scanReed(): Promise<RawJob[]> {
 
     for (const job of data.results) {
       if (seenIds.has(job.jobId)) continue;
-      if (!titleMatchesCreativeLeadership(job.jobTitle)) continue;
+
 
       // Date filter
       const postedDate = job.date ? new Date(job.date) : null;

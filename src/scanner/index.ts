@@ -782,7 +782,7 @@ export async function runFullScan(
   for (const raw of allRawJobs) {
     const matcher = titleMatchesAny(raw.title, matchers);
     const region = detectRegion(raw.location);
-    const dedupKey = makeDedupKey(raw.title, raw.company);
+    const dedupKey = makeDedupKey(raw.title, raw.company, raw.location);
 
     if (!dedupMap.has(dedupKey)) {
       dedupMap.set(dedupKey, {

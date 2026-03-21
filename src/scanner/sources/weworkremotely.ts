@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership, isWithinCutoff } from "../utils";
+import { fetchText, sleep, isWithinCutoff } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
@@ -95,7 +95,7 @@ export async function scanWeWorkRemotely(): Promise<RawJob[]> {
     for (const item of items) {
       if (!item.link || seenLinks.has(item.link)) continue;
       if (!item.title) continue;
-      if (!titleMatchesCreativeLeadership(item.title)) continue;
+
 
       // Date filter
       const postedDate = item.pubDate ? new Date(item.pubDate) : null;

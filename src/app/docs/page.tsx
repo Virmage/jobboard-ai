@@ -4,9 +4,9 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "API Documentation — JobBoard AI",
+  title: "API Documentation — AgentJobs",
   description:
-    "Complete API documentation for JobBoard AI. REST endpoints, MCP server, ChatGPT Actions, and embeddable widget.",
+    "Complete API documentation for AgentJobs. REST endpoints, MCP server, ChatGPT Actions, and embeddable widget.",
 };
 
 // ---------------------------------------------------------------------------
@@ -242,14 +242,14 @@ export default function DocsPage() {
               API Documentation
             </h1>
             <p className="mt-2 text-text-secondary">
-              Everything you need to integrate JobBoard AI into your AI agent,
+              Everything you need to integrate AgentJobs into your AI agent,
               app, or platform.
             </p>
             <div className="mt-4 flex items-center gap-2 text-xs text-text-tertiary">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-green" />
               Base URL:{" "}
               <code className="rounded bg-surface-raised border border-border px-1.5 py-0.5 text-text-secondary">
-                https://jobboard-ai.com
+                https://agentjobs.com
               </code>
             </div>
           </div>
@@ -333,8 +333,8 @@ export default function DocsPage() {
                 {
                   lang: "bash",
                   label: "cURL",
-                  code: `curl -H "X-API-Key: jbai_your_api_key_here" \\
-  https://jobboard-ai.com/api/v1/jobs?role=engineer`,
+                  code: `curl -H "X-API-Key: aj_your_api_key_here" \\
+  https://agentjobs.com/api/v1/jobs?role=engineer`,
                 },
                 {
                   lang: "python",
@@ -342,8 +342,8 @@ export default function DocsPage() {
                   code: `import requests
 
 response = requests.get(
-    "https://jobboard-ai.com/api/v1/jobs",
-    headers={"X-API-Key": "jbai_your_api_key_here"},
+    "https://agentjobs.com/api/v1/jobs",
+    headers={"X-API-Key": "aj_your_api_key_here"},
     params={"role": "engineer"}
 )
 jobs = response.json()["jobs"]`,
@@ -352,8 +352,8 @@ jobs = response.json()["jobs"]`,
                   lang: "javascript",
                   label: "JavaScript",
                   code: `const response = await fetch(
-  "https://jobboard-ai.com/api/v1/jobs?role=engineer",
-  { headers: { "X-API-Key": "jbai_your_api_key_here" } }
+  "https://agentjobs.com/api/v1/jobs?role=engineer",
+  { headers: { "X-API-Key": "aj_your_api_key_here" } }
 );
 const { jobs } = await response.json();`,
                 },
@@ -480,15 +480,15 @@ const { jobs } = await response.json();`,
                 {
                   lang: "bash",
                   label: "cURL",
-                  code: `curl -H "X-API-Key: jbai_your_key" \\
-  "https://jobboard-ai.com/api/v1/jobs?q=creative+director&industry=crypto&remote=true"`,
+                  code: `curl -H "X-API-Key: aj_your_key" \\
+  "https://agentjobs.com/api/v1/jobs?q=creative+director&industry=crypto&remote=true"`,
                 },
                 {
                   lang: "python",
                   label: "Python",
                   code: `response = requests.get(
-    "https://jobboard-ai.com/api/v1/jobs",
-    headers={"X-API-Key": "jbai_your_key"},
+    "https://agentjobs.com/api/v1/jobs",
+    headers={"X-API-Key": "aj_your_key"},
     params={"q": "creative director", "industry": "crypto", "remote": True}
 )`,
                 },
@@ -501,8 +501,8 @@ const { jobs } = await response.json();`,
   remote: "true"
 });
 
-const res = await fetch(\`https://jobboard-ai.com/api/v1/jobs?\${params}\`, {
-  headers: { "X-API-Key": "jbai_your_key" }
+const res = await fetch(\`https://agentjobs.com/api/v1/jobs?\${params}\`, {
+  headers: { "X-API-Key": "aj_your_key" }
 });`,
                 },
               ]}
@@ -545,8 +545,8 @@ const res = await fetch(\`https://jobboard-ai.com/api/v1/jobs?\${params}\`, {
                 {
                   lang: "bash",
                   label: "cURL",
-                  code: `curl -H "X-API-Key: jbai_your_key" \\
-  https://jobboard-ai.com/api/v1/jobs/a1b2c3d4-e5f6-7890-abcd-ef1234567890`,
+                  code: `curl -H "X-API-Key: aj_your_key" \\
+  https://agentjobs.com/api/v1/jobs/a1b2c3d4-e5f6-7890-abcd-ef1234567890`,
                 },
               ]}
               response={`{
@@ -573,8 +573,8 @@ const res = await fetch(\`https://jobboard-ai.com/api/v1/jobs?\${params}\`, {
                 {
                   lang: "bash",
                   label: "cURL",
-                  code: `curl -H "X-API-Key: jbai_your_key" \\
-  https://jobboard-ai.com/api/v1/industries`,
+                  code: `curl -H "X-API-Key: aj_your_key" \\
+  https://agentjobs.com/api/v1/industries`,
                 },
               ]}
               response={`{
@@ -605,8 +605,8 @@ const res = await fetch(\`https://jobboard-ai.com/api/v1/jobs?\${params}\`, {
                 {
                   lang: "bash",
                   label: "cURL",
-                  code: `curl -H "X-API-Key: jbai_your_key" \\
-  "https://jobboard-ai.com/api/v1/roles/suggest?q=creative+director"`,
+                  code: `curl -H "X-API-Key: aj_your_key" \\
+  "https://agentjobs.com/api/v1/roles/suggest?q=creative+director"`,
                 },
               ]}
               response={`{
@@ -635,8 +635,8 @@ const res = await fetch(\`https://jobboard-ai.com/api/v1/jobs?\${params}\`, {
                 {
                   lang: "bash",
                   label: "cURL",
-                  code: `curl -H "X-API-Key: jbai_your_key" \\
-  https://jobboard-ai.com/api/v1/taxonomy`,
+                  code: `curl -H "X-API-Key: aj_your_key" \\
+  https://agentjobs.com/api/v1/taxonomy`,
                 },
               ]}
             />
@@ -707,7 +707,7 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
           {/* MCP Server */}
           <Section id="mcp" title="MCP Server (Claude)">
             <p className="text-sm text-text-secondary leading-relaxed">
-              Install the JobBoard AI MCP server to give Claude native access to
+              Install the AgentJobs MCP server to give Claude native access to
               job search. Claude can then search for jobs, filter by industry,
               and return structured results directly in conversation.
             </p>
@@ -717,7 +717,7 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
                 Installation
               </p>
               <CodeBlock title="Terminal" lang="bash">
-                {`npx jobboard-ai-mcp`}
+                {`npx agentjobs-mcp`}
               </CodeBlock>
             </div>
 
@@ -727,11 +727,11 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
               </p>
               <CodeBlock title="claude_desktop_config.json" lang="json">{`{
   "mcpServers": {
-    "jobboard-ai": {
+    "agentjobs": {
       "command": "npx",
-      "args": ["jobboard-ai-mcp"],
+      "args": ["agentjobs-mcp"],
       "env": {
-        "JOBBOARD_API_KEY": "jbai_your_key_here"
+        "AGENTJOBS_API_KEY": "aj_your_key_here"
       }
     }
   }
@@ -807,7 +807,7 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
             </div>
 
             <CodeBlock title="OpenAPI Spec URL" lang="text">
-              {`https://jobboard-ai.com/api/openapi.json`}
+              {`https://agentjobs.com/api/openapi.json`}
             </CodeBlock>
           </Section>
 
@@ -821,8 +821,8 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
 
             <CodeBlock title="Plugin manifest" lang="json">{`{
   "schema_version": "v1",
-  "name_for_human": "JobBoard AI",
-  "name_for_model": "jobboard_ai",
+  "name_for_human": "AgentJobs",
+  "name_for_model": "agentjobs",
   "description_for_human": "Search for AI-curated job listings across 400+ companies.",
   "description_for_model": "Search for job listings. Supports filtering by role, industry, region, and remote status.",
   "auth": {
@@ -832,7 +832,7 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
   },
   "api": {
     "type": "openapi",
-    "url": "https://jobboard-ai.com/api/openapi.json"
+    "url": "https://agentjobs.com/api/openapi.json"
   }
 }`}</CodeBlock>
           </Section>
@@ -849,7 +849,7 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
             </p>
 
             <CodeBlock title="HTML" lang="html">{`<script
-  src="https://jobboard-ai.com/api/widget?industry=crypto&role=creative-director&max=5&theme=dark"
+  src="https://agentjobs.com/api/widget?industry=crypto&role=creative-director&max=5&theme=dark"
   async>
 </script>`}</CodeBlock>
           </Section>

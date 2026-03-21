@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth";
 import { validateApiKey } from "@/lib/api-auth";
 
@@ -64,19 +64,7 @@ export async function requireAuth(
 // ---------------------------------------------------------------------------
 // API Key auth — extracts key from X-API-Key header
 // ---------------------------------------------------------------------------
-export async function optionalApiKeyAuth(request: Request) {
-  const apiKeyHeader = request.headers.get("x-api-key");
-  if (!apiKeyHeader) {
-    return null;
-  }
-
-  // Rewrite X-API-Key as Authorization Bearer for validateApiKey
-  const fakeRequest = new Request(request.url, {
-    headers: new Headers({
-      authorization: `Bearer ${apiKeyHeader}`,
-    }),
-  });
-
-  const result = await validateApiKey(fakeRequest);
+export async function optionalApiKeyAuth(request: NextRequest) {
+  const result = await validateApiKey(request);
   return result.authenticated ? result.key : null;
 }

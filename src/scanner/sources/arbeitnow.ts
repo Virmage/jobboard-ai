@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { fetchJSON, titleMatchesCreativeLeadership, isWithinCutoff } from "../utils";
+import { fetchJSON, isWithinCutoff } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
@@ -51,7 +51,7 @@ export async function scanArbeitnow(): Promise<RawJob[]> {
 
     for (const job of data.data) {
       if (seenSlugs.has(job.slug)) continue;
-      if (!titleMatchesCreativeLeadership(job.title)) continue;
+
 
       // Date filter
       const postedDate = job.created_at

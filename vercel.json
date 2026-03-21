@@ -1,6 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
+  "crons": [
+    {
+      "path": "/api/cron/scan",
+      "schedule": "0 */6 * * *"
+    }
+  ],
   "functions": {
     "src/app/api/mcp/**/*.ts": {
       "maxDuration": 30
@@ -10,6 +16,9 @@
     },
     "src/app/api/employers/**/*.ts": {
       "maxDuration": 15
+    },
+    "src/app/api/cron/**/*.ts": {
+      "maxDuration": 300
     }
   }
 }

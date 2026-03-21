@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "JobBoard AI — The Job Board for AI Agents",
+  title: "AgentJobs — The Job Search Tool for AI Agents",
   description:
-    "Structured, real-time job data for Claude, ChatGPT, and every AI agent. 400+ company career pages scanned every 6 hours.",
+    "Search 14,000+ jobs across every industry. Works with Claude, ChatGPT, and any AI assistant via REST API, MCP, or ChatGPT Actions.",
   openGraph: {
-    title: "JobBoard AI — The Job Board for AI Agents",
+    title: "AgentJobs — The Job Search Tool for AI Agents",
     description:
-      "Structured, real-time job data for Claude, ChatGPT, and every AI agent. 400+ company career pages scanned every 6 hours.",
+      "Search 14,000+ jobs across every industry. Works with Claude, ChatGPT, and any AI assistant via REST API, MCP, or ChatGPT Actions.",
     type: "website",
   },
 };
@@ -24,7 +24,7 @@ export default function RootLayout({
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="JobBoard AI — Latest Jobs"
+          title="AgentJobs — Latest Jobs"
           href="/api/feeds"
         />
       </head>

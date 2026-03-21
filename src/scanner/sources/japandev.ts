@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership } from "../utils";
+import { fetchText, sleep } from "../utils";
 
 /**
  * Scan Japan Dev for software engineering roles in Japan.
@@ -74,7 +74,7 @@ export async function scanJapanDev(): Promise<RawJob[]> {
           .join(", ");
 
         if (!title || !href) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href.startsWith("http")
           ? href
@@ -102,7 +102,7 @@ export async function scanJapanDev(): Promise<RawJob[]> {
             const job = item?.item || item;
             if (job?.["@type"] !== "JobPosting") continue;
             const title = job?.title || job?.name;
-            if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
             const link = job?.url;
             if (!link || seenLinks.has(link)) continue;

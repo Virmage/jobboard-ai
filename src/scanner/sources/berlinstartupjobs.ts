@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership } from "../utils";
+import { fetchText, sleep } from "../utils";
 
 /**
  * Scan Berlin Startup Jobs for Berlin/Germany startup roles.
@@ -51,7 +51,7 @@ export async function scanBerlinStartupJobs(): Promise<RawJob[]> {
           $el.find("[class*='tag'], [class*='category']").text().trim();
 
         if (!title || title.length < 3) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         // Skip pagination and category links
         if (href && href.match(/\/page\/|\/category\//)) return;

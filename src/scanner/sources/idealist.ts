@@ -3,7 +3,6 @@ import type { RawJob } from "../types";
 import {
   fetchText,
   sleep,
-  titleMatchesCreativeLeadership,
   ALL_SEARCH_QUERIES,
 } from "../utils";
 
@@ -51,7 +50,7 @@ export async function scanIdealist(): Promise<RawJob[]> {
           $el.find("[class*='location'], [class*='Location']").first().text().trim();
 
         if (!title || title.length < 3) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href
           ? href.startsWith("http")
@@ -79,7 +78,7 @@ export async function scanIdealist(): Promise<RawJob[]> {
             const job = item?.item || item;
             if (job?.["@type"] !== "JobPosting") continue;
             const title = job?.title || job?.name;
-            if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
             const link = job?.url || job?.sameAs;
             if (!link || seenLinks.has(link)) continue;

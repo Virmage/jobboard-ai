@@ -1,11 +1,11 @@
-# jobboard-ai-mcp
+# agentjobs-mcp
 
-MCP server for JobBoard AI — search AI/tech jobs from Claude Desktop.
+MCP server for AgentJobs — search 14,000+ jobs from Claude Desktop. No database setup required; connects to the AgentJobs REST API.
 
 ## Quick Start
 
 ```bash
-npx jobboard-ai-mcp
+npx agentjobs-mcp
 ```
 
 ## Claude Desktop Configuration
@@ -15,38 +15,60 @@ Add this to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "jobboard-ai": {
+    "agentjobs": {
       "command": "npx",
-      "args": ["-y", "jobboard-ai-mcp"]
+      "args": ["-y", "agentjobs-mcp"]
     }
   }
 }
 ```
 
 Config file location:
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+
+- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+- **Linux:** `~/.config/Claude/claude_desktop_config.json`
+
+After editing, restart Claude Desktop for the changes to take effect.
 
 ## Available Tools
 
 | Tool | Description |
 |------|-------------|
-| `search_jobs` | Search job listings with filters for industry, market, remote status, and role type |
-| `get_job_details` | Get full details for a specific job listing |
-| `suggest_roles` | Describe what you do and discover matching role titles |
-| `get_market_stats` | Get job market statistics by industry and region |
-| `subscribe_alerts` | Set up email notifications for new matching jobs |
+| `search_jobs` | Search job listings with filters for query, industry, role, region, and remote status |
+| `get_job_details` | Get full details for a specific job by ID |
+| `list_industries` | List all available industries with job counts |
+| `list_roles` | List all role taxonomies with related titles and job counts |
+| `get_market_overview` | Summary stats: total jobs, breakdowns by industry, region, and source |
 
 ## Environment Variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `JOBBOARD_API_URL` | `https://jobboard-ai-rllv.vercel.app` | API base URL |
+| `AGENTJOBS_API_URL` | `https://agentjobs.vercel.app` | Override the API base URL |
+
+## Example Prompts
+
+Once configured in Claude Desktop, try:
+
+- "Find me remote machine learning jobs"
+- "What industries have the most jobs right now?"
+- "Show me details for job [id]"
+- "What roles are available in the crypto industry?"
+- "Give me an overview of the job market"
+
+## Development
+
+```bash
+npm install
+npm run build
+node dist/index.js
+```
 
 ## Requirements
 
 - Node.js 18+
 
-## Links
+## License
 
-- Website: https://jobboard-ai-rllv.vercel.app
+MIT

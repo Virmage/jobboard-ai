@@ -4,7 +4,7 @@ import { jobs, roleTaxonomies } from "@/db/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { generateRSS } from "@/lib/rss";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jobboardai.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://agentjobs.com";
 
 export async function GET(
   _req: NextRequest,
@@ -42,8 +42,8 @@ export async function GET(
     .limit(50);
 
   const xml = generateRSS({
-    title: `JobBoard AI \u2014 ${role.canonicalTitle} Jobs`,
-    description: `Latest ${role.canonicalTitle} jobs from JobBoard AI.`,
+    title: `AgentJobs \u2014 ${role.canonicalTitle} Jobs`,
+    description: `Latest ${role.canonicalTitle} jobs from AgentJobs.`,
     link: SITE_URL,
     jobs: rows,
   });

@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { sleep, isWithinCutoff, titleMatchesCreativeLeadership, ALL_SEARCH_QUERIES } from "../utils";
+import { sleep, isWithinCutoff, ALL_SEARCH_QUERIES } from "../utils";
 
 const CUTOFF_DAYS = 14;
 const UA = "Mozilla/5.0 (compatible; JobScanner/1.0)";
@@ -113,7 +113,7 @@ export async function scanUSAJobs(): Promise<RawJob[]> {
         const id = item.MatchedObjectId;
 
         if (!id || seenIds.has(id)) continue;
-        if (!titleMatchesCreativeLeadership(desc.PositionTitle)) continue;
+
 
         const postedDate = desc.PublicationStartDate
           ? new Date(desc.PublicationStartDate)

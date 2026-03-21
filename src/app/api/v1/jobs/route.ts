@@ -9,6 +9,7 @@ import {
   zodValidationError,
   handleCorsOptions,
 } from "@/lib/api-response";
+import { withAuth, type ValidateResult } from "@/lib/api-auth";
 
 // ---------------------------------------------------------------------------
 // Query-param schema
@@ -48,7 +49,7 @@ const searchSchema = z.object({
 // ---------------------------------------------------------------------------
 // GET /api/v1/jobs
 // ---------------------------------------------------------------------------
-export async function GET(request: NextRequest) {
+export const GET = withAuth(async function GET(request: NextRequest, _auth: ValidateResult) {
   const { searchParams } = request.nextUrl;
 
   // Parse all query params into a plain object
@@ -138,7 +139,7 @@ export async function GET(request: NextRequest) {
       },
     },
   });
-}
+});
 
 // ---------------------------------------------------------------------------
 // OPTIONS — CORS preflight

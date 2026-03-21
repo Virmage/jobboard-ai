@@ -15,7 +15,7 @@ import { createMcpServer } from "./server.js";
 async function main() {
   if (!process.env.DATABASE_URL) {
     console.error(
-      "[jobboard-ai-mcp] Error: DATABASE_URL environment variable is required."
+      "[agentjobs-mcp] Error: DATABASE_URL environment variable is required."
     );
     process.exit(1);
   }
@@ -24,10 +24,10 @@ async function main() {
   const transport = new StdioServerTransport();
 
   await server.connect(transport);
-  console.error("[jobboard-ai-mcp] Server started on stdio transport");
+  console.error("[agentjobs-mcp] Server started on stdio transport");
 
   const shutdown = async () => {
-    console.error("[jobboard-ai-mcp] Shutting down...");
+    console.error("[agentjobs-mcp] Shutting down...");
     await server.close();
     process.exit(0);
   };
@@ -37,6 +37,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("[jobboard-ai-mcp] Fatal error:", error);
+  console.error("[agentjobs-mcp] Fatal error:", error);
   process.exit(1);
 });

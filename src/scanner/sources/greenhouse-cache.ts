@@ -6,8 +6,6 @@ import {
   fetchText,
   sleep,
   isWithinCutoff,
-  titleMatchesAny,
-  titleMatchesCreativeLeadership,
 } from "../utils";
 
 const CUTOFF_DAYS = 14;
@@ -76,13 +74,13 @@ async function loadCacheFile(): Promise<CareerProject[]> {
 
 /**
  * Read career-cache.json and scan Greenhouse/Lever/Ashby APIs
- * for creative leadership roles at known crypto/tech companies.
+ * for jobs at known crypto/tech companies.
  *
  * This scanner reads the locally cached project list (built by cache-builder.ts)
- * and hits each project's ATS API to find matching jobs.
+ * and hits each project's ATS API to collect all jobs.
  *
- * If matchers are provided, uses taxonomy-based matching.
- * Otherwise falls back to creative leadership pattern matching.
+ * Returns all jobs found — taxonomy matching is handled downstream by
+ * the main scanner index.ts.
  */
 export async function scanGreenhouseCache(
   matchers?: TitleMatcher[],
@@ -102,7 +100,7 @@ export async function scanGreenhouseCache(
   for (let i = 0; i < atsProjects.length; i += BATCH_SIZE) {
     const batch = atsProjects.slice(i, i + BATCH_SIZE);
     const batchJobs = await Promise.all(
-      batch.map((proj) => scanSingleProject(proj, matchers)),
+      batch.map((proj) => scanSingleProject(proj)),
     );
     jobs.push(...batchJobs.flat());
     await sleep(BATCH_DELAY_MS);
@@ -111,25 +109,17 @@ export async function scanGreenhouseCache(
   return jobs;
 }
 
-function matchesTitle(title: string, matchers?: TitleMatcher[]): boolean {
-  if (matchers?.length) {
-    return titleMatchesAny(title, matchers) !== null;
-  }
-  return titleMatchesCreativeLeadership(title);
-}
-
 async function scanSingleProject(
   proj: CareerProject,
-  matchers?: TitleMatcher[],
 ): Promise<RawJob[]> {
   try {
     switch (proj.atsType) {
       case "greenhouse":
-        return await scanGreenhouse(proj, matchers);
+        return await scanGreenhouse(proj);
       case "lever":
-        return await scanLever(proj, matchers);
+        return await scanLever(proj);
       case "ashby":
-        return await scanAshby(proj, matchers);
+        return await scanAshby(proj);
       default:
         return [];
     }
@@ -140,7 +130,6 @@ async function scanSingleProject(
 
 async function scanGreenhouse(
   proj: CareerProject,
-  matchers?: TitleMatcher[],
 ): Promise<RawJob[]> {
   const data = await fetchJSON<GreenhouseResponse>(
     `https://boards-api.greenhouse.io/v1/boards/${proj.atsId}/jobs`,
@@ -154,7 +143,6 @@ async function scanGreenhouse(
       !isWithinCutoff(new Date(job.updated_at), CUTOFF_DAYS)
     )
       continue;
-    if (!matchesTitle(job.title, matchers)) continue;
 
     out.push({
       title: job.title,
@@ -172,7 +160,6 @@ async function scanGreenhouse(
 
 async function scanLever(
   proj: CareerProject,
-  matchers?: TitleMatcher[],
 ): Promise<RawJob[]> {
   const data = await fetchJSON<LeverJob[]>(
     `https://api.lever.co/v0/postings/${proj.atsId}?mode=json`,
@@ -186,7 +173,6 @@ async function scanLever(
       !isWithinCutoff(new Date(job.createdAt), CUTOFF_DAYS)
     )
       continue;
-    if (!matchesTitle(job.text, matchers)) continue;
 
     out.push({
       title: job.text,
@@ -202,7 +188,6 @@ async function scanLever(
 
 async function scanAshby(
   proj: CareerProject,
-  matchers?: TitleMatcher[],
 ): Promise<RawJob[]> {
   // Ashby has a public API endpoint
   const data = await fetchJSON<AshbyResponse>(
@@ -218,7 +203,6 @@ async function scanAshby(
         !isWithinCutoff(new Date(job.publishedAt), CUTOFF_DAYS)
       )
         continue;
-      if (!matchesTitle(job.title, matchers)) continue;
 
       out.push({
         title: job.title,
@@ -246,7 +230,6 @@ async function scanAshby(
       const text = $(el).text().trim();
       const href = $(el).attr("href");
       if (!text || !href) return;
-      if (!matchesTitle(text, matchers)) return;
 
       out.push({
         title: text,

@@ -78,7 +78,7 @@ export async function GET(request: NextRequest) {
 
   // Create container
   var container = document.createElement('div');
-  container.id = 'jbai-widget-' + Math.random().toString(36).substr(2, 9);
+  container.id = 'aj-widget-' + Math.random().toString(36).substr(2, 9);
   container.style.cssText = [
     'font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     'max-width: 480px',
@@ -100,9 +100,9 @@ export async function GET(request: NextRequest) {
   ].join(';');
   header.innerHTML = '<div style="display:flex;align-items:center;gap:8px;">' +
     '<div style="width:20px;height:20px;border-radius:4px;background:' + COLORS.accent + ';display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;">J</div>' +
-    '<span style="font-size:12px;font-weight:600;color:' + COLORS.textPrimary + ';">JobBoard AI</span>' +
+    '<span style="font-size:12px;font-weight:600;color:' + COLORS.textPrimary + ';">AgentJobs</span>' +
     '</div>' +
-    '<a href="https://jobboard-ai.com/search" target="_blank" rel="noopener" style="font-size:11px;color:' + COLORS.accent + ';text-decoration:none;">View all &rarr;</a>';
+    '<a href="https://agentjobs.com/search" target="_blank" rel="noopener" style="font-size:11px;color:' + COLORS.accent + ';text-decoration:none;">View all &rarr;</a>';
   container.appendChild(header);
 
   // Loading state
@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
       break;
     }
   }
-  if (!baseUrl) baseUrl = 'https://jobboard-ai.com';
+  if (!baseUrl) baseUrl = 'https://agentjobs.com';
 
   // Fetch jobs
   fetch(baseUrl + '/api/v1/jobs?' + API_PARAMS)

@@ -27,7 +27,7 @@ export function Nav() {
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
             J
           </span>
-          JobBoard AI
+          AgentJobs
         </Link>
 
         {/* Desktop links */}

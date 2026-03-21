@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership } from "../utils";
+import { fetchText, sleep } from "../utils";
 
 /**
  * Scan AIJobs.net for AI/ML/Data Science jobs.
@@ -51,7 +51,7 @@ export async function scanAIJobs(): Promise<RawJob[]> {
           $el.find("[class*='location']").first().text().trim();
 
         if (!title || title.length < 3) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href
           ? href.startsWith("http")

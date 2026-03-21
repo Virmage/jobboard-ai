@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { fetchJSON, sleep, titleMatchesCreativeLeadership } from "../utils";
+import { fetchJSON, sleep } from "../utils";
 
 const HN_API = "https://hacker-news.firebaseio.com/v0";
 
@@ -162,7 +162,7 @@ export async function scanHackerNews(): Promise<RawJob[]> {
       if (!parsed || !parsed.title) continue;
 
       // Check title relevance
-      if (!titleMatchesCreativeLeadership(parsed.title)) continue;
+
 
       seenIds.add(comment.id);
 

@@ -1,21 +1,23 @@
 {
-  "name": "jobboard-ai-mcp",
+  "name": "agentjobs-mcp",
   "version": "1.0.0",
-  "description": "MCP server for JobBoard AI — search AI/tech jobs from Claude Desktop",
+  "description": "AgentJobs MCP Server — search 14,000+ jobs from Claude Desktop",
   "type": "module",
   "bin": {
-    "jobboard-ai-mcp": "dist/index.js"
+    "agentjobs-mcp": "./dist/index.js"
   },
+  "main": "dist/index.js",
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
     "build": "tsc",
+    "start": "node dist/index.js",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.7.0"
+    "@modelcontextprotocol/sdk": "^1.12.1"
   },
   "devDependencies": {
     "typescript": "^5.4.0"
@@ -23,13 +25,13 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "license": "MIT",
   "keywords": [
     "mcp",
-    "jobboard",
-    "ai",
     "jobs",
     "claude",
+    "ai-agent",
+    "job-search",
     "model-context-protocol"
-  ]
+  ],
+  "license": "MIT"
 }

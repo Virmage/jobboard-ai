@@ -74,7 +74,7 @@ async function checkLink(url: string): Promise<boolean> {
       method: "HEAD",
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (compatible; JobBoardAI/1.0; +https://jobboardai.com)",
+          "Mozilla/5.0 (compatible; AgentJobs/1.0; +https://agentjobs.com)",
       },
       signal: AbortSignal.timeout(5000),
       redirect: "follow",
@@ -86,7 +86,7 @@ async function checkLink(url: string): Promise<boolean> {
         method: "GET",
         headers: {
           "User-Agent":
-            "Mozilla/5.0 (compatible; JobBoardAI/1.0; +https://jobboardai.com)",
+            "Mozilla/5.0 (compatible; AgentJobs/1.0; +https://agentjobs.com)",
         },
         signal: AbortSignal.timeout(5000),
         redirect: "follow",
@@ -109,7 +109,7 @@ function deadLinkHtml(message: string): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Listing Unavailable — JobBoard AI</title>
+  <title>Listing Unavailable — AgentJobs</title>
   <style>
     body { font-family: -apple-system, system-ui, sans-serif; background: #0a0a0a; color: #e5e5e5; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
     .card { max-width: 480px; text-align: center; padding: 48px 32px; }

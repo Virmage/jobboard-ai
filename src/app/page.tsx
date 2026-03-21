@@ -3,11 +3,11 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 
 // ---------------------------------------------------------------------------
-// Terminal Demo (client component for typing animation)
+// Terminal Demo (API Preview)
 // ---------------------------------------------------------------------------
 function TerminalDemo() {
   return (
-    <div className="mx-auto mt-16 max-w-2xl overflow-hidden rounded-xl border border-border bg-surface">
+    <div className="mx-auto mt-12 max-w-2xl overflow-hidden rounded-xl border border-border bg-surface">
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
         <div className="h-3 w-3 rounded-full bg-red/60" />
         <div className="h-3 w-3 rounded-full bg-yellow/60" />
@@ -21,23 +21,27 @@ function TerminalDemo() {
           <span className="text-text-tertiary">$</span>{" "}
           <span className="text-green">curl</span>{" "}
           <span className="text-text-secondary">
-            https://jobboard-ai.com/api/v1/jobs \
+            https://agentjobs.dev/api/v1/jobs \
           </span>
           {"\n"}
           <span className="text-text-secondary">{"  "}-H </span>
           <span className="text-yellow">
-            &quot;X-API-Key: jbai_your_key&quot;
+            &quot;X-API-Key: aj_live_your_key&quot;
           </span>{" "}
           <span className="text-text-secondary">\</span>
           {"\n"}
           <span className="text-text-secondary">{"  "}-G -d </span>
           <span className="text-yellow">
-            &quot;role=creative-director&quot;
+            &quot;role=python-developer&quot;
           </span>{" "}
           <span className="text-text-secondary">\</span>
           {"\n"}
           <span className="text-text-secondary">{"  "}-d </span>
-          <span className="text-yellow">&quot;industry=crypto&quot;</span>
+          <span className="text-yellow">&quot;remote=true&quot;</span>
+          <span className="text-text-secondary"> \</span>
+          {"\n"}
+          <span className="text-text-secondary">{"  "}-d </span>
+          <span className="text-yellow">&quot;min_salary=120000&quot;</span>
           {"\n\n"}
           <span className="text-text-tertiary">{"{"}</span>
           {"\n"}
@@ -51,26 +55,32 @@ function TerminalDemo() {
           <span className="text-accent">&quot;title&quot;</span>
           <span className="text-text-tertiary">: </span>
           <span className="text-green">
-            &quot;Senior Creative Director&quot;
+            &quot;Senior Python Engineer&quot;
           </span>
           <span className="text-text-tertiary">,</span>
           {"\n"}
           <span className="text-text-tertiary">{"      "}</span>
           <span className="text-accent">&quot;company&quot;</span>
           <span className="text-text-tertiary">: </span>
-          <span className="text-green">&quot;Acme Protocol&quot;</span>
+          <span className="text-green">&quot;Acme AI Labs&quot;</span>
           <span className="text-text-tertiary">,</span>
           {"\n"}
           <span className="text-text-tertiary">{"      "}</span>
           <span className="text-accent">&quot;salary&quot;</span>
           <span className="text-text-tertiary">: </span>
-          <span className="text-green">&quot;$180k-$220k&quot;</span>
+          <span className="text-green">&quot;$145k-$185k&quot;</span>
           <span className="text-text-tertiary">,</span>
           {"\n"}
           <span className="text-text-tertiary">{"      "}</span>
-          <span className="text-accent">&quot;isRemote&quot;</span>
+          <span className="text-accent">&quot;remote&quot;</span>
           <span className="text-text-tertiary">: </span>
           <span className="text-yellow">true</span>
+          <span className="text-text-tertiary">,</span>
+          {"\n"}
+          <span className="text-text-tertiary">{"      "}</span>
+          <span className="text-accent">&quot;apply_url&quot;</span>
+          <span className="text-text-tertiary">: </span>
+          <span className="text-green">&quot;https://acme.ai/careers/senior-python&quot;</span>
           {"\n"}
           <span className="text-text-tertiary">{"    }"}</span>
           {"\n"}
@@ -79,10 +89,8 @@ function TerminalDemo() {
           <span className="text-text-tertiary">{"  "}</span>
           <span className="text-accent">&quot;pagination&quot;</span>
           <span className="text-text-tertiary">
-            : {"{"} &quot;total&quot;: 23 {"}"}
+            : {"{"} &quot;total&quot;: 47 {"}"}
           </span>
-          {"\n"}
-          <span className="text-text-tertiary">{"  "}// Expanded to 15 related role titles</span>
           {"\n"}
           <span className="text-text-tertiary">{"}"}</span>
         </code>
@@ -102,25 +110,27 @@ function Hero() {
       <div className="relative">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs text-text-secondary">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-green animate-pulse" />
-          Scanning 400+ career pages every 6 hours
+          14,000+ jobs indexed from 58 sources
         </div>
 
         <h1 className="mx-auto max-w-3xl text-5xl font-bold tracking-tight text-text-primary sm:text-6xl lg:text-7xl">
-          The Job Board for{" "}
           <span className="bg-gradient-to-r from-accent to-purple bg-clip-text text-transparent">
-            AI Agents
+            AgentJobs
           </span>
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-text-secondary leading-relaxed">
-          Your AI assistant&apos;s favorite place to find jobs. Structured,
-          real-time job data for Claude, ChatGPT, and every AI agent &mdash;
-          accessible via REST API, MCP, or ChatGPT Actions.
+        <p className="mx-auto mt-4 max-w-xl text-xl font-medium text-text-primary">
+          The job search tool for AI agents
+        </p>
+
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-text-secondary leading-relaxed">
+          Search 14,000+ jobs across every industry. Works with Claude,
+          ChatGPT, and any AI assistant.
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
-            href="/docs#authentication"
+            href="/api/auth/register"
             className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
           >
             Get API Key
@@ -145,172 +155,32 @@ function Hero() {
             Browse Jobs
           </Link>
         </div>
-
-        <TerminalDemo />
       </div>
     </section>
   );
 }
 
 // ---------------------------------------------------------------------------
-// For Job Seekers / Employers / Developers
+// Stats Bar
 // ---------------------------------------------------------------------------
-function ValueProps() {
-  const cards = [
-    {
-      tag: "For Job Seekers",
-      title: "Your AI finds jobs for you",
-      description:
-        "Connect your favorite AI assistant to JobBoard AI. Describe what you're looking for in natural language and get matched to fresh, relevant opportunities across 400+ companies.",
-      features: [
-        "Natural language job search",
-        "15+ related titles per query",
-        "Real-time freshness scoring",
-        "Remote and location filtering",
-      ],
-      icon: (
-        <svg
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={1.5}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-          />
-        </svg>
-      ),
-      cta: { label: "Try Role Explorer", href: "/roles" },
-    },
-    {
-      tag: "For Employers",
-      title: "Reach candidates through every AI",
-      description:
-        "When an AI agent searches for matching roles, your featured listing appears first. Get discovered across Claude, ChatGPT, and 50+ agent platforms with a single listing.",
-      features: [
-        "Priority AI search placement",
-        "Cross-platform distribution",
-        "Real-time impression analytics",
-        "Schema.org structured data",
-      ],
-      icon: (
-        <svg
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={1.5}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"
-          />
-        </svg>
-      ),
-      cta: { label: "Feature a Listing", href: "/pricing#employers" },
-    },
-    {
-      tag: "For Developers",
-      title: "API + MCP integration in minutes",
-      description:
-        "REST API with structured JSON responses. Native MCP server for Claude. OpenAPI spec for ChatGPT Actions. Build job search into any AI agent or application.",
-      features: [
-        "REST API with full documentation",
-        "MCP server (npx install)",
-        "ChatGPT Actions via OpenAPI",
-        "Embeddable job widget",
-      ],
-      icon: (
-        <svg
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={1.5}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
-          />
-        </svg>
-      ),
-      cta: { label: "Read the Docs", href: "/docs" },
-    },
+function Stats() {
+  const stats = [
+    { value: "14,000+", label: "Jobs" },
+    { value: "25+", label: "Industries" },
+    { value: "100+", label: "Role Types" },
+    { value: "58", label: "Sources" },
   ];
 
   return (
-    <section className="border-t border-border px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="text-center">
-          <p className="text-sm font-medium text-accent">Built for everyone</p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-            One platform, three audiences
-          </h2>
-        </div>
-
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
-          {cards.map((card) => (
-            <div
-              key={card.tag}
-              className="group flex flex-col rounded-xl border border-border bg-surface p-6 transition-colors hover:border-border-hover"
-            >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
-                {card.icon}
+    <section className="border-t border-border px-6 py-16">
+      <div className="mx-auto max-w-4xl">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+                {s.value}
               </div>
-              <p className="text-xs font-medium text-accent">{card.tag}</p>
-              <h3 className="mt-1 text-lg font-semibold text-text-primary">
-                {card.title}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-text-secondary">
-                {card.description}
-              </p>
-              <ul className="mt-4 space-y-2">
-                {card.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-center gap-2 text-xs text-text-secondary"
-                  >
-                    <svg
-                      className="h-3.5 w-3.5 shrink-0 text-green"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={card.cta.href}
-                className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
-              >
-                {card.cta.label}
-                <svg
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </Link>
+              <div className="mt-1 text-sm text-text-secondary">{s.label}</div>
             </div>
           ))}
         </div>
@@ -326,9 +196,9 @@ function HowItWorks() {
   const steps = [
     {
       step: "01",
-      title: "AI searches our API",
+      title: "Install",
       description:
-        "Your AI agent sends a natural language query or structured request to our REST API, MCP server, or ChatGPT Action.",
+        "Add AgentJobs to Claude Desktop or ChatGPT. One command or a single config change.",
       icon: (
         <svg
           className="h-5 w-5"
@@ -340,16 +210,16 @@ function HowItWorks() {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
           />
         </svg>
       ),
     },
     {
       step: "02",
-      title: "We expand to 15+ related titles",
+      title: "Ask",
       description:
-        'A search for "Creative Director" automatically includes Brand Director, Head of Design, Design Lead, and 12 more related roles.',
+        '"Find me remote Python jobs paying over $120k" \u2014 search in natural language, get structured results.',
       icon: (
         <svg
           className="h-5 w-5"
@@ -361,16 +231,16 @@ function HowItWorks() {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
+            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
           />
         </svg>
       ),
     },
     {
       step: "03",
-      title: "Fresh results from 400+ companies",
+      title: "Apply",
       description:
-        "We scan company career pages directly every 6 hours. No stale aggregator data. Real jobs, real freshness scores.",
+        "Get structured results with salary data, company info, and direct apply links. No middleman.",
       icon: (
         <svg
           className="h-5 w-5"
@@ -382,7 +252,7 @@ function HowItWorks() {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
           />
         </svg>
       ),
@@ -395,7 +265,7 @@ function HowItWorks() {
         <div className="text-center">
           <p className="text-sm font-medium text-accent">How it works</p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-            Three steps to better job data
+            Three steps to your next role
           </h2>
         </div>
 
@@ -426,31 +296,31 @@ function HowItWorks() {
 }
 
 // ---------------------------------------------------------------------------
-// Platforms
+// Integration Section
 // ---------------------------------------------------------------------------
-function ForAIPlatforms() {
+function Integrations() {
   const platforms = [
     {
-      name: "Claude (MCP)",
+      name: "Works with Claude",
       description:
-        "Install our Model Context Protocol server. Claude gets native access to job search.",
-      code: "npx jobboard-ai-mcp",
+        "Native MCP server integration. Add AgentJobs to Claude Desktop with a single command.",
+      code: "npx agentjobs-mcp",
       badge: "MCP",
       badgeColor: "bg-purple/10 text-purple",
     },
     {
-      name: "ChatGPT (Actions)",
+      name: "Works with ChatGPT",
       description:
-        "Import our OpenAPI spec as a ChatGPT Action. Works with GPT-4 and custom GPTs.",
-      code: "https://jobboard-ai.com/api/openapi.json",
-      badge: "Actions",
+        "Available in the GPT Store as a Custom GPT with Actions. Import the OpenAPI spec into any custom GPT.",
+      code: "GPT Store / Custom GPT Actions",
+      badge: "GPT",
       badgeColor: "bg-green/10 text-green",
     },
     {
-      name: "Any AI Agent (REST)",
+      name: "Works with any AI",
       description:
-        "Standard REST API with JSON responses. Works with any LLM, agent framework, or tool.",
-      code: "GET /api/v1/jobs?role=engineer",
+        "Standard REST API with full OpenAPI spec. Connect any LLM, agent framework, or automation tool.",
+      code: "GET /api/v1/jobs + OpenAPI spec",
       badge: "REST",
       badgeColor: "bg-accent/10 text-accent",
     },
@@ -460,12 +330,12 @@ function ForAIPlatforms() {
     <section className="border-t border-border px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
-          <p className="text-sm font-medium text-accent">For AI platforms</p>
+          <p className="text-sm font-medium text-accent">Integrations</p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
             Works with every AI platform
           </h2>
           <p className="mt-4 text-text-secondary">
-            Native integrations for the platforms your users already use.
+            Native integrations for the tools you already use.
           </p>
         </div>
 
@@ -500,30 +370,24 @@ function ForAIPlatforms() {
 }
 
 // ---------------------------------------------------------------------------
-// Stats Bar
+// API Preview
 // ---------------------------------------------------------------------------
-function Stats() {
-  const stats = [
-    { value: "10,000+", label: "Active jobs" },
-    { value: "400+", label: "Companies scanned" },
-    { value: "6", label: "Markets covered" },
-    { value: "16", label: "Industry verticals" },
-    { value: "6h", label: "Refresh cycle" },
-  ];
-
+function APIPreview() {
   return (
-    <section className="border-t border-border px-6 py-20">
+    <section className="border-t border-border px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-                {s.value}
-              </div>
-              <div className="mt-1 text-sm text-text-secondary">{s.label}</div>
-            </div>
-          ))}
+        <div className="text-center">
+          <p className="text-sm font-medium text-accent">API Preview</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+            Clean JSON. Zero boilerplate.
+          </h2>
+          <p className="mt-4 text-text-secondary">
+            One request. Structured results with salary, location, and direct
+            apply links.
+          </p>
         </div>
+
+        <TerminalDemo />
       </div>
     </section>
   );
@@ -541,11 +405,11 @@ function FinalCTA() {
         </h2>
         <p className="mt-4 text-text-secondary leading-relaxed">
           Get your API key in seconds. Free tier includes 100 queries per day
-          with full access to role intelligence and freshness scoring.
+          with full access to job search, filtering, and direct apply links.
         </p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
-            href="/docs#authentication"
+            href="/api/auth/register"
             className="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
           >
             Get API Key &mdash; Free
@@ -584,10 +448,10 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <HowItWorks />
-        <ValueProps />
-        <ForAIPlatforms />
         <Stats />
+        <HowItWorks />
+        <Integrations />
+        <APIPreview />
         <FinalCTA />
       </main>
       <Footer />

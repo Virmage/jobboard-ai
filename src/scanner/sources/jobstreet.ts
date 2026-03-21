@@ -3,7 +3,6 @@ import type { RawJob } from "../types";
 import {
   fetchText,
   sleep,
-  titleMatchesCreativeLeadership,
   ALL_SEARCH_QUERIES,
 } from "../utils";
 
@@ -65,7 +64,7 @@ export async function scanJobStreet(): Promise<RawJob[]> {
             $el.find("[data-automation='jobSalary'], [class*='salary']").first().text().trim() || undefined;
 
           if (!title) return;
-          if (!titleMatchesCreativeLeadership(title)) return;
+
 
           const fullLink = href
             ? href.startsWith("http")
@@ -94,7 +93,7 @@ export async function scanJobStreet(): Promise<RawJob[]> {
               const job = item?.item || item;
               if (job?.["@type"] !== "JobPosting") continue;
               const title = job?.title || job?.name;
-              if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
               const link = job?.url || job?.sameAs;
               if (!link || seenLinks.has(link)) continue;

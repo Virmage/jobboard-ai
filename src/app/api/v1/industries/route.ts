@@ -1,10 +1,12 @@
+import { NextRequest } from "next/server";
 import { listIndustries } from "@/db/queries";
 import { jsonOk, handleCorsOptions } from "@/lib/api-response";
+import { withAuth, type ValidateResult } from "@/lib/api-auth";
 
 // ---------------------------------------------------------------------------
 // GET /api/v1/industries
 // ---------------------------------------------------------------------------
-export async function GET() {
+export const GET = withAuth(async function GET(_request: NextRequest, _auth: ValidateResult) {
   const industries = await listIndustries();
 
   return jsonOk({
@@ -17,7 +19,7 @@ export async function GET() {
       job_count: Number(ind.jobCount),
     })),
   });
-}
+});
 
 // ---------------------------------------------------------------------------
 // OPTIONS — CORS preflight

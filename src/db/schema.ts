@@ -169,12 +169,16 @@ export const apiKeys = pgTable(
   "api_keys",
   {
     id: uuid("id").defaultRandom().primaryKey(),
+    email: text("email").notNull(),
+    key: text("key").notNull(),
     keyHash: text("key_hash").notNull(),
     keyPrefix: text("key_prefix").notNull(),
     name: text("name"),
     ownerId: uuid("owner_id"),
     tier: text("tier").notNull().default("free"),
     rateLimit: integer("rate_limit").notNull().default(100),
+    requestCount: integer("request_count").notNull().default(0),
+    monthlyLimit: integer("monthly_limit").notNull().default(100),
     isActive: boolean("is_active").notNull().default(true),
     lastUsedAt: timestamp("last_used_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
@@ -183,7 +187,9 @@ export const apiKeys = pgTable(
   },
   (t) => [
     uniqueIndex("api_keys_hash_idx").on(t.keyHash),
+    uniqueIndex("api_keys_key_idx").on(t.key),
     index("api_keys_prefix_idx").on(t.keyPrefix),
+    index("api_keys_email_idx").on(t.email),
   ]
 );
 

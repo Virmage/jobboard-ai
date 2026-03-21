@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership } from "../utils";
+import { fetchText, sleep } from "../utils";
 
 /**
  * Scan NoDesk for remote jobs.
@@ -51,7 +51,7 @@ export async function scanNoDesk(): Promise<RawJob[]> {
           $el.find("[class*='location'], td:nth-child(3)").first().text().trim();
 
         if (!title || title.length < 3) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         // Skip navigation links
         if (href && (href === "/remote-jobs/" || href.match(/\/remote-jobs\/page\//))) return;

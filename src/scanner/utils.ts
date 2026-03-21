@@ -567,7 +567,11 @@ export async function fetchJSONWithAuth<T = unknown>(
 // Dedup key generation
 // ---------------------------------------------------------------------------
 
-/** Generate a deterministic dedup key for a raw job. */
-export function makeDedupKey(title: string, company: string): string {
-  return `${title.toLowerCase().trim()}|${company.toLowerCase().trim()}`;
+/** Generate a deterministic dedup key for a raw job.
+ *  Includes location so "Software Engineer at Google (NYC)" and
+ *  "Software Engineer at Google (London)" are treated as separate jobs.
+ */
+export function makeDedupKey(title: string, company: string, location?: string): string {
+  const loc = (location || "").toLowerCase().trim().replace(/,\s*/g, ",");
+  return `${title.toLowerCase().trim()}|${company.toLowerCase().trim()}|${loc}`;
 }

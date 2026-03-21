@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership } from "../utils";
+import { fetchText, sleep } from "../utils";
 
 /**
  * Scan the-dots.com/jobs for UK creative/design/marketing roles.
@@ -70,7 +70,7 @@ export async function scanTheDots(): Promise<RawJob[]> {
         .trim();
 
       if (!title || !href) return;
-      if (!titleMatchesCreativeLeadership(title)) return;
+
 
       const fullLink = href.startsWith("http")
         ? href
@@ -94,7 +94,7 @@ export async function scanTheDots(): Promise<RawJob[]> {
       const title = $el.text().trim();
 
       if (!title || !href || title.length < 10 || title.length > 120) return;
-      if (!titleMatchesCreativeLeadership(title)) return;
+
 
       const fullLink = href.startsWith("http")
         ? href

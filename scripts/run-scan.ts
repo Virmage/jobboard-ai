@@ -20,7 +20,7 @@ const db = drizzle(client, { schema });
 
 // -- import scanners (relative, not aliased) --
 async function main() {
-  console.log("JobBoard AI Scanner\n");
+  console.log("AgentJobs Scanner\n");
 
   // Load taxonomies
   const taxonomies = await db.select().from(schema.roleTaxonomies);

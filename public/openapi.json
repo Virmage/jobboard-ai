@@ -1,0 +1,628 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AgentJobs API",
+    "description": "Search 14,000+ jobs across all industries. Built for AI agents.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://agentjobs.vercel.app",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/api/v1/jobs": {
+      "get": {
+        "operationId": "searchJobs",
+        "summary": "Search for jobs",
+        "description": "Full-text search with filters by role, industry, region, and remote status. Returns freshness-scored results with pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Free-text search query (matches title, company, description)",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "Role taxonomy slug to filter by (e.g. 'software-engineer')",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "industry",
+            "in": "query",
+            "description": "Industry slug to filter by (e.g. 'fintech')",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "remote",
+            "in": "query",
+            "description": "Filter for remote jobs only (true or false)",
+            "required": false,
+            "schema": { "type": "string", "enum": ["true", "false"] }
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "Region filter (e.g. US, EU, APAC, LATAM, Global)",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "posted_after",
+            "in": "query",
+            "description": "ISO 8601 date string; only return jobs posted on or after this date",
+            "required": false,
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (1-indexed)",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1, "default": 1 }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Results per page (max 100)",
+            "required": false,
+            "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 20 }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort order for results",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["posted", "freshness", "relevance"],
+              "default": "posted"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of matching jobs",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/JobSearchResponse" },
+                "example": {
+                  "jobs": [
+                    {
+                      "id": "b1c2d3e4-f5a6-7890-abcd-ef1234567890",
+                      "title": "Senior Software Engineer",
+                      "company": "Acme Corp",
+                      "location": "San Francisco, CA",
+                      "link": "https://acme.com/jobs/123",
+                      "source": "careers_page",
+                      "description": "Build scalable distributed systems...",
+                      "salary": "$180k - $220k",
+                      "isRemote": false,
+                      "region": "US",
+                      "postedAt": "2026-03-20T10:00:00.000Z",
+                      "lastSeenAt": "2026-03-21T08:00:00.000Z",
+                      "isFeatured": false,
+                      "freshness": {
+                        "score": 0.95,
+                        "label": "verified 2 hours ago",
+                        "tier": "very_fresh"
+                      },
+                      "industry": {
+                        "id": "uuid",
+                        "slug": "technology",
+                        "name": "Technology"
+                      },
+                      "taxonomy": {
+                        "id": "uuid",
+                        "slug": "software-engineer",
+                        "canonicalTitle": "Software Engineer"
+                      }
+                    }
+                  ],
+                  "pagination": {
+                    "page": 1,
+                    "per_page": 20,
+                    "total": 342,
+                    "total_pages": 18,
+                    "has_next": true,
+                    "has_prev": false
+                  },
+                  "meta": {
+                    "query_expanded_to": "software engineer",
+                    "sort": "posted",
+                    "filters": {
+                      "role": null,
+                      "industry": "technology",
+                      "remote": null,
+                      "region": null,
+                      "posted_after": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/jobs/{id}": {
+      "get": {
+        "operationId": "getJobById",
+        "summary": "Get a job by ID",
+        "description": "Retrieve full details of a single job listing by its UUID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Job UUID",
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job detail",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/JobDetailResponse" },
+                "example": {
+                  "job": {
+                    "id": "b1c2d3e4-f5a6-7890-abcd-ef1234567890",
+                    "title": "Senior Software Engineer",
+                    "company": "Acme Corp",
+                    "location": "San Francisco, CA",
+                    "link": "https://acme.com/jobs/123",
+                    "source": "careers_page",
+                    "description": "Build scalable distributed systems...",
+                    "salary": "$180k - $220k",
+                    "isRemote": false,
+                    "region": "US",
+                    "postedAt": "2026-03-20T10:00:00.000Z",
+                    "lastSeenAt": "2026-03-21T08:00:00.000Z",
+                    "isFeatured": false,
+                    "freshness": {
+                      "score": 0.95,
+                      "label": "verified 2 hours ago",
+                      "tier": "very_fresh"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid job ID format",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          },
+          "404": {
+            "description": "Job not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/industries": {
+      "get": {
+        "operationId": "listIndustries",
+        "summary": "List all industries",
+        "description": "Returns all industries with their active job counts. Use industry slugs to filter job searches.",
+        "responses": {
+          "200": {
+            "description": "List of industries",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/IndustriesResponse" },
+                "example": {
+                  "industries": [
+                    {
+                      "id": "uuid",
+                      "slug": "technology",
+                      "name": "Technology",
+                      "description": "Software, hardware, and IT services",
+                      "display_order": 1,
+                      "job_count": 4200
+                    },
+                    {
+                      "id": "uuid",
+                      "slug": "fintech",
+                      "name": "Fintech",
+                      "description": "Financial technology and services",
+                      "display_order": 2,
+                      "job_count": 1800
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/roles/suggest": {
+      "get": {
+        "operationId": "suggestRoles",
+        "summary": "Suggest role taxonomies",
+        "description": "Returns matching role taxonomy clusters based on a free-text query. Useful for discovering valid role slugs to use in the searchJobs filter.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search text to match against role titles and patterns (1-200 chars)",
+            "schema": { "type": "string", "minLength": 1, "maxLength": 200 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Role suggestions",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/RoleSuggestResponse" },
+                "example": {
+                  "query": "data sci",
+                  "suggestions": [
+                    {
+                      "id": "uuid",
+                      "slug": "data-scientist",
+                      "canonical_title": "Data Scientist",
+                      "related_titles": ["ML Engineer", "Applied Scientist"],
+                      "industry": {
+                        "id": "uuid",
+                        "slug": "technology",
+                        "name": "Technology"
+                      },
+                      "score": 0.92
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing or invalid q parameter",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/taxonomy": {
+      "get": {
+        "operationId": "listOrGetTaxonomy",
+        "summary": "List taxonomies or get one by slug",
+        "description": "Without the slug parameter: returns all role taxonomies with job counts. With the slug parameter: returns a single taxonomy by its slug.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "query",
+            "required": false,
+            "description": "Taxonomy slug for single lookup (omit to list all)",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Taxonomy data (single object or array depending on whether slug is provided)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TaxonomyResponse" },
+                "example": {
+                  "taxonomies": [
+                    {
+                      "id": "uuid",
+                      "slug": "software-engineer",
+                      "canonical_title": "Software Engineer",
+                      "related_titles": ["SWE", "Software Developer", "Backend Engineer"],
+                      "title_patterns": ["software engineer", "software developer"],
+                      "industry": {
+                        "id": "uuid",
+                        "slug": "technology",
+                        "name": "Technology"
+                      },
+                      "job_count": 1250
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Taxonomy not found (when slug is provided but no match exists)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErrorResponse" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "Optional API key for higher rate limits. Anonymous access is allowed with IP-based rate limiting (10 requests/hour)."
+      }
+    },
+    "schemas": {
+      "Freshness": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "number",
+            "description": "Normalized freshness score from 0 (stale) to 1 (very fresh)"
+          },
+          "label": {
+            "type": "string",
+            "description": "Human-readable label (e.g. 'verified 2 hours ago')"
+          },
+          "tier": {
+            "type": "string",
+            "enum": ["very_fresh", "fresh", "recent", "aging", "stale", "expired"],
+            "description": "Freshness tier category"
+          }
+        },
+        "required": ["score", "label", "tier"]
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string" },
+          "company": { "type": "string" },
+          "location": { "type": ["string", "null"] },
+          "link": { "type": ["string", "null"] },
+          "source": { "type": ["string", "null"] },
+          "description": { "type": ["string", "null"] },
+          "salary": { "type": ["string", "null"] },
+          "isRemote": { "type": "boolean" },
+          "region": { "type": ["string", "null"] },
+          "postedAt": { "type": ["string", "null"], "format": "date-time" },
+          "lastSeenAt": { "type": "string", "format": "date-time" },
+          "isFeatured": { "type": "boolean" },
+          "freshness": { "$ref": "#/components/schemas/Freshness" },
+          "industry": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "slug": { "type": "string" },
+                  "name": { "type": "string" }
+                },
+                "required": ["id", "slug", "name"]
+              },
+              { "type": "null" }
+            ]
+          },
+          "taxonomy": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "slug": { "type": "string" },
+                  "canonicalTitle": { "type": "string" }
+                },
+                "required": ["id", "slug", "canonicalTitle"]
+              },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["id", "title", "company", "isRemote", "lastSeenAt", "isFeatured", "freshness"]
+      },
+      "Pagination": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer" },
+          "per_page": { "type": "integer" },
+          "total": { "type": "integer" },
+          "total_pages": { "type": "integer" },
+          "has_next": { "type": "boolean" },
+          "has_prev": { "type": "boolean" }
+        },
+        "required": ["page", "per_page", "total", "total_pages", "has_next", "has_prev"]
+      },
+      "JobSearchResponse": {
+        "type": "object",
+        "properties": {
+          "jobs": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Job" }
+          },
+          "pagination": { "$ref": "#/components/schemas/Pagination" },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "query_expanded_to": { "type": ["string", "null"] },
+              "sort": { "type": "string" },
+              "filters": {
+                "type": "object",
+                "properties": {
+                  "role": { "type": ["string", "null"] },
+                  "industry": { "type": ["string", "null"] },
+                  "remote": { "type": ["boolean", "null"] },
+                  "region": { "type": ["string", "null"] },
+                  "posted_after": { "type": ["string", "null"] }
+                }
+              }
+            }
+          }
+        },
+        "required": ["jobs", "pagination", "meta"]
+      },
+      "JobDetailResponse": {
+        "type": "object",
+        "properties": {
+          "job": { "$ref": "#/components/schemas/Job" }
+        },
+        "required": ["job"]
+      },
+      "Industry": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "slug": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": ["string", "null"] },
+          "display_order": { "type": "integer" },
+          "job_count": { "type": "integer" }
+        },
+        "required": ["id", "slug", "name", "display_order", "job_count"]
+      },
+      "IndustriesResponse": {
+        "type": "object",
+        "properties": {
+          "industries": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Industry" }
+          }
+        },
+        "required": ["industries"]
+      },
+      "RoleSuggestion": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "slug": { "type": "string" },
+          "canonical_title": { "type": "string" },
+          "related_titles": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "industry": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "slug": { "type": "string" },
+                  "name": { "type": "string" }
+                },
+                "required": ["id", "slug", "name"]
+              },
+              { "type": "null" }
+            ]
+          },
+          "score": { "type": "number" }
+        },
+        "required": ["id", "slug", "canonical_title", "related_titles", "score"]
+      },
+      "RoleSuggestResponse": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string" },
+          "suggestions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/RoleSuggestion" }
+          }
+        },
+        "required": ["query", "suggestions"]
+      },
+      "Taxonomy": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "slug": { "type": "string" },
+          "canonical_title": { "type": "string" },
+          "related_titles": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "title_patterns": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "industry": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "slug": { "type": "string" },
+                  "name": { "type": "string" }
+                },
+                "required": ["id", "slug", "name"]
+              },
+              { "type": "null" }
+            ]
+          },
+          "job_count": { "type": "integer" }
+        },
+        "required": ["id", "slug", "canonical_title", "related_titles", "title_patterns", "job_count"]
+      },
+      "TaxonomyResponse": {
+        "type": "object",
+        "description": "Returns { taxonomy: Taxonomy } for single slug lookup or { taxonomies: Taxonomy[] } when listing all.",
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "taxonomy": { "$ref": "#/components/schemas/Taxonomy" }
+            },
+            "required": ["taxonomy"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "taxonomies": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/Taxonomy" }
+              }
+            },
+            "required": ["taxonomies"]
+          }
+        ]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" },
+          "details": {}
+        },
+        "required": ["error"]
+      }
+    }
+  },
+  "security": [
+    {},
+    { "ApiKeyAuth": [] }
+  ]
+}

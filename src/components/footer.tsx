@@ -10,7 +10,7 @@ export function Footer() {
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
                 J
               </span>
-              JobBoard AI
+              AgentJobs
             </div>
             <p className="mt-3 text-sm text-text-tertiary leading-relaxed">
               The job board built for AI agents. Structured data, real-time
@@ -127,7 +127,7 @@ export function Footer() {
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <p className="text-xs text-text-tertiary">
-            &copy; {new Date().getFullYear()} JobBoard AI. All rights reserved.
+            &copy; {new Date().getFullYear()} AgentJobs. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a

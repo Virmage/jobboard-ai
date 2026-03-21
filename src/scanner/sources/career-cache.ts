@@ -5,7 +5,6 @@ import {
   fetchText,
   sleep,
   isWithinCutoff,
-  titleMatchesAny,
 } from "../utils";
 
 const CUTOFF_DAYS = 14;
@@ -47,8 +46,8 @@ interface LeverJob {
  * generic career pages. Processes projects in batches of 15 with 500 ms
  * delay between batches to avoid hammering hosts.
  *
- * Title matching is done against the provided matchers — this scanner
- * is fully generic and works with any role taxonomy.
+ * Returns all jobs found — taxonomy matching is handled downstream by
+ * the main scanner index.ts.
  */
 export async function scanCareerCache(
   projects: CareerProject[],
@@ -62,7 +61,7 @@ export async function scanCareerCache(
     const batch = projects.slice(i, i + BATCH_SIZE);
 
     const batchJobs = await Promise.all(
-      batch.map((proj) => scanSingleProject(proj, matchers)),
+      batch.map((proj) => scanSingleProject(proj)),
     );
 
     jobs.push(...batchJobs.flat());
@@ -74,22 +73,21 @@ export async function scanCareerCache(
 
 async function scanSingleProject(
   proj: CareerProject,
-  matchers: TitleMatcher[],
 ): Promise<RawJob[]> {
   const found: RawJob[] = [];
 
   try {
     if (proj.atsType === "greenhouse" && proj.atsId) {
-      await scanGreenhouse(proj, matchers, found);
+      await scanGreenhouse(proj, found);
     } else if (proj.atsType === "lever" && proj.atsId) {
-      await scanLever(proj, matchers, found);
+      await scanLever(proj, found);
     } else if (
       (proj.atsType === "ashby" || proj.atsType === "workable") &&
       proj.atsId
     ) {
-      await scanAshbyOrWorkable(proj, matchers, found);
+      await scanAshbyOrWorkable(proj, found);
     } else if (proj.careerUrl) {
-      await scanGenericCareerPage(proj, matchers, found);
+      await scanGenericCareerPage(proj, found);
     }
   } catch {
     // individual project failures are silently skipped
@@ -100,7 +98,6 @@ async function scanSingleProject(
 
 async function scanGreenhouse(
   proj: CareerProject,
-  matchers: TitleMatcher[],
   out: RawJob[],
 ): Promise<void> {
   const data = await fetchJSON<GreenhouseResponse>(
@@ -114,8 +111,6 @@ async function scanGreenhouse(
       !isWithinCutoff(new Date(job.updated_at), CUTOFF_DAYS)
     )
       continue;
-
-    if (!titleMatchesAny(job.title, matchers)) continue;
 
     out.push({
       title: job.title,
@@ -132,7 +127,6 @@ async function scanGreenhouse(
 
 async function scanLever(
   proj: CareerProject,
-  matchers: TitleMatcher[],
   out: RawJob[],
 ): Promise<void> {
   const data = await fetchJSON<LeverJob[]>(
@@ -147,8 +141,6 @@ async function scanLever(
     )
       continue;
 
-    if (!titleMatchesAny(job.text, matchers)) continue;
-
     out.push({
       title: job.text,
       company: proj.name,
@@ -162,7 +154,6 @@ async function scanLever(
 
 async function scanAshbyOrWorkable(
   proj: CareerProject,
-  matchers: TitleMatcher[],
   out: RawJob[],
 ): Promise<void> {
   const baseUrl =
@@ -179,8 +170,6 @@ async function scanAshbyOrWorkable(
     const href = $(el).attr("href");
     if (!text || !href) return;
 
-    if (!titleMatchesAny(text, matchers)) return;
-
     out.push({
       title: text,
       company: proj.name,
@@ -193,7 +182,6 @@ async function scanAshbyOrWorkable(
 
 async function scanGenericCareerPage(
   proj: CareerProject,
-  matchers: TitleMatcher[],
   out: RawJob[],
 ): Promise<void> {
   if (!proj.careerUrl) return;
@@ -207,8 +195,6 @@ async function scanGenericCareerPage(
     const href = $(el).attr("href");
     if (!text || !href) return;
     if (text.length <= 8 || text.length >= 100) return;
-
-    if (!titleMatchesAny(text, matchers)) return;
 
     out.push({
       title: text,

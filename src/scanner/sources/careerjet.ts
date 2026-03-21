@@ -1,5 +1,5 @@
 import type { RawJob } from "../types";
-import { fetchJSON, sleep, titleMatchesCreativeLeadership, isWithinCutoff, ALL_SEARCH_QUERIES } from "../utils";
+import { fetchJSON, sleep, isWithinCutoff, ALL_SEARCH_QUERIES } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
@@ -92,7 +92,7 @@ export async function scanCareerjet(): Promise<RawJob[]> {
 
       for (const job of data.jobs) {
         if (!job.url || seenUrls.has(job.url)) continue;
-        if (!titleMatchesCreativeLeadership(job.title)) continue;
+
 
         // Date filter
         const postedDate = job.date ? new Date(job.date) : null;

@@ -10,6 +10,7 @@ import {
   zodValidationError,
   handleCorsOptions,
 } from "@/lib/api-response";
+import { withAuth, type ValidateResult } from "@/lib/api-auth";
 
 // ---------------------------------------------------------------------------
 // Query-param schema
@@ -21,7 +22,7 @@ const querySchema = z.object({
 // ---------------------------------------------------------------------------
 // GET /api/v1/taxonomy?slug=...
 // ---------------------------------------------------------------------------
-export async function GET(request: NextRequest) {
+export const GET = withAuth(async function GET(request: NextRequest, _auth: ValidateResult) {
   const { searchParams } = request.nextUrl;
   const raw: Record<string, string> = {};
   for (const [key, value] of searchParams.entries()) {
@@ -103,7 +104,7 @@ export async function GET(request: NextRequest) {
       job_count: countMap.get(tax.id) ?? 0,
     })),
   });
-}
+});
 
 // ---------------------------------------------------------------------------
 // OPTIONS — CORS preflight

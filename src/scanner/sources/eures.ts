@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, fetchJSON, sleep, titleMatchesCreativeLeadership, ALL_SEARCH_QUERIES } from "../utils";
+import { fetchText, fetchJSON, sleep, ALL_SEARCH_QUERIES } from "../utils";
 
 /**
  * Subset of search queries for the EU portal.
@@ -53,7 +53,7 @@ export async function scanEures(): Promise<RawJob[]> {
         const items = apiData.data || apiData.items || apiData.resultList || [];
         for (const item of items) {
           const title = item.body?.label || "";
-          if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
           const handle = item.header?.handle || "";
           const link = handle
@@ -114,7 +114,7 @@ export async function scanEures(): Promise<RawJob[]> {
           .trim();
 
         if (!title || !href) return;
-        if (!titleMatchesCreativeLeadership(title)) return;
+
 
         const fullLink = href.startsWith("http")
           ? href

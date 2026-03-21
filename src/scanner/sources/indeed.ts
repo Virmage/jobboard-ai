@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import type { RawJob } from "../types";
-import { fetchText, sleep, titleMatchesCreativeLeadership, isWithinCutoff, ALL_SEARCH_QUERIES } from "../utils";
+import { fetchText, sleep, isWithinCutoff, ALL_SEARCH_QUERIES } from "../utils";
 
 const CUTOFF_DAYS = 14;
 
@@ -8,7 +8,7 @@ const CUTOFF_DAYS = 14;
  * Search queries — covers all major job categories.
  * We use a representative subset to avoid excessive requests.
  */
-const SEARCH_QUERIES = ALL_SEARCH_QUERIES;
+const SEARCH_QUERIES = ALL_SEARCH_QUERIES.filter((_,i) => i % 5 === 0);
 
 /**
  * Scan indeed.com for creative director / head of brand roles (remote).
@@ -71,7 +71,7 @@ export async function scanIndeed(): Promise<RawJob[]> {
         $el.find("a[href*='jk=']").attr("href")?.match(/jk=([a-f0-9]+)/)?.[1];
 
       if (!title) return;
-      if (!titleMatchesCreativeLeadership(title)) return;
+
 
       const link = jk
         ? `https://www.indeed.com/viewjob?jk=${jk}`
@@ -97,7 +97,7 @@ export async function scanIndeed(): Promise<RawJob[]> {
         for (const item of items) {
           const job = item?.item || item;
           const title = job?.title || job?.name;
-          if (!title || !titleMatchesCreativeLeadership(title)) continue;
+
 
           const link = job?.url || job?.sameAs;
           if (!link || seenLinks.has(link)) continue;
