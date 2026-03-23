@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://agentjobs.vercel.app",
+      "url": "https://jobboard-ai-rllv.vercel.app",
       "description": "Production"
     }
   ],
@@ -590,26 +590,14 @@
       },
       "TaxonomyResponse": {
         "type": "object",
-        "description": "Returns { taxonomy: Taxonomy } for single slug lookup or { taxonomies: Taxonomy[] } when listing all.",
-        "oneOf": [
-          {
-            "type": "object",
-            "properties": {
-              "taxonomy": { "$ref": "#/components/schemas/Taxonomy" }
-            },
-            "required": ["taxonomy"]
+        "description": "Returns { taxonomies: Taxonomy[] } when listing all, or { taxonomy: Taxonomy } for single slug lookup.",
+        "properties": {
+          "taxonomies": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Taxonomy" }
           },
-          {
-            "type": "object",
-            "properties": {
-              "taxonomies": {
-                "type": "array",
-                "items": { "$ref": "#/components/schemas/Taxonomy" }
-              }
-            },
-            "required": ["taxonomies"]
-          }
-        ]
+          "taxonomy": { "$ref": "#/components/schemas/Taxonomy" }
+        }
       },
       "ErrorResponse": {
         "type": "object",
