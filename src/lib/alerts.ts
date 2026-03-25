@@ -62,7 +62,7 @@ async function sendAlertEmail(
   `;
 
   await resend.emails.send({
-    from: "AgentJobs <alerts@agentjobs.com>",
+    from: process.env.RESEND_FROM_EMAIL || "AgentJobs <onboarding@resend.dev>",
     to: email,
     subject: `${jobs.length} new job${jobs.length === 1 ? "" : "s"} — ${searchName ?? "AgentJobs Alert"}`,
     html,
