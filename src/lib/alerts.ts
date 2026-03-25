@@ -107,11 +107,12 @@ export async function checkAlerts(): Promise<void> {
 
     const result = await searchJobs(params);
 
-    // Filter to only jobs posted after lastNotifiedAt
+    // Filter to only jobs seen after lastNotifiedAt (use scannedAt as fallback for missing postedAt)
     const cutoff = search.lastNotifiedAt ?? search.createdAt;
-    const newJobs = result.jobs.filter(
-      (job) => job.postedAt && new Date(job.postedAt) > cutoff
-    );
+    const newJobs = result.jobs.filter((job) => {
+      const jobDate = job.postedAt ? new Date(job.postedAt) : (job.scannedAt ? new Date(job.scannedAt) : null);
+      return jobDate && jobDate > cutoff;
+    });
 
     if (newJobs.length > 0) {
       await sendAlertEmail(
