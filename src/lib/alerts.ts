@@ -2,6 +2,13 @@ import { db } from "@/db/index";
 import { savedSearches } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { searchJobs, type SearchJobsParams } from "@/db/queries";
+import { Resend } from "resend";
+
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://jobboard-ai-rllv.vercel.app";
 
 // ---------------------------------------------------------------------------
 // Frequency → millisecond thresholds
@@ -9,23 +16,59 @@ import { searchJobs, type SearchJobsParams } from "@/db/queries";
 const FREQUENCY_MS: Record<string, number> = {
   instant: 0,
   daily: 24 * 60 * 60 * 1000,
+  "every-2-days": 2 * 24 * 60 * 60 * 1000,
   weekly: 7 * 24 * 60 * 60 * 1000,
 };
 
 // ---------------------------------------------------------------------------
-// sendAlertEmail — stub for now
+// sendAlertEmail — sends via Resend
 // ---------------------------------------------------------------------------
+interface JobSummary {
+  id: string;
+  title: string;
+  company: string | null;
+  location: string | null;
+}
+
 async function sendAlertEmail(
   email: string,
   searchName: string | null,
-  matchCount: number,
+  jobs: JobSummary[],
   searchId: string
 ): Promise<void> {
-  // TODO: integrate email provider (e.g. Resend, SendGrid, SES)
-  console.log(
-    `TODO: integrate email provider — would send alert to ${email} ` +
-      `for saved search "${searchName ?? searchId}" with ${matchCount} new match(es)`
-  );
+  if (!resend) {
+    console.log(`[alerts] Resend not configured — would send ${jobs.length} jobs to ${email}`);
+    return;
+  }
+
+  const jobRows = jobs
+    .slice(0, 20)
+    .map(
+      (j) =>
+        `<tr><td style="padding:8px;border-bottom:1px solid #333"><a href="${APP_URL}/go/${j.id}" style="color:#7c6af6;text-decoration:none;font-weight:600">${j.title}</a><br><span style="color:#999">${j.company ?? "Unknown"} · ${j.location ?? "Remote"}</span></td></tr>`
+    )
+    .join("");
+
+  const html = `
+    <div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#111;color:#eee;padding:24px;border-radius:8px">
+      <h2 style="color:#7c6af6;margin-top:0">AgentJobs Alert</h2>
+      <p>${jobs.length} new job${jobs.length === 1 ? "" : "s"} matching "${searchName ?? "your search"}"</p>
+      <table style="width:100%;border-collapse:collapse">${jobRows}</table>
+      ${jobs.length > 20 ? `<p style="color:#999;margin-top:12px">...and ${jobs.length - 20} more</p>` : ""}
+      <p style="margin-top:24px"><a href="${APP_URL}/jobs" style="color:#7c6af6">View all jobs →</a></p>
+      <hr style="border:none;border-top:1px solid #333;margin:24px 0">
+      <p style="color:#666;font-size:12px"><a href="${APP_URL}/api/alerts/unsubscribe?id=${searchId}" style="color:#666">Unsubscribe</a></p>
+    </div>
+  `;
+
+  await resend.emails.send({
+    from: "AgentJobs <alerts@agentjobs.com>",
+    to: email,
+    subject: `${jobs.length} new job${jobs.length === 1 ? "" : "s"} — ${searchName ?? "AgentJobs Alert"}`,
+    html,
+  });
+
+  console.log(`[alerts] Sent ${jobs.length} jobs to ${email}`);
 }
 
 // ---------------------------------------------------------------------------
@@ -74,7 +117,12 @@ export async function checkAlerts(): Promise<void> {
       await sendAlertEmail(
         search.email,
         search.name,
-        newJobs.length,
+        newJobs.map((j) => ({
+          id: j.id,
+          title: j.title,
+          company: j.company,
+          location: j.location,
+        })),
         search.id
       );
 
