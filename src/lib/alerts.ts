@@ -47,17 +47,29 @@ function classifyRegion(job: JobSummary): "apac" | "americas" | "emea" | "remote
 }
 
 function renderJobRow(j: JobSummary): string {
-  return `<tr><td style="padding:8px;border-bottom:1px solid #333"><a href="${APP_URL}/go/${j.id}" style="color:#7c6af6;text-decoration:none;font-weight:600">${j.title}</a><br><span style="color:#999">${j.company ?? "Unknown"} · ${j.location ?? "Remote"}</span></td></tr>`;
+  return `
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #1e1e2e">
+        <a href="${APP_URL}/go/${j.id}" style="color:#a78bfa;text-decoration:none;font-weight:600;font-size:15px">${j.title}</a>
+        <div style="color:#94a3b8;font-size:13px;margin-top:4px">${j.company ?? "Unknown"} &middot; ${j.location ?? "Remote"}</div>
+      </td>
+    </tr>`;
 }
 
 function renderSection(title: string, emoji: string, jobs: JobSummary[]): string {
   if (jobs.length === 0) return "";
   const rows = jobs.slice(0, 15).map(renderJobRow).join("");
-  const more = jobs.length > 15 ? `<tr><td style="padding:8px;color:#999">...and ${jobs.length - 15} more</td></tr>` : "";
+  const more = jobs.length > 15
+    ? `<tr><td style="padding:8px 16px;color:#64748b;font-size:13px">+ ${jobs.length - 15} more</td></tr>`
+    : "";
   return `
-    <h3 style="color:#eee;margin:20px 0 8px;font-size:15px">${emoji} ${title} (${jobs.length})</h3>
-    <table style="width:100%;border-collapse:collapse">${rows}${more}</table>
-  `;
+    <div style="margin:24px 0 0">
+      <div style="background:#1e1e2e;padding:10px 16px;border-radius:8px 8px 0 0;border-bottom:2px solid #a78bfa">
+        <span style="font-size:14px;font-weight:700;color:#e2e8f0;letter-spacing:0.5px">${emoji} ${title}</span>
+        <span style="float:right;color:#a78bfa;font-size:13px;font-weight:600">${jobs.length} role${jobs.length === 1 ? "" : "s"}</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse;background:#13131f">${rows}${more}</table>
+    </div>`;
 }
 
 async function sendAlertEmail(
@@ -86,13 +98,23 @@ async function sendAlertEmail(
   ].join("");
 
   const html = `
-    <div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#111;color:#eee;padding:24px;border-radius:8px">
-      <h2 style="color:#7c6af6;margin-top:0">AgentJobs Alert</h2>
-      <p>${jobs.length} new job${jobs.length === 1 ? "" : "s"} matching "${searchName ?? "your search"}"</p>
-      ${sections}
-      <p style="margin-top:24px"><a href="${APP_URL}/jobs" style="color:#7c6af6">View all jobs →</a></p>
-      <hr style="border:none;border-top:1px solid #333;margin:24px 0">
-      <p style="color:#666;font-size:12px"><a href="${APP_URL}/api/alerts/unsubscribe?id=${searchId}" style="color:#666">Unsubscribe</a></p>
+    <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;background:#0a0a14;color:#e2e8f0;border-radius:12px;overflow:hidden">
+      <div style="background:linear-gradient(135deg,#1e1e2e 0%,#0a0a14 100%);padding:32px 24px 24px;text-align:center">
+        <div style="font-size:28px;font-weight:800;color:#a78bfa;letter-spacing:-0.5px">AgentJobs</div>
+        <div style="color:#94a3b8;font-size:14px;margin-top:8px">${jobs.length} new role${jobs.length === 1 ? "" : "s"} matching <strong style="color:#e2e8f0">${searchName ?? "your search"}</strong></div>
+      </div>
+      <div style="padding:0 24px 24px">
+        ${sections}
+        <div style="text-align:center;margin-top:32px">
+          <a href="${APP_URL}/jobs" style="display:inline-block;background:#a78bfa;color:#0a0a14;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px">View all jobs</a>
+        </div>
+        <hr style="border:none;border-top:1px solid #1e1e2e;margin:32px 0 16px">
+        <div style="text-align:center">
+          <span style="color:#475569;font-size:11px">Powered by <a href="${APP_URL}" style="color:#a78bfa;text-decoration:none">AgentJobs</a></span>
+          <span style="color:#334155;font-size:11px">&nbsp;&middot;&nbsp;</span>
+          <a href="${APP_URL}/api/alerts/unsubscribe?id=${searchId}" style="color:#475569;font-size:11px;text-decoration:none">Unsubscribe</a>
+        </div>
+      </div>
     </div>
   `;
 

@@ -45,6 +45,9 @@ const COUNTRIES: Array<{
   currency: string;
 }> = [
   { code: "au", name: "Australia", region: "APAC", currency: "A$" },
+  { code: "sg", name: "Singapore", region: "APAC", currency: "S$" },
+  { code: "in", name: "India", region: "APAC", currency: "₹" },
+  { code: "nz", name: "New Zealand", region: "APAC", currency: "NZ$" },
   { code: "gb", name: "United Kingdom", region: "EU", currency: "£" },
   { code: "us", name: "United States", region: "US", currency: "$" },
   { code: "de", name: "Germany", region: "EU", currency: "€" },
@@ -58,7 +61,7 @@ const COUNTRIES: Array<{
 const SEARCH_QUERIES = ALL_SEARCH_QUERIES.filter((_,i) => i % 5 === 0);
 
 /**
- * Scan Adzuna API for creative leadership roles across AU, UK, US, DE, FR, NL.
+ * Scan Adzuna API for creative leadership roles across AU, SG, IN, NZ, UK, US, DE, FR, NL.
  *
  * Adzuna has a free public API. Set ADZUNA_APP_ID and ADZUNA_API_KEY.
  * Sign up at https://developer.adzuna.com/signup
