@@ -58,10 +58,8 @@ function renderJobRow(j: JobSummary): string {
 
 function renderSection(title: string, emoji: string, jobs: JobSummary[]): string {
   if (jobs.length === 0) return "";
-  const rows = jobs.slice(0, 15).map(renderJobRow).join("");
-  const more = jobs.length > 15
-    ? `<tr><td style="padding:8px 16px;color:#64748b;font-size:13px">+ ${jobs.length - 15} more</td></tr>`
-    : "";
+  const rows = jobs.map(renderJobRow).join("");
+  const more = "";
   return `
     <div style="margin:24px 0 0">
       <div style="background:#1e1e2e;padding:10px 16px;border-radius:8px 8px 0 0;border-bottom:2px solid #a78bfa">
