@@ -556,6 +556,30 @@ export async function runFullScan(
   }
   sourceBreakdown["LinkedIn"] = linkedInTotal;
 
+  // ===== Batch 6b: LinkedIn APAC — location-specific searches =====
+  console.log("\n--- Batch 6b: LinkedIn APAC ---");
+  const apacLocations = ["Australia", "Singapore", "New Zealand", "India", "Japan", "Hong Kong"];
+  const apacKeywords = [
+    "Creative Director", "Head of Brand", "Head of Marketing",
+    "Head of Design", "Product Manager", "Engineering Manager",
+    "Software Engineer", "Data Scientist", "Head of Product",
+    "Marketing Manager", "UX Designer", "Head of People",
+  ];
+  let linkedInApacTotal = 0;
+  for (const loc of apacLocations) {
+    for (const kw of apacKeywords) {
+      const result = await runSource(
+        `LinkedIn:"${kw}" in ${loc}`,
+        () => scanLinkedIn(kw, loc, false),
+        errors,
+      );
+      allRawJobs.push(...result);
+      linkedInApacTotal += result.length;
+      await sleep(2_000);
+    }
+  }
+  sourceBreakdown["LinkedIn APAC"] = linkedInApacTotal;
+
   // ===== Batch 7: Career cache — legacy (batched internally) =====
   console.log("\n--- Batch 7: Career caches ---");
   const [legacyCacheJobs, greenhouseCacheJobs] = await Promise.all([
