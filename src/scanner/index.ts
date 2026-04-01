@@ -581,23 +581,47 @@ export async function runFullScan(
 
   // ===== Batch 5: Cross-market APIs =====
   console.log("\n--- Batch 5: Cross-market APIs ---");
-  // Build JSearch queries from top taxonomy titles
+  // JSearch aggregates Indeed + Glassdoor + ZipRecruiter + more.
+  // 30 queries × 2 pages × ~2s/call ≈ 120s — fits within the batch timeout.
+  // Covers all major categories so JSearch buffs every search type, not just creative.
   const JSEARCH_QUERIES = [
+    // Creative & Brand
     "Creative Director",
-    "Head of Creative",
     "Executive Creative Director",
-    "Group Creative Director",
+    "Head of Creative",
     "Head of Brand",
-    "Chief Creative Officer",
-    "Head of Marketing",
-    "Marketing Director",
-    "Brand Director",
-    "Head of Design",
+    "Art Director",
+    // Engineering
+    "Software Engineer",
+    "Senior Software Engineer",
+    "Engineering Manager",
+    "Frontend Engineer",
+    "Backend Engineer",
+    "DevOps Engineer",
+    "Staff Engineer",
+    // Product
+    "Product Manager",
+    "Senior Product Manager",
+    "Head of Product",
+    // Design
     "UX Designer",
-    "Product Manager crypto",
-    "Software Engineer web3",
-    "Community Manager crypto",
-    "Developer Relations",
+    "Product Designer",
+    "Head of Design",
+    // Data & AI
+    "Data Scientist",
+    "Data Analyst",
+    "ML Engineer",
+    // Marketing & Growth
+    "Head of Marketing",
+    "Growth Manager",
+    "Product Marketing Manager",
+    // Sales
+    "Account Executive",
+    "Sales Manager",
+    "Customer Success Manager",
+    // Operations & People
+    "Operations Manager",
+    "Head of People",
   ];
   const [adzunaJobs, jsearchJobs] = await Promise.all([
     runSource("Adzuna", () => scanAdzuna(), errors),

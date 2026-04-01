@@ -3,8 +3,9 @@ import type { RawJob } from "../types";
 const JSEARCH_API_KEY = process.env.JSEARCH_API_KEY ?? "";
 const BASE_URL = "https://jsearch.p.rapidapi.com/search";
 
-/** Max results per query (JSearch max is 10 per page, we fetch up to 3 pages = 30). */
-const MAX_PAGES = 3;
+/** Max results per query (JSearch max is 10 per page, we fetch up to 2 pages = 20).
+ *  Kept at 2 so we can run more queries without hitting the scan timeout. */
+const MAX_PAGES = 2;
 
 interface JSearchJob {
   job_id: string;
