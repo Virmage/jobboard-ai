@@ -28,6 +28,8 @@ export interface SearchJobsParams {
   industrySlug?: string;
   taxonomySlug?: string;
   region?: string;
+  /** When true and region is set, also include remote/global jobs (OR logic) */
+  includeRemote?: boolean;
   isRemote?: boolean;
   source?: string;
   limit?: number;
@@ -78,6 +80,7 @@ export async function searchJobs(params: SearchJobsParams) {
     industrySlug,
     taxonomySlug,
     region,
+    includeRemote,
     isRemote,
     source,
     limit = 20,
@@ -87,13 +90,22 @@ export async function searchJobs(params: SearchJobsParams) {
   const conditions = [eq(jobs.isActive, true)];
 
   if (query) {
-    conditions.push(
-      or(
-        ilike(jobs.title, `%${query}%`),
-        ilike(jobs.company, `%${query}%`),
-        ilike(jobs.description, `%${query}%`)
-      )!
-    );
+    // Support "|"-separated OR terms: "creative director|head of brand|marketing director"
+    const terms = query.split("|").map(t => t.trim()).filter(Boolean);
+    if (terms.length === 1) {
+      conditions.push(
+        or(
+          ilike(jobs.title, `%${terms[0]}%`),
+          ilike(jobs.company, `%${terms[0]}%`),
+          ilike(jobs.description, `%${terms[0]}%`)
+        )!
+      );
+    } else {
+      // OR across all terms, matching title only (description OR is too broad for multi-term)
+      conditions.push(
+        or(...terms.map(t => ilike(jobs.title, `%${t}%`)))!
+      );
+    }
   }
 
   if (industrySlug) {
@@ -115,7 +127,14 @@ export async function searchJobs(params: SearchJobsParams) {
   }
 
   if (region) {
-    conditions.push(eq(jobs.region, region));
+    if (includeRemote) {
+      // Match specified region OR remote/global jobs
+      conditions.push(
+        or(eq(jobs.region, region), eq(jobs.isRemote, true), eq(jobs.region, "Global"))!
+      );
+    } else {
+      conditions.push(eq(jobs.region, region));
+    }
   }
 
   if (isRemote !== undefined) {

@@ -1,0 +1,1022 @@
+[
+  {
+    "id": "coinbase",
+    "name": "Coinbase",
+    "symbol": "COIN",
+    "rank": 1,
+    "homepage": "https://coinbase.com",
+    "careerUrl": "https://boards.greenhouse.io/coinbase",
+    "atsType": "greenhouse",
+    "atsId": "coinbase"
+  },
+  {
+    "id": "kraken",
+    "name": "Kraken",
+    "symbol": "KRAK",
+    "rank": 2,
+    "homepage": "https://kraken.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "ripple",
+    "name": "Ripple",
+    "symbol": "XRP",
+    "rank": 3,
+    "homepage": "https://ripple.com",
+    "careerUrl": "https://boards.greenhouse.io/ripple",
+    "atsType": "greenhouse",
+    "atsId": "ripple"
+  },
+  {
+    "id": "circle",
+    "name": "Circle",
+    "symbol": "USDC",
+    "rank": 4,
+    "homepage": "https://circle.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "consensys",
+    "name": "Consensys",
+    "symbol": "ETH",
+    "rank": 5,
+    "homepage": "https://consensys.io",
+    "careerUrl": "https://boards.greenhouse.io/consensys",
+    "atsType": "greenhouse",
+    "atsId": "consensys"
+  },
+  {
+    "id": "chainalysis",
+    "name": "Chainalysis",
+    "symbol": "CHAIN",
+    "rank": 6,
+    "homepage": "https://chainalysis.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "opensea",
+    "name": "OpenSea",
+    "symbol": "OS",
+    "rank": 7,
+    "homepage": "https://opensea.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "uniswap",
+    "name": "Uniswap Labs",
+    "symbol": "UNI",
+    "rank": 8,
+    "homepage": "https://uniswap.org",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "alchemy",
+    "name": "Alchemy",
+    "symbol": "ALCH",
+    "rank": 9,
+    "homepage": "https://alchemy.com",
+    "careerUrl": "https://boards.greenhouse.io/alchemy",
+    "atsType": "greenhouse",
+    "atsId": "alchemy"
+  },
+  {
+    "id": "phantom",
+    "name": "Phantom",
+    "symbol": "PHNTM",
+    "rank": 10,
+    "homepage": "https://phantom.app",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "dapper-labs",
+    "name": "Dapper Labs",
+    "symbol": "FLOW",
+    "rank": 11,
+    "homepage": "https://dapperlabs.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "figment",
+    "name": "Figment",
+    "symbol": "FIG",
+    "rank": 12,
+    "homepage": "https://figment.io",
+    "careerUrl": "https://boards.greenhouse.io/figment",
+    "atsType": "greenhouse",
+    "atsId": "figment"
+  },
+  {
+    "id": "anchorage",
+    "name": "Anchorage Digital",
+    "symbol": "ANCH",
+    "rank": 13,
+    "homepage": "https://anchorage.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "fireblocks",
+    "name": "Fireblocks",
+    "symbol": "FB",
+    "rank": 14,
+    "homepage": "https://fireblocks.com",
+    "careerUrl": "https://boards.greenhouse.io/fireblocks",
+    "atsType": "greenhouse",
+    "atsId": "fireblocks"
+  },
+  {
+    "id": "paxos",
+    "name": "Paxos",
+    "symbol": "PAX",
+    "rank": 15,
+    "homepage": "https://paxos.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "bitgo",
+    "name": "BitGo",
+    "symbol": "BITGO",
+    "rank": 16,
+    "homepage": "https://bitgo.com",
+    "careerUrl": "https://boards.greenhouse.io/bitgo",
+    "atsType": "greenhouse",
+    "atsId": "bitgo"
+  },
+  {
+    "id": "ledger",
+    "name": "Ledger",
+    "symbol": "LDG",
+    "rank": 17,
+    "homepage": "https://ledger.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "polygon",
+    "name": "Polygon",
+    "symbol": "MATIC",
+    "rank": 18,
+    "homepage": "https://polygon.technology",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "optimism",
+    "name": "Optimism",
+    "symbol": "OP",
+    "rank": 19,
+    "homepage": "https://optimism.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "arbitrum",
+    "name": "Arbitrum (Offchain Labs)",
+    "symbol": "ARB",
+    "rank": 20,
+    "homepage": "https://arbitrum.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "avalanche",
+    "name": "Ava Labs (Avalanche)",
+    "symbol": "AVAX",
+    "rank": 21,
+    "homepage": "https://avax.network",
+    "careerUrl": "https://boards.greenhouse.io/avalabs",
+    "atsType": "greenhouse",
+    "atsId": "avalabs"
+  },
+  {
+    "id": "solana",
+    "name": "Solana Foundation",
+    "symbol": "SOL",
+    "rank": 22,
+    "homepage": "https://solana.org",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "near",
+    "name": "NEAR Foundation",
+    "symbol": "NEAR",
+    "rank": 23,
+    "homepage": "https://near.org",
+    "careerUrl": "https://boards.greenhouse.io/nearfoundation",
+    "atsType": "greenhouse",
+    "atsId": "nearfoundation"
+  },
+  {
+    "id": "aptos",
+    "name": "Aptos Labs",
+    "symbol": "APT",
+    "rank": 24,
+    "homepage": "https://aptoslabs.com",
+    "careerUrl": "https://boards.greenhouse.io/aptoslabs",
+    "atsType": "greenhouse",
+    "atsId": "aptoslabs"
+  },
+  {
+    "id": "sui",
+    "name": "Mysten Labs (Sui)",
+    "symbol": "SUI",
+    "rank": 25,
+    "homepage": "https://mystenlabs.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "hedera",
+    "name": "Hedera",
+    "symbol": "HBAR",
+    "rank": 26,
+    "homepage": "https://hedera.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "stellar",
+    "name": "Stellar",
+    "symbol": "XLM",
+    "rank": 27,
+    "homepage": "https://stellar.org",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "starkware",
+    "name": "StarkWare (Starknet)",
+    "symbol": "STRK",
+    "rank": 28,
+    "homepage": "https://starkware.co",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "immutable",
+    "name": "Immutable",
+    "symbol": "IMX",
+    "rank": 29,
+    "homepage": "https://immutable.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "animoca",
+    "name": "Animoca Brands",
+    "symbol": "ANMCA",
+    "rank": 30,
+    "homepage": "https://animocabrands.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "celestia",
+    "name": "Celestia",
+    "symbol": "TIA",
+    "rank": 31,
+    "homepage": "https://celestia.org",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "layerzero",
+    "name": "LayerZero Labs",
+    "symbol": "ZRO",
+    "rank": 32,
+    "homepage": "https://layerzero.network",
+    "careerUrl": "https://boards.greenhouse.io/layerzerolabs",
+    "atsType": "greenhouse",
+    "atsId": "layerzerolabs"
+  },
+  {
+    "id": "wormhole-gh",
+    "name": "Wormhole",
+    "symbol": "W",
+    "rank": 33,
+    "homepage": "https://wormhole.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "eigenlayer",
+    "name": "Eigen Labs (EigenLayer)",
+    "symbol": "EIGEN",
+    "rank": 34,
+    "homepage": "https://eigenlayer.xyz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "scroll",
+    "name": "Scroll",
+    "symbol": "SCR",
+    "rank": 35,
+    "homepage": "https://scroll.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "axelar",
+    "name": "Axelar",
+    "symbol": "AXL",
+    "rank": 36,
+    "homepage": "https://axelar.network",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "the-graph",
+    "name": "The Graph",
+    "symbol": "GRT",
+    "rank": 37,
+    "homepage": "https://thegraph.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "protocol-labs",
+    "name": "Protocol Labs (Filecoin)",
+    "symbol": "FIL",
+    "rank": 38,
+    "homepage": "https://protocol.ai",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "blockdaemon",
+    "name": "Blockdaemon",
+    "symbol": "BD",
+    "rank": 39,
+    "homepage": "https://blockdaemon.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "nethermind",
+    "name": "Nethermind",
+    "symbol": "NM",
+    "rank": 40,
+    "homepage": "https://nethermind.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "aave",
+    "name": "Aave",
+    "symbol": "AAVE",
+    "rank": 41,
+    "homepage": "https://aave.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "makerdao",
+    "name": "MakerDAO",
+    "symbol": "MKR",
+    "rank": 42,
+    "homepage": "https://makerdao.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "dydx",
+    "name": "dYdX",
+    "symbol": "DYDX",
+    "rank": 43,
+    "homepage": "https://dydx.exchange",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "robinhood",
+    "name": "Robinhood",
+    "symbol": "HOOD",
+    "rank": 44,
+    "homepage": "https://robinhood.com",
+    "careerUrl": "https://boards.greenhouse.io/robinhood",
+    "atsType": "greenhouse",
+    "atsId": "robinhood"
+  },
+  {
+    "id": "gemini",
+    "name": "Gemini",
+    "symbol": "GUSD",
+    "rank": 45,
+    "homepage": "https://gemini.com",
+    "careerUrl": "https://boards.greenhouse.io/gemini",
+    "atsType": "greenhouse",
+    "atsId": "gemini"
+  },
+  {
+    "id": "blockchain-com",
+    "name": "Blockchain.com",
+    "symbol": "BC",
+    "rank": 46,
+    "homepage": "https://blockchain.com",
+    "careerUrl": "https://boards.greenhouse.io/blockchain",
+    "atsType": "greenhouse",
+    "atsId": "blockchain"
+  },
+  {
+    "id": "bitstamp",
+    "name": "Bitstamp",
+    "symbol": "BSTMP",
+    "rank": 47,
+    "homepage": "https://bitstamp.net",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "compound",
+    "name": "Compound Labs",
+    "symbol": "COMP",
+    "rank": 48,
+    "homepage": "https://compound.finance",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "lido",
+    "name": "Lido",
+    "symbol": "LDO",
+    "rank": 49,
+    "homepage": "https://lido.fi",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "quicknode",
+    "name": "QuickNode",
+    "symbol": "QN",
+    "rank": 50,
+    "homepage": "https://quicknode.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "certik",
+    "name": "CertiK",
+    "symbol": "CTK",
+    "rank": 51,
+    "homepage": "https://certik.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "messari",
+    "name": "Messari",
+    "symbol": "MSRI",
+    "rank": 52,
+    "homepage": "https://messari.io",
+    "careerUrl": "https://boards.greenhouse.io/messari",
+    "atsType": "greenhouse",
+    "atsId": "messari"
+  },
+  {
+    "id": "nansen",
+    "name": "Nansen",
+    "symbol": "NAN",
+    "rank": 53,
+    "homepage": "https://nansen.ai",
+    "careerUrl": "https://boards.greenhouse.io/nansen",
+    "atsType": "greenhouse",
+    "atsId": "nansen"
+  },
+  {
+    "id": "chiliz",
+    "name": "Chiliz",
+    "symbol": "CHZ",
+    "rank": 54,
+    "homepage": "https://chiliz.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "mina",
+    "name": "Mina Foundation",
+    "symbol": "MINA",
+    "rank": 55,
+    "homepage": "https://minaprotocol.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "obol",
+    "name": "Obol Labs",
+    "symbol": "OBOL",
+    "rank": 56,
+    "homepage": "https://obol.tech",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "fuel-labs",
+    "name": "Fuel Labs",
+    "symbol": "FUEL",
+    "rank": 57,
+    "homepage": "https://fuel.network",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "coinmarketcap",
+    "name": "CoinMarketCap",
+    "symbol": "CMC",
+    "rank": 58,
+    "homepage": "https://coinmarketcap.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "coingecko",
+    "name": "CoinGecko",
+    "symbol": "CG",
+    "rank": 59,
+    "homepage": "https://coingecko.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "zksync",
+    "name": "Matter Labs (zkSync)",
+    "symbol": "ZK",
+    "rank": 60,
+    "homepage": "https://matterlabs.dev",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "moralis",
+    "name": "Moralis",
+    "symbol": "MOR",
+    "rank": 61,
+    "homepage": "https://moralis.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "dfinity",
+    "name": "DFINITY (ICP)",
+    "symbol": "ICP",
+    "rank": 62,
+    "homepage": "https://dfinity.org",
+    "careerUrl": "https://boards.greenhouse.io/dfinity",
+    "atsType": "greenhouse",
+    "atsId": "dfinity"
+  },
+  {
+    "id": "celo",
+    "name": "cLabs (Celo)",
+    "symbol": "CELO",
+    "rank": 63,
+    "homepage": "https://celo.org",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "arweave",
+    "name": "Arweave",
+    "symbol": "AR",
+    "rank": 64,
+    "homepage": "https://arweave.org",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "marinade",
+    "name": "Marinade Finance",
+    "symbol": "MNDE",
+    "rank": 65,
+    "homepage": "https://marinade.finance",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "sei",
+    "name": "Sei Labs",
+    "symbol": "SEI",
+    "rank": 66,
+    "homepage": "https://sei.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "injective",
+    "name": "Injective",
+    "symbol": "INJ",
+    "rank": 67,
+    "homepage": "https://injective.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "tensor",
+    "name": "Tensor",
+    "symbol": "TNSR",
+    "rank": 68,
+    "homepage": "https://tensor.trade",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "pyth",
+    "name": "Pyth Network",
+    "symbol": "PYTH",
+    "rank": 69,
+    "homepage": "https://pyth.network",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "iron-fish",
+    "name": "Iron Fish",
+    "symbol": "IRON",
+    "rank": 70,
+    "homepage": "https://ironfish.network",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "forte",
+    "name": "Forte",
+    "symbol": "FORTE",
+    "rank": 71,
+    "homepage": "https://forte.io",
+    "careerUrl": "https://boards.greenhouse.io/forte",
+    "atsType": "greenhouse",
+    "atsId": "forte"
+  },
+  {
+    "id": "galaxy-digital",
+    "name": "Galaxy Digital",
+    "symbol": "GLXY",
+    "rank": 72,
+    "homepage": "https://galaxy.com",
+    "careerUrl": "https://boards.greenhouse.io/galaxydigitalservices",
+    "atsType": "greenhouse",
+    "atsId": "galaxydigitalservices"
+  },
+  {
+    "id": "securitize",
+    "name": "Securitize",
+    "symbol": "SEC",
+    "rank": 73,
+    "homepage": "https://securitize.io",
+    "careerUrl": "https://boards.greenhouse.io/securitize",
+    "atsType": "greenhouse",
+    "atsId": "securitize"
+  },
+  {
+    "id": "halliday",
+    "name": "Halliday",
+    "symbol": "HALL",
+    "rank": 74,
+    "homepage": "https://halliday.xyz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "fluence",
+    "name": "Fluence",
+    "symbol": "FLT",
+    "rank": 75,
+    "homepage": "https://fluence.network",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "paradigm",
+    "name": "Paradigm",
+    "symbol": "PARA",
+    "rank": 76,
+    "homepage": "https://paradigm.xyz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "a16z-crypto",
+    "name": "a16z crypto",
+    "symbol": "A16Z",
+    "rank": 77,
+    "homepage": "https://a16zcrypto.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "pantera",
+    "name": "Pantera Capital",
+    "symbol": "PNTR",
+    "rank": 78,
+    "homepage": "https://panteracapital.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "polychain",
+    "name": "Polychain Capital",
+    "symbol": "POLY",
+    "rank": 79,
+    "homepage": "https://polychain.capital",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "dragonfly",
+    "name": "Dragonfly",
+    "symbol": "DFLY",
+    "rank": 80,
+    "homepage": "https://dragonfly.xyz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "multicoin",
+    "name": "Multicoin Capital",
+    "symbol": "MULTI",
+    "rank": 81,
+    "homepage": "https://multicoin.capital",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "coinlist",
+    "name": "CoinList",
+    "symbol": "CLIST",
+    "rank": 82,
+    "homepage": "https://coinlist.co",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "hashicorp-web3",
+    "name": "Gauntlet",
+    "symbol": "GNTL",
+    "rank": 83,
+    "homepage": "https://gauntlet.network",
+    "careerUrl": "https://jobs.lever.co/gauntlet",
+    "atsType": "lever",
+    "atsId": "gauntlet"
+  },
+  {
+    "id": "syndica",
+    "name": "Syndica",
+    "symbol": "SYND",
+    "rank": 84,
+    "homepage": "https://syndica.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "jump-crypto",
+    "name": "Jump Crypto",
+    "symbol": "JUMP",
+    "rank": 85,
+    "homepage": "https://jumpcrypto.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "electric-capital",
+    "name": "Electric Capital",
+    "symbol": "ELEC",
+    "rank": 86,
+    "homepage": "https://electriccapital.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "nascent",
+    "name": "Nascent",
+    "symbol": "NASC",
+    "rank": 87,
+    "homepage": "https://nascent.xyz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "variant",
+    "name": "Variant Fund",
+    "symbol": "VRNT",
+    "rank": 88,
+    "homepage": "https://variant.fund",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "delphi",
+    "name": "Delphi Digital",
+    "symbol": "DLPH",
+    "rank": 89,
+    "homepage": "https://delphidigital.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "foresight-ventures",
+    "name": "Foresight Ventures",
+    "symbol": "FORE",
+    "rank": 90,
+    "homepage": "https://foresightventures.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "worldcoin",
+    "name": "Worldcoin (TFH)",
+    "symbol": "WLD",
+    "rank": 91,
+    "homepage": "https://worldcoin.org",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "wormhole-ashby",
+    "name": "Wormhole (Ashby)",
+    "symbol": "W",
+    "rank": 92,
+    "homepage": "https://wormhole.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "monad",
+    "name": "Monad",
+    "symbol": "MON",
+    "rank": 93,
+    "homepage": "https://monad.xyz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "espresso-systems",
+    "name": "Espresso Systems",
+    "symbol": "ESPR",
+    "rank": 94,
+    "homepage": "https://espressosys.com",
+    "careerUrl": "https://jobs.ashbyhq.com/espresso",
+    "atsType": "ashby",
+    "atsId": "espresso"
+  },
+  {
+    "id": "lit-protocol",
+    "name": "Lit Protocol",
+    "symbol": "LIT",
+    "rank": 95,
+    "homepage": "https://litprotocol.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "privy",
+    "name": "Privy",
+    "symbol": "PRVY",
+    "rank": 96,
+    "homepage": "https://privy.io",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "dynamic",
+    "name": "Dynamic",
+    "symbol": "DYN",
+    "rank": 97,
+    "homepage": "https://dynamic.xyz",
+    "careerUrl": "https://jobs.ashbyhq.com/Dynamic",
+    "atsType": "ashby",
+    "atsId": "Dynamic"
+  },
+  {
+    "id": "berachain",
+    "name": "Berachain",
+    "symbol": "BERA",
+    "rank": 98,
+    "homepage": "https://berachain.com",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "eclipse",
+    "name": "Eclipse",
+    "symbol": "ECLP",
+    "rank": 99,
+    "homepage": "https://eclipse.xyz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "movement",
+    "name": "Movement Labs",
+    "symbol": "MOVE",
+    "rank": 100,
+    "homepage": "https://movementlabs.xyz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "okx",
+    "name": "OKX",
+    "symbol": "OKB",
+    "rank": 101,
+    "homepage": "https://okx.com",
+    "careerUrl": "https://boards.greenhouse.io/okx",
+    "atsType": "greenhouse",
+    "atsId": "okx"
+  },
+  {
+    "id": "bybit",
+    "name": "Bybit",
+    "symbol": "BYB",
+    "rank": 102,
+    "homepage": "https://bybit.com",
+    "careerUrl": "https://boards.greenhouse.io/bybit",
+    "atsType": "greenhouse",
+    "atsId": "bybit"
+  }
+]

@@ -149,27 +149,66 @@ export async function checkAlerts(): Promise<void> {
       }
     }
 
-    // Build search params from saved filters
+    // Parse special prefixes from query field:
+    //   "location:sydney|<terms>"  → post-filter to Sydney + remote jobs
+    //   "remote:true|<terms>"      → post-filter to remote-only jobs
+    let locationFilter: string | null = null;
+    let remoteOnly = false;
+    let cleanQuery = search.query ?? undefined;
+
+    if (search.query?.startsWith("location:")) {
+      const [prefix, ...rest] = search.query.split("|");
+      locationFilter = prefix.replace("location:", "").trim();
+      cleanQuery = rest.join("|").trim() || undefined;
+    } else if (search.query?.startsWith("remote:true")) {
+      remoteOnly = true;
+      const rest = search.query.replace(/^remote:true\|?/, "").trim();
+      cleanQuery = rest || undefined;
+    }
+
+    // Build search params — post-filter handles location/remote below
     const params: SearchJobsParams = {
-      query: search.query ?? undefined,
+      query: cleanQuery,
       industrySlug: search.industrySlug ?? undefined,
       taxonomySlug: search.taxonomySlug ?? undefined,
-      region: search.region ?? undefined,
+      region: locationFilter ? undefined : (search.region ?? undefined),
+      includeRemote: !locationFilter && !remoteOnly && search.region != null,
       isRemote: search.isRemote ?? undefined,
-      limit: 100,
+      limit: 500,
       offset: 0,
     };
 
     const result = await searchJobs(params);
 
-    // For first email (never notified), include all matching jobs.
-    // For subsequent emails, filter to jobs seen since last notification.
-    let newJobs = result.jobs;
-    if (search.lastNotifiedAt) {
-      const cutoff = search.lastNotifiedAt;
-      newJobs = result.jobs.filter((job) => {
-        const jobDate = job.postedAt ? new Date(job.postedAt) : (job.scannedAt ? new Date(job.scannedAt) : null);
-        return jobDate && jobDate > cutoff;
+    // Always show all jobs from the last 7 days, regardless of when last email was sent.
+    const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    let newJobs = result.jobs.filter((job) => {
+      const jobDate = job.scannedAt ? new Date(job.scannedAt) : (job.postedAt ? new Date(job.postedAt) : null);
+      return jobDate && jobDate > sevenDaysAgo;
+    });
+
+    // Remote-only filter: strip any job that isn't flagged remote or has "remote" in title/location
+    const remoteRe = /\bremote\b|global|worldwide|anywhere|distributed/i;
+    if (remoteOnly) {
+      newJobs = newJobs.filter((job) => {
+        const loc = job.location ?? "";
+        const title = job.title ?? "";
+        return job.isRemote || remoteRe.test(loc) || remoteRe.test(title);
+      });
+    }
+
+    // Location filter: keep only jobs matching the city/country OR remote/global
+    if (locationFilter) {
+      // Build city + country aliases (e.g. "sydney" also matches "australia", "nsw")
+      const LOCATION_ALIASES: Record<string, string[]> = {
+        sydney: ["sydney", "australia", "nsw", "new south wales"],
+      };
+      const aliases = LOCATION_ALIASES[locationFilter.toLowerCase()] ?? [locationFilter];
+      const cityRe = new RegExp(aliases.join("|"), "i");
+      newJobs = newJobs.filter((job) => {
+        const loc = job.location ?? "";
+        const title = job.title ?? "";
+        return cityRe.test(loc) || remoteRe.test(loc) || remoteRe.test(title) || job.isRemote;
       });
     }
 

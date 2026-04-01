@@ -1,9 +1,10 @@
-import { eq, lt, and } from "drizzle-orm";
+import { eq, lt, and, sql } from "drizzle-orm";
 import type { Database } from "@/db";
 import {
   jobs,
   roleTaxonomies,
   scanRuns,
+  industries,
 } from "@/db/schema";
 import type {
   RawJob,
@@ -32,6 +33,7 @@ import { scanCareerCache } from "./sources/career-cache";
 import { scanSeek } from "./sources/seek";
 import { scanArtsHub } from "./sources/artshub";
 import { scanMumbrella } from "./sources/mumbrella";
+import { scanTheLoopAU } from "./sources/the-loop-au";
 
 // Source scanners — US
 import { scanIndeed } from "./sources/indeed";
@@ -44,11 +46,21 @@ import { scanCampaignJobs } from "./sources/campaign-jobs";
 import { scanArbeitnow } from "./sources/arbeitnow";
 import { scanWelcomeJungle } from "./sources/welcome-jungle";
 
+// Source scanners — Creative industry
+import { scanTheDrum } from "./sources/thedrum";
+import { scanMarketingWeek } from "./sources/marketing-week";
+import { scanWorkingNotWorking } from "./sources/working-not-working";
+import { scanCreativepool } from "./sources/creativepool";
+import { scanCampaignBriefAU } from "./sources/campaign-brief-au";
+import { scanKrop } from "./sources/krop";
+
 // Source scanners — Crypto (additional)
 import { scanGreenhouseCache } from "./sources/greenhouse-cache";
+import { scanAgencyCache } from "./sources/agency-cache";
 
 // Source scanners — Cross-market
 import { scanAdzuna } from "./sources/adzuna";
+import { scanJSearch } from "./sources/jsearch";
 
 // Source scanners — Free global APIs
 import { scanRemoteOK } from "./sources/remoteok";
@@ -314,7 +326,7 @@ async function runSource(
   name: string,
   fn: () => Promise<RawJob[]>,
   errors: Array<{ source: string; message: string }>,
-  timeoutMs = 120_000,
+  timeoutMs = 30_000,
 ): Promise<RawJob[]> {
   try {
     console.log(`  [${name}] scanning...`);
@@ -407,6 +419,10 @@ export async function runFullScan(
     .select()
     .from(roleTaxonomies)) as TaxonomyRow[];
 
+  // --- Load industry ID map ---
+  const industryRows = await db.select().from(industries);
+  const industryIdBySlug = new Map(industryRows.map((i) => [i.slug, i.id]));
+
   if (!taxonomyRows.length) {
     console.warn("No role taxonomies found in DB — nothing to scan.");
     await db
@@ -457,8 +473,16 @@ export async function runFullScan(
 
   // ===== Batch 1: Crypto board sites (different hosts, safe to parallelize) =====
   console.log("\n--- Batch 1: Crypto boards ---");
+  // Prioritize creative/brand/marketing slugs for web3.career (known working slugs)
+  const PRIORITY_WEB3_SLUGS = [
+    "creative-director", "marketing-manager", "content-marketing", "head-of-marketing",
+    "brand-manager", "social-media-manager", "product-manager", "product-designer",
+    "engineering-manager", "software-engineer", "developer-advocate", "community-manager",
+    "head-of-growth", "growth-marketing",
+  ];
+  const web3SlugsDeduped = [...new Set([...PRIORITY_WEB3_SLUGS, ...allWeb3Slugs])].slice(0, 15);
   const [web3Jobs, cryptoJobs, remote3Jobs] = await Promise.all([
-    runSource("web3.career", () => scanWeb3Career([...allWeb3Slugs].slice(0, 15)), errors),
+    runSource("web3.career", () => scanWeb3Career(web3SlugsDeduped), errors, 60_000),
     runSource("cryptocurrencyjobs.co", () => scanCryptoJobs([...allCryptoJobsCats]), errors),
     runSource("remote3.co", () => scanRemote3(), errors),
   ]);
@@ -493,16 +517,41 @@ export async function runFullScan(
 
   // ===== Batch 3: Australia boards (different hosts) =====
   console.log("\n--- Batch 3: Australia boards ---");
-  const [seekJobs, artsHubJobs, mumbrellaJobs] = await Promise.all([
+  const [seekJobs, artsHubJobs, mumbrellaJobs, theLoopJobs] = await Promise.all([
     runSource("Seek", () => scanSeek(), errors),
     runSource("ArtsHub", () => scanArtsHub(), errors),
     runSource("Mumbrella", () => scanMumbrella(), errors),
+    runSource("The Loop AU", () => scanTheLoopAU(), errors, 45_000),
   ]);
   recordBatch(
     [
       { name: "Seek", jobs: seekJobs },
       { name: "ArtsHub", jobs: artsHubJobs },
       { name: "Mumbrella", jobs: mumbrellaJobs },
+      { name: "The Loop AU", jobs: theLoopJobs },
+    ],
+    allRawJobs,
+    sourceBreakdown,
+  );
+
+  // ===== Batch 3b: Creative industry boards =====
+  console.log("\n--- Batch 3b: Creative industry boards ---");
+  const [theDrumJobs, marketingWeekJobs, wnwJobs, creativepoolJobs, campaignBriefJobs, kropJobs] = await Promise.all([
+    runSource("The Drum", () => scanTheDrum(), errors, 60_000),
+    runSource("Marketing Week", () => scanMarketingWeek(), errors, 60_000),
+    runSource("Working Not Working", () => scanWorkingNotWorking(), errors, 45_000),
+    runSource("Creativepool", () => scanCreativepool(), errors, 60_000),
+    runSource("Campaign Brief AU", () => scanCampaignBriefAU(), errors, 30_000),
+    runSource("Krop", () => scanKrop(), errors, 60_000),
+  ]);
+  recordBatch(
+    [
+      { name: "The Drum", jobs: theDrumJobs },
+      { name: "Marketing Week", jobs: marketingWeekJobs },
+      { name: "Working Not Working", jobs: wnwJobs },
+      { name: "Creativepool", jobs: creativepoolJobs },
+      { name: "Campaign Brief AU", jobs: campaignBriefJobs },
+      { name: "Krop", jobs: kropJobs },
     ],
     allRawJobs,
     sourceBreakdown,
@@ -532,57 +581,40 @@ export async function runFullScan(
 
   // ===== Batch 5: Cross-market APIs =====
   console.log("\n--- Batch 5: Cross-market APIs ---");
-  const [adzunaJobs] = await Promise.all([
+  // Build JSearch queries from top taxonomy titles
+  const JSEARCH_QUERIES = [
+    "Creative Director",
+    "Head of Creative",
+    "Executive Creative Director",
+    "Group Creative Director",
+    "Head of Brand",
+    "Chief Creative Officer",
+    "Head of Marketing",
+    "Marketing Director",
+    "Brand Director",
+    "Head of Design",
+    "UX Designer",
+    "Product Manager crypto",
+    "Software Engineer web3",
+    "Community Manager crypto",
+    "Developer Relations",
+  ];
+  const [adzunaJobs, jsearchJobs] = await Promise.all([
     runSource("Adzuna", () => scanAdzuna(), errors),
+    runSource("JSearch", () => scanJSearch(JSEARCH_QUERIES), errors, 120_000),
   ]);
   recordBatch(
-    [{ name: "Adzuna", jobs: adzunaJobs }],
+    [
+      { name: "Adzuna", jobs: adzunaJobs },
+      { name: "JSearch", jobs: jsearchJobs },
+    ],
     allRawJobs,
     sourceBreakdown,
   );
 
-  // ===== Batch 6: LinkedIn (sequential per keyword to avoid rate limiting) =====
-  console.log("\n--- Batch 6: LinkedIn ---");
-  let linkedInTotal = 0;
-  for (const kw of allLinkedInKeywords) {
-    const result = await runSource(
-      `LinkedIn:"${kw}"`,
-      () => scanLinkedIn(kw),
-      errors,
-    );
-    allRawJobs.push(...result);
-    linkedInTotal += result.length;
-    await sleep(2_000); // be polite to LinkedIn
-  }
-  sourceBreakdown["LinkedIn"] = linkedInTotal;
-
-  // ===== Batch 6b: LinkedIn APAC — location-specific searches =====
-  console.log("\n--- Batch 6b: LinkedIn APAC ---");
-  const apacLocations = ["Australia", "Singapore", "New Zealand", "India", "Japan", "Hong Kong"];
-  const apacKeywords = [
-    "Creative Director", "Head of Brand", "Head of Marketing",
-    "Head of Design", "Product Manager", "Engineering Manager",
-    "Software Engineer", "Data Scientist", "Head of Product",
-    "Marketing Manager", "UX Designer", "Head of People",
-  ];
-  let linkedInApacTotal = 0;
-  for (const loc of apacLocations) {
-    for (const kw of apacKeywords) {
-      const result = await runSource(
-        `LinkedIn:"${kw}" in ${loc}`,
-        () => scanLinkedIn(kw, loc, false),
-        errors,
-      );
-      allRawJobs.push(...result);
-      linkedInApacTotal += result.length;
-      await sleep(2_000);
-    }
-  }
-  sourceBreakdown["LinkedIn APAC"] = linkedInApacTotal;
-
-  // ===== Batch 7: Career cache — legacy (batched internally) =====
-  console.log("\n--- Batch 7: Career caches ---");
-  const [legacyCacheJobs, greenhouseCacheJobs] = await Promise.all([
+  // ===== Batch 6: Career caches (moved before LinkedIn so they always run) =====
+  console.log("\n--- Batch 6: Career caches ---");
+  const [legacyCacheJobs, greenhouseCacheJobs, agencyCacheJobs] = await Promise.all([
     runSource(
       "Career Cache (legacy)",
       () => scanCareerCache(careerProjects, matchers),
@@ -593,11 +625,18 @@ export async function runFullScan(
       () => scanGreenhouseCache(matchers),
       errors,
     ),
+    runSource(
+      "Agency Cache",
+      () => scanAgencyCache(),
+      errors,
+      60_000,
+    ),
   ]);
   recordBatch(
     [
       { name: "Career Cache", jobs: legacyCacheJobs },
       { name: "Greenhouse Cache", jobs: greenhouseCacheJobs },
+      { name: "Agency Cache", jobs: agencyCacheJobs },
     ],
     allRawJobs,
     sourceBreakdown,
@@ -795,6 +834,56 @@ export async function runFullScan(
     sourceBreakdown,
   );
 
+  // ===== Batch 17: LinkedIn (parallel batches of 5, 1s gap between batches) =====
+  console.log("\n--- Batch 17: LinkedIn ---");
+  const linkedInKeywords = [...allLinkedInKeywords];
+  let linkedInTotal = 0;
+  const LI_CONCURRENCY = 5;
+  for (let i = 0; i < linkedInKeywords.length; i += LI_CONCURRENCY) {
+    const batch = linkedInKeywords.slice(i, i + LI_CONCURRENCY);
+    const results = await Promise.all(
+      batch.map((kw) => runSource(`LinkedIn:"${kw}"`, () => scanLinkedIn(kw), errors)),
+    );
+    for (const r of results) {
+      allRawJobs.push(...r);
+      linkedInTotal += r.length;
+    }
+    await sleep(1_000);
+  }
+  sourceBreakdown["LinkedIn"] = linkedInTotal;
+
+  // ===== Batch 17b: LinkedIn APAC — location-specific searches =====
+  console.log("\n--- Batch 17b: LinkedIn APAC ---");
+  const apacLocations = ["Australia", "Singapore", "New Zealand", "India", "Japan", "Hong Kong"];
+  const apacKeywords = [
+    // Creative leadership (primary focus)
+    "Creative Director", "Executive Creative Director", "Head of Creative",
+    "Group Creative Director", "Chief Creative Officer", "VP Creative",
+    "Head of Brand", "Brand Director", "VP Brand",
+    "Art Director", "Head of Design",
+    // Marketing leadership
+    "Head of Marketing", "Marketing Director", "CMO",
+    // Other senior roles
+    "Product Manager", "Engineering Manager",
+    "Head of Product", "UX Designer", "Head of People",
+  ];
+  let linkedInApacTotal = 0;
+  const apacQueries = apacLocations.flatMap((loc) => apacKeywords.map((kw) => ({ kw, loc })));
+  for (let i = 0; i < apacQueries.length; i += LI_CONCURRENCY) {
+    const batch = apacQueries.slice(i, i + LI_CONCURRENCY);
+    const results = await Promise.all(
+      batch.map(({ kw, loc }) =>
+        runSource(`LinkedIn:"${kw}" in ${loc}`, () => scanLinkedIn(kw, loc, false), errors),
+      ),
+    );
+    for (const r of results) {
+      allRawJobs.push(...r);
+      linkedInApacTotal += r.length;
+    }
+    await sleep(1_000);
+  }
+  sourceBreakdown["LinkedIn APAC"] = linkedInApacTotal;
+
   console.log(`\nTotal raw jobs found: ${allRawJobs.length}`);
 
   // --- Match, deduplicate, and prepare for DB ---
@@ -834,6 +923,21 @@ export async function runFullScan(
         const tax = taxonomyRows.find((t) => t.id === job.taxonomyId);
         industryId = tax?.industryId ?? null;
       }
+      // Source-based industry override: crypto sources → crypto industry
+      if (!industryId) {
+        const src = (job.source ?? "").toLowerCase();
+        if (
+          src.includes("greenhouse") ||
+          src.includes("lever") ||
+          src.includes("ashby") ||
+          src.includes("web3.career") ||
+          src.includes("cryptocurrencyjobs") ||
+          src.includes("remote3") ||
+          src.includes("career cache")
+        ) {
+          industryId = industryIdBySlug.get("crypto") ?? null;
+        }
+      }
       const parsed = parseSalary(job.salary);
       return {
         title: job.title,
@@ -864,7 +968,12 @@ export async function runFullScan(
         .values(values)
         .onConflictDoUpdate({
           target: jobs.dedupKey,
-          set: { lastSeenAt: now, isActive: true },
+          set: {
+            lastSeenAt: now,
+            isActive: true,
+            // Update industryId on re-scan so tagging fixes propagate
+            industryId: sql`CASE WHEN EXCLUDED.industry_id IS NOT NULL THEN EXCLUDED.industry_id ELSE ${jobs.industryId} END`,
+          },
         });
       // Count new inserts (approximate — all non-conflict rows)
       newCount += batch.length;
@@ -936,9 +1045,30 @@ if (isMain) {
   config({ path: ".env" });
 
   const { db } = await import("@/db/index");
+  const { careerProjects: cpTable } = await import("@/db/schema");
 
-  console.log("Starting full scan...\n");
-  runFullScan(db, [])
+  // Load career projects from DB
+  let careerProjects: CareerProject[] = [];
+  try {
+    const rows = await db.select().from(cpTable);
+    careerProjects = rows
+      .filter((r: any) => r.careerUrl)
+      .map((r: any) => ({
+        id: r.id,
+        name: r.name,
+        symbol: r.symbol,
+        rank: r.rank,
+        homepage: r.homepage,
+        careerUrl: r.careerUrl,
+        atsType: r.atsType as CareerProject["atsType"],
+        atsId: r.atsId,
+      }));
+  } catch (err) {
+    console.warn("Could not load career_projects:", (err as Error).message);
+  }
+
+  console.log(`Starting full scan with ${careerProjects.length} career projects...\n`);
+  runFullScan(db, careerProjects)
     .then((stats) => {
       console.log("\nDone!", JSON.stringify(stats, null, 2));
       process.exit(0);

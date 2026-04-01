@@ -1,0 +1,730 @@
+[
+  {
+    "id": "ogilvy",
+    "name": "Ogilvy",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/ogilvy",
+    "atsType": "greenhouse",
+    "atsId": "ogilvy"
+  },
+  {
+    "id": "akqa",
+    "name": "AKQA",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/akqa",
+    "atsType": "greenhouse",
+    "atsId": "akqa"
+  },
+  {
+    "id": "grey",
+    "name": "Grey",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "wunderman-thompson",
+    "name": "VML (Wunderman Thompson)",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "groupm",
+    "name": "GroupM",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "mindshare",
+    "name": "Mindshare",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "mediacom",
+    "name": "MediaCom",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "wavemaker",
+    "name": "Wavemaker",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "hogarth",
+    "name": "Hogarth",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "hill-knowlton",
+    "name": "Hill & Knowlton",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "wpp-corporate",
+    "name": "WPP Corporate",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/wpp",
+    "atsType": "greenhouse",
+    "atsId": "wpp"
+  },
+  {
+    "id": "finsbury-glover",
+    "name": "Finsbury Glover Hering",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "saatchi",
+    "name": "Saatchi & Saatchi",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "leo-burnett",
+    "name": "Leo Burnett",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "publicis-sapient",
+    "name": "Publicis Sapient",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "bbh",
+    "name": "BBH (Bartle Bogle Hegarty)",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "msl-group",
+    "name": "MSL Group",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "starcom",
+    "name": "Starcom",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "zenith",
+    "name": "Zenith",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "performics",
+    "name": "Performics",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "epsilon",
+    "name": "Epsilon",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "mccann",
+    "name": "McCann",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "fcb",
+    "name": "FCB",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "mullenlowe",
+    "name": "MullenLowe",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/mullenlowe",
+    "atsType": "greenhouse",
+    "atsId": "mullenlowe"
+  },
+  {
+    "id": "rga",
+    "name": "R/GA",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/rga",
+    "atsType": "greenhouse",
+    "atsId": "rga"
+  },
+  {
+    "id": "martin-agency",
+    "name": "The Martin Agency",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/themartinagency",
+    "atsType": "greenhouse",
+    "atsId": "themartinagency"
+  },
+  {
+    "id": "deutsch",
+    "name": "Deutsch",
+    "country": "us",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "jack-morton",
+    "name": "Jack Morton",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/jackmorton",
+    "atsType": "greenhouse",
+    "atsId": "jackmorton"
+  },
+  {
+    "id": "weber-shandwick",
+    "name": "Weber Shandwick",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/webershandwick",
+    "atsType": "greenhouse",
+    "atsId": "webershandwick"
+  },
+  {
+    "id": "mediabrands",
+    "name": "IPG Mediabrands",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "initiative",
+    "name": "Initiative",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "um-global",
+    "name": "UM (Universal McCann)",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "dentsu-creative",
+    "name": "Dentsu Creative",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "dentsu-inc",
+    "name": "Dentsu Inc.",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "isobar",
+    "name": "Isobar (Dentsu)",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "merkle",
+    "name": "Merkle",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "carat-dentsu",
+    "name": "Carat (Dentsu)",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "360i",
+    "name": "360i",
+    "country": "us",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "bbdo",
+    "name": "BBDO",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "ddb",
+    "name": "DDB",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "tbwa",
+    "name": "TBWA",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "interbrand",
+    "name": "Interbrand",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/interbrand",
+    "atsType": "greenhouse",
+    "atsId": "interbrand"
+  },
+  {
+    "id": "porter-novelli",
+    "name": "Porter Novelli",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/porternovelli",
+    "atsType": "greenhouse",
+    "atsId": "porternovelli"
+  },
+  {
+    "id": "fleishman",
+    "name": "FleishmanHillard",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/fleishmanhillard",
+    "atsType": "greenhouse",
+    "atsId": "fleishmanhillard"
+  },
+  {
+    "id": "omnicom-group",
+    "name": "Omnicom Group",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "ddb-global",
+    "name": "DDB Global",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "phd-media",
+    "name": "PHD Media",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "wieden-kennedy",
+    "name": "Wieden+Kennedy",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/wk",
+    "atsType": "greenhouse",
+    "atsId": "wk"
+  },
+  {
+    "id": "droga5",
+    "name": "Droga5 (Accenture Song)",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "72andsunny",
+    "name": "72andSunny",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "anomaly",
+    "name": "Anomaly",
+    "country": "global",
+    "careerUrl": "https://jobs.lever.co/anomaly",
+    "atsType": "lever",
+    "atsId": "anomaly"
+  },
+  {
+    "id": "mother",
+    "name": "Mother",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "cpb",
+    "name": "CP+B",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "sid-lee",
+    "name": "Sid Lee",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/sidlee",
+    "atsType": "greenhouse",
+    "atsId": "sidlee"
+  },
+  {
+    "id": "huge",
+    "name": "Huge",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/hugeinc",
+    "atsType": "greenhouse",
+    "atsId": "hugeinc"
+  },
+  {
+    "id": "critical-mass",
+    "name": "Critical Mass",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/criticalmass",
+    "atsType": "greenhouse",
+    "atsId": "criticalmass"
+  },
+  {
+    "id": "accenture-song",
+    "name": "Accenture Song",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "publicis-worldwide",
+    "name": "Publicis Worldwide",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "havas-creative",
+    "name": "Havas Creative",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "havas-media",
+    "name": "Havas Media",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "havas-health",
+    "name": "Havas Health",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "arnold-worldwide",
+    "name": "Arnold Worldwide",
+    "country": "us",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "draftfcb",
+    "name": "FCB Health",
+    "country": "us",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "clemenger-bbdo",
+    "name": "Clemenger BBDO",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "che-proximity",
+    "name": "CHE Proximity",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "the-monkeys",
+    "name": "The Monkeys (Accenture Song AU)",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "thinkerbell",
+    "name": "Thinkerbell",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "colenso-bbdo",
+    "name": "Colenso BBDO",
+    "country": "nz",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "host-havas",
+    "name": "Host/Havas",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "ddb-au",
+    "name": "DDB Australia",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "tbwa-au",
+    "name": "TBWA\\Sydney",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "jwt-au",
+    "name": "JWT Sydney",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "saatchi-au",
+    "name": "Saatchi & Saatchi Sydney",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "leo-burnett-au",
+    "name": "Leo Burnett Sydney",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "mccann-au",
+    "name": "McCann Sydney",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "grey-au",
+    "name": "Grey Australia",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "ogilvy-au",
+    "name": "Ogilvy Australia",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "whybin-tbwa",
+    "name": "Whybin TBWA",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "dentsu-au",
+    "name": "Dentsu Australia",
+    "country": "au",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "bbh-lever",
+    "name": "BBH (Lever)",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "droga5-lever",
+    "name": "Droga5 (Lever)",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "crispin-lever",
+    "name": "Crispin Porter Bogusky",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "serviceplan",
+    "name": "Serviceplan",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "edelman",
+    "name": "Edelman",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "ketchum",
+    "name": "Ketchum",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "golin",
+    "name": "GolinHarris",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "iab",
+    "name": "IAB (Interactive Advertising Bureau)",
+    "country": "us",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "adam-eve-ddb",
+    "name": "adam&eveDDB",
+    "country": "uk",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "amy-bbdo",
+    "name": "AMV BBDO",
+    "country": "uk",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null
+  },
+  {
+    "id": "iris-worldwide",
+    "name": "Iris Worldwide",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/iris",
+    "atsType": "greenhouse",
+    "atsId": "iris"
+  },
+  {
+    "id": "zeno-group",
+    "name": "Zeno Group",
+    "country": "global",
+    "careerUrl": "https://jobs.lever.co/zenogroup",
+    "atsType": "lever",
+    "atsId": "zenogroup"
+  }
+]

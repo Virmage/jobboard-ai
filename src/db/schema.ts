@@ -285,6 +285,31 @@ export const scanRuns = pgTable(
 );
 
 // ---------------------------------------------------------------------------
+// Career Projects (crypto company career boards)
+// ---------------------------------------------------------------------------
+export const careerProjects = pgTable(
+  "career_projects",
+  {
+    id: text("id").primaryKey(), // slug like "coinbase"
+    name: text("name").notNull(),
+    symbol: text("symbol").notNull(),
+    rank: integer("rank").notNull(),
+    homepage: text("homepage").notNull(),
+    careerUrl: text("career_url"),
+    atsType: text("ats_type"), // "greenhouse" | "lever" | "ashby" | "workable" | "generic" | null
+    atsId: text("ats_id"),
+    jobCount: integer("job_count").notNull().default(0),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("career_projects_rank_idx").on(t.rank),
+    index("career_projects_ats_type_idx").on(t.atsType),
+  ]
+);
+
+// ---------------------------------------------------------------------------
 // Saved Searches (email alerts)
 // ---------------------------------------------------------------------------
 export const savedSearches = pgTable(
