@@ -52,6 +52,8 @@ export interface AgencyProject {
   careerUrl: string | null;
   atsType: "greenhouse" | "lever" | "ashby" | null;
   atsId: string | null;
+  /** If true, skip creative-only filter and ingest all role types (VC portfolio boards) */
+  allRoles?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -79,7 +81,7 @@ async function scanGreenhouse(ag: AgencyProject): Promise<RawJob[]> {
 
   const out: RawJob[] = [];
   for (const job of data.jobs) {
-    if (!CREATIVE_ROLE_RE.test(job.title)) continue;
+    if (!ag.allRoles && !CREATIVE_ROLE_RE.test(job.title)) continue;
     if (job.updated_at && !isWithinCutoff(new Date(job.updated_at), CUTOFF_DAYS)) continue;
 
     out.push({
@@ -102,7 +104,7 @@ async function scanLever(ag: AgencyProject): Promise<RawJob[]> {
 
   const out: RawJob[] = [];
   for (const job of data) {
-    if (!CREATIVE_ROLE_RE.test(job.text)) continue;
+    if (!ag.allRoles && !CREATIVE_ROLE_RE.test(job.text)) continue;
     if (job.createdAt && !isWithinCutoff(new Date(job.createdAt), CUTOFF_DAYS)) continue;
 
     out.push({
@@ -125,7 +127,7 @@ async function scanAshby(ag: AgencyProject): Promise<RawJob[]> {
 
   const out: RawJob[] = [];
   for (const job of data.jobs) {
-    if (!CREATIVE_ROLE_RE.test(job.title)) continue;
+    if (!ag.allRoles && !CREATIVE_ROLE_RE.test(job.title)) continue;
     if (job.publishedAt && !isWithinCutoff(new Date(job.publishedAt), CUTOFF_DAYS)) continue;
 
     out.push({

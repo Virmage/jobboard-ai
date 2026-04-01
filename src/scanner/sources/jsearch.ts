@@ -6,8 +6,10 @@ const BASE_URL = "https://jsearch.p.rapidapi.com/search";
 /** Max results per query (JSearch max is 10 per page, we fetch up to 2 pages = 20). */
 const MAX_PAGES = 2;
 
-/** Max concurrent query fetches — keeps us under RapidAPI rate limits. */
-const CONCURRENCY = 5;
+/** Max concurrent query fetches — keeps us under RapidAPI rate limits.
+ *  Basic plan: 500 req/month. At 3 concurrent × 2 pages × 30 queries = 180 req/run.
+ *  That's ~2-3 runs/month on Basic; upgrade to Pro for daily runs. */
+const CONCURRENCY = 3;
 
 interface JSearchJob {
   job_id: string;

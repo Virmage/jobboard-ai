@@ -19,6 +19,8 @@ interface AgencyDef {
   country: string;
   ats: "greenhouse" | "lever" | "ashby";
   slug: string;
+  /** If true, skip creative-only filter and ingest all role types (for VC portfolio boards) */
+  allRoles?: boolean;
 }
 
 export interface AgencyProject {
@@ -28,6 +30,8 @@ export interface AgencyProject {
   careerUrl: string | null;
   atsType: "greenhouse" | "lever" | "ashby" | null;
   atsId: string | null;
+  /** If true, skip creative-only filter and ingest all role types */
+  allRoles?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -145,6 +149,33 @@ const AGENCIES: AgencyDef[] = [
   // === Additional found boards ===
   { id: "iris-worldwide", name: "Iris Worldwide", country: "global", ats: "greenhouse", slug: "iris" },
   { id: "zeno-group", name: "Zeno Group", country: "global", ats: "lever", slug: "zenogroup" },
+
+  // === VC firms — portfolio-wide job boards (allRoles: true = no creative filter) ===
+  { id: "a16z", name: "a16z (Andreessen Horowitz)", country: "us", ats: "greenhouse", slug: "a16z", allRoles: true },
+  { id: "a16z-crypto", name: "a16z Crypto", country: "us", ats: "greenhouse", slug: "a16zcrypto", allRoles: true },
+  { id: "sequoia-scout", name: "Sequoia Capital (internal)", country: "us", ats: "greenhouse", slug: "sequoiacapital", allRoles: true },
+  { id: "general-catalyst", name: "General Catalyst", country: "us", ats: "greenhouse", slug: "generalcatalyst", allRoles: true },
+  { id: "accel", name: "Accel Partners", country: "us", ats: "greenhouse", slug: "accel", allRoles: true },
+  { id: "bessemer", name: "Bessemer Venture Partners", country: "us", ats: "greenhouse", slug: "bvp", allRoles: true },
+  { id: "lightspeed", name: "Lightspeed Venture Partners", country: "us", ats: "greenhouse", slug: "lightspeedventurepartners", allRoles: true },
+  { id: "index-ventures", name: "Index Ventures", country: "global", ats: "greenhouse", slug: "indexventures", allRoles: true },
+  { id: "battery-ventures", name: "Battery Ventures", country: "us", ats: "greenhouse", slug: "batteryventures", allRoles: true },
+  { id: "nea", name: "NEA", country: "us", ats: "greenhouse", slug: "nea", allRoles: true },
+  { id: "kpcb", name: "Kleiner Perkins", country: "us", ats: "greenhouse", slug: "kleinerperkins", allRoles: true },
+  { id: "founders-fund", name: "Founders Fund", country: "us", ats: "greenhouse", slug: "foundersfund", allRoles: true },
+  { id: "benchmark", name: "Benchmark Capital", country: "us", ats: "greenhouse", slug: "benchmark", allRoles: true },
+  { id: "first-round", name: "First Round Capital", country: "us", ats: "greenhouse", slug: "firstround", allRoles: true },
+  { id: "greylock", name: "Greylock Partners", country: "us", ats: "greenhouse", slug: "greylock", allRoles: true },
+  { id: "insight-partners", name: "Insight Partners", country: "us", ats: "greenhouse", slug: "insightpartners", allRoles: true },
+  { id: "tiger-global", name: "Tiger Global", country: "us", ats: "greenhouse", slug: "tigerglobal", allRoles: true },
+  { id: "softbank-vision", name: "SoftBank Vision Fund", country: "global", ats: "greenhouse", slug: "softbankvisionfund", allRoles: true },
+
+  // === VC firms — Lever ===
+  { id: "a16z-lever", name: "a16z (Lever check)", country: "us", ats: "lever", slug: "andreessen-horowitz", allRoles: true },
+  { id: "sequoia-lever", name: "Sequoia (Lever check)", country: "us", ats: "lever", slug: "sequoiacap", allRoles: true },
+  { id: "khosla-lever", name: "Khosla Ventures", country: "us", ats: "lever", slug: "khoslaventures", allRoles: true },
+  { id: "felicis-lever", name: "Felicis Ventures", country: "us", ats: "lever", slug: "felicis", allRoles: true },
+  { id: "redpoint-lever", name: "Redpoint Ventures", country: "us", ats: "lever", slug: "redpoint", allRoles: true },
 ];
 
 // ---------------------------------------------------------------------------
@@ -221,6 +252,7 @@ async function main() {
         careerUrl: result.ok ? result.url : null,
         atsType: result.ok ? ag.ats : null,
         atsId: result.ok ? ag.slug : null,
+        allRoles: ag.allRoles ?? false,
       };
     })
   );
