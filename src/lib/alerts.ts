@@ -180,10 +180,18 @@ export async function checkAlerts(): Promise<void> {
 
     const result = await searchJobs(params);
 
-    // Always show all jobs from the last 7 days, regardless of when last email was sent.
+    // Show all jobs seen in the last 7 days.
+    // Use lastSeenAt (updated every scan) not scannedAt (set once at creation)
+    // so long-running Greenhouse/agency jobs stay visible after re-scans.
     const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     let newJobs = result.jobs.filter((job) => {
-      const jobDate = job.scannedAt ? new Date(job.scannedAt) : (job.postedAt ? new Date(job.postedAt) : null);
+      const jobDate = job.lastSeenAt
+        ? new Date(job.lastSeenAt)
+        : job.scannedAt
+          ? new Date(job.scannedAt)
+          : job.postedAt
+            ? new Date(job.postedAt)
+            : null;
       return jobDate && jobDate > sevenDaysAgo;
     });
 
