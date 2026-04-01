@@ -3,9 +3,11 @@ import type { RawJob } from "../types";
 const JSEARCH_API_KEY = process.env.JSEARCH_API_KEY ?? "";
 const BASE_URL = "https://jsearch.p.rapidapi.com/search";
 
-/** Max results per query (JSearch max is 10 per page, we fetch up to 2 pages = 20).
- *  Kept at 2 so we can run more queries without hitting the scan timeout. */
+/** Max results per query (JSearch max is 10 per page, we fetch up to 2 pages = 20). */
 const MAX_PAGES = 2;
+
+/** Max concurrent query fetches — keeps us under RapidAPI rate limits. */
+const CONCURRENCY = 5;
 
 interface JSearchJob {
   job_id: string;
@@ -52,6 +54,21 @@ async function fetchPage(query: string, page: number): Promise<JSearchJob[]> {
   return json.data ?? [];
 }
 
+async function fetchQuery(query: string): Promise<JSearchJob[]> {
+  const results: JSearchJob[] = [];
+  for (let page = 1; page <= MAX_PAGES; page++) {
+    try {
+      const pageResults = await fetchPage(query, page);
+      if (pageResults.length === 0) break;
+      results.push(...pageResults);
+    } catch (err) {
+      console.warn(`  JSearch: error for "${query}" page ${page}:`, err);
+      break;
+    }
+  }
+  return results;
+}
+
 function formatLocation(job: JSearchJob): string {
   if (job.job_is_remote) return "Remote";
   const parts = [job.job_city, job.job_state, job.job_country].filter(Boolean);
@@ -71,6 +88,7 @@ function formatSalary(job: JSearchJob): string | undefined {
 /**
  * Scan JSearch (RapidAPI) for jobs matching the given queries.
  * Aggregates Indeed, Glassdoor, ZipRecruiter, and more.
+ * Fetches queries in parallel batches of CONCURRENCY to stay within timeout.
  */
 export async function scanJSearch(queries: string[]): Promise<RawJob[]> {
   if (!JSEARCH_API_KEY) {
@@ -81,35 +99,33 @@ export async function scanJSearch(queries: string[]): Promise<RawJob[]> {
   const seen = new Set<string>();
   const jobs: RawJob[] = [];
 
-  for (const query of queries) {
-    for (let page = 1; page <= MAX_PAGES; page++) {
-      try {
-        const results = await fetchPage(query, page);
-        if (results.length === 0) break;
+  // Process queries in parallel batches
+  for (let i = 0; i < queries.length; i += CONCURRENCY) {
+    const batch = queries.slice(i, i + CONCURRENCY);
+    const batchResults = await Promise.all(batch.map(fetchQuery));
 
-        for (const j of results) {
-          const key = `${j.job_title}|${j.employer_name}`.toLowerCase();
-          if (seen.has(key)) continue;
-          seen.add(key);
+    for (const results of batchResults) {
+      for (const j of results) {
+        const key = `${j.job_title}|${j.employer_name}`.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
 
-          jobs.push({
-            title: j.job_title,
-            company: j.employer_name,
-            location: formatLocation(j),
-            link: j.job_apply_link ?? "",
-            source: "jsearch",
-            description: j.job_description?.slice(0, 2000),
-            salary: formatSalary(j),
-            postedAt: j.job_posted_at_timestamp
-              ? new Date(j.job_posted_at_timestamp * 1000)
-              : undefined,
-          });
-        }
-      } catch (err) {
-        console.warn(`  JSearch: error for "${query}" page ${page}:`, err);
-        break;
+        jobs.push({
+          title: j.job_title,
+          company: j.employer_name,
+          location: formatLocation(j),
+          link: j.job_apply_link ?? "",
+          source: "jsearch",
+          description: j.job_description?.slice(0, 2000),
+          salary: formatSalary(j),
+          postedAt: j.job_posted_at_timestamp
+            ? new Date(j.job_posted_at_timestamp * 1000)
+            : undefined,
+        });
       }
     }
+
+    console.log(`  JSearch: processed ${Math.min(i + CONCURRENCY, queries.length)}/${queries.length} queries, ${jobs.length} jobs so far`);
   }
 
   return jobs;
