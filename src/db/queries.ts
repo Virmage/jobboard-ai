@@ -127,13 +127,14 @@ export async function searchJobs(params: SearchJobsParams) {
   }
 
   if (region) {
+    const regionUpper = region.toUpperCase();
     if (includeRemote) {
       // Match specified region OR remote/global jobs
       conditions.push(
-        or(eq(jobs.region, region), eq(jobs.isRemote, true), eq(jobs.region, "Global"))!
+        or(eq(sql`upper(${jobs.region})`, regionUpper), eq(jobs.isRemote, true), eq(jobs.region, "Global"))!
       );
     } else {
-      conditions.push(eq(jobs.region, region));
+      conditions.push(eq(sql`upper(${jobs.region})`, regionUpper));
     }
   }
 

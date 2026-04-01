@@ -853,19 +853,14 @@ export async function runFullScan(
   sourceBreakdown["LinkedIn"] = linkedInTotal;
 
   // ===== Batch 17b: LinkedIn APAC — location-specific searches =====
+  // Kept small to avoid exceeding Vercel's 5-min cron timeout.
+  // 3 locations × 8 keywords = 24 queries → ~5 batches → ~30s total
   console.log("\n--- Batch 17b: LinkedIn APAC ---");
-  const apacLocations = ["Australia", "Singapore", "New Zealand", "India", "Japan", "Hong Kong"];
+  const apacLocations = ["Australia", "Singapore", "Hong Kong"];
   const apacKeywords = [
-    // Creative leadership (primary focus)
-    "Creative Director", "Executive Creative Director", "Head of Creative",
-    "Group Creative Director", "Chief Creative Officer", "VP Creative",
-    "Head of Brand", "Brand Director", "VP Brand",
-    "Art Director", "Head of Design",
-    // Marketing leadership
-    "Head of Marketing", "Marketing Director", "CMO",
-    // Other senior roles
-    "Product Manager", "Engineering Manager",
-    "Head of Product", "UX Designer", "Head of People",
+    "Creative Director", "Head of Creative", "Head of Brand",
+    "Executive Creative Director", "Head of Marketing",
+    "Product Manager", "Engineering Manager", "UX Designer",
   ];
   let linkedInApacTotal = 0;
   const apacQueries = apacLocations.flatMap((loc) => apacKeywords.map((kw) => ({ kw, loc })));

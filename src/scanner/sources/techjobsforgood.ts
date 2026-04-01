@@ -38,21 +38,21 @@ export async function scanTechJobsForGood(): Promise<RawJob[]> {
         const $el = $(el);
         const $link = $el.find("a[href*='/job/'], a[href*='/listing/'], a[href*='/jobs/']").first();
         const href = $link.attr("href");
-        const title =
-          $link.text().trim() ||
-          $el.find("h2, h3, h4, [class*='title'], .job-title").first().text().trim();
-        const company = $el
-          .find("[class*='company'], [class*='org'], .company-name, .organization")
-          .first()
-          .text()
-          .trim();
-        const loc = $el
-          .find("[class*='location']")
-          .first()
-          .text()
-          .trim();
 
-        if (!title || !href) return;
+        // Clean text: collapse whitespace, strip any HTML remnants, cap length
+        const cleanText = (raw: string) => raw.replace(/\s+/g, " ").trim().slice(0, 200);
+
+        const rawTitle =
+          $el.find("h2, h3, h4, [class*='title'], .job-title").first().text() ||
+          $link.text();
+        const title = cleanText(rawTitle);
+        const company = cleanText(
+          $el.find("[class*='company'], [class*='org'], .company-name, .organization").first().text()
+        );
+        const loc = cleanText($el.find("[class*='location']").first().text());
+
+        // Skip if title looks like HTML or is suspiciously long
+        if (!title || title.includes("<") || title.length > 150 || !href) return;
 
 
         const fullLink = href.startsWith("http")
