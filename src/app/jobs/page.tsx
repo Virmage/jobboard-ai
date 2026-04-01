@@ -249,6 +249,50 @@ export default function JobsPage() {
   const [initialLoad, setInitialLoad] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // Alert signup state
+  const [alertEmail, setAlertEmail] = useState("");
+  const [alertLoading, setAlertLoading] = useState(false);
+  const [alertSuccess, setAlertSuccess] = useState(false);
+  const [alertError, setAlertError] = useState("");
+
+  const handleAlertSignup = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!alertEmail) return;
+    setAlertLoading(true);
+    setAlertError("");
+    try {
+      const searchName = [
+        query || "All jobs",
+        industry ? INDUSTRIES.find(i => i.slug === industry)?.label : null,
+        region ? MARKETS.find(m => m.slug === region)?.label : null,
+        remote ? "Remote" : null,
+      ].filter(Boolean).join(" · ");
+
+      const res = await fetch("/api/alerts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: alertEmail,
+          name: searchName,
+          query: query || null,
+          industry: industry || null,
+          region: region || null,
+          is_remote: remote || null,
+          frequency: "daily",
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || "Failed to create alert");
+      }
+      setAlertSuccess(true);
+    } catch (err) {
+      setAlertError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setAlertLoading(false);
+    }
+  }, [alertEmail, query, industry, region, remote]);
+
   const fetchJobs = useCallback(async () => {
     setLoading(true);
     const params = new URLSearchParams();
@@ -466,9 +510,50 @@ export default function JobsPage() {
             </div>
           )}
 
+          {/* Alert signup banner */}
+          {data && data.jobs.length > 0 && !alertSuccess && (
+            <div className="mt-6 rounded-xl border border-accent/20 bg-accent/[0.04] px-5 py-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-medium text-text-primary">
+                    Get daily email alerts for these jobs
+                  </p>
+                  <p className="text-xs text-text-tertiary mt-0.5">
+                    We scan 60+ sources every day — new matches sent straight to your inbox.
+                  </p>
+                </div>
+                <form onSubmit={handleAlertSignup} className="flex gap-2 shrink-0">
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={alertEmail}
+                    onChange={e => setAlertEmail(e.target.value)}
+                    required
+                    className="h-9 w-48 rounded-lg border border-border bg-background px-3 text-sm text-text-primary placeholder:text-text-tertiary focus:border-accent focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    disabled={alertLoading}
+                    className="h-9 rounded-lg bg-accent px-4 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+                  >
+                    {alertLoading ? "…" : "Alert me"}
+                  </button>
+                </form>
+              </div>
+              {alertError && (
+                <p className="mt-2 text-xs text-red">{alertError}</p>
+              )}
+            </div>
+          )}
+          {alertSuccess && (
+            <div className="mt-6 rounded-xl border border-green/20 bg-green/[0.04] px-5 py-4 text-sm text-green">
+              ✓ You&apos;re set — check your inbox for a confirmation. We&apos;ll email you daily matches.
+            </div>
+          )}
+
           {/* Results meta */}
           {data && (
-            <div className="mt-6 mb-4 flex items-center justify-between">
+            <div className="mt-4 mb-4 flex items-center justify-between">
               <p className="text-xs text-text-tertiary">
                 {data.pagination.total.toLocaleString()} result
                 {data.pagination.total !== 1 ? "s" : ""}
