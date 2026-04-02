@@ -60,7 +60,7 @@ function Hero() {
         <div className="mb-7 flex justify-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#10a37f]/30 bg-[#10a37f]/8 px-4 py-1.5 text-xs font-mono font-medium text-[#10a37f]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#10a37f] animate-pulse inline-block" />
-            43,247 active jobs · synced 2h ago
+            43,000+ active jobs across 100+ top companies
           </div>
         </div>
 
