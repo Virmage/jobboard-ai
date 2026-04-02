@@ -1074,9 +1074,9 @@
     "id": "binance-gh",
     "name": "Binance",
     "country": "global",
-    "careerUrl": "https://jobs.lever.co/binance",
-    "atsType": "lever",
-    "atsId": "binance",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null,
     "allRoles": true
   },
   {
@@ -1200,9 +1200,9 @@
     "id": "anchorage",
     "name": "Anchorage Digital",
     "country": "us",
-    "careerUrl": "https://jobs.lever.co/anchorage",
-    "atsType": "lever",
-    "atsId": "anchorage",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null,
     "allRoles": true
   },
   {
@@ -1293,6 +1293,519 @@
     "careerUrl": "https://boards.greenhouse.io/okx",
     "atsType": "greenhouse",
     "atsId": "okx",
+    "allRoles": true
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/openai",
+    "atsType": "ashby",
+    "atsId": "openai",
+    "allRoles": true
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/anthropic",
+    "atsType": "greenhouse",
+    "atsId": "anthropic",
+    "allRoles": true
+  },
+  {
+    "id": "deepmind",
+    "name": "Google DeepMind",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/deepmind",
+    "atsType": "greenhouse",
+    "atsId": "deepmind",
+    "allRoles": true
+  },
+  {
+    "id": "xai",
+    "name": "xAI (Grok)",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/xai",
+    "atsType": "greenhouse",
+    "atsId": "xai",
+    "allRoles": true
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral AI",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null,
+    "allRoles": true
+  },
+  {
+    "id": "cohere",
+    "name": "Cohere",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/cohere",
+    "atsType": "ashby",
+    "atsId": "cohere",
+    "allRoles": true
+  },
+  {
+    "id": "scaleai",
+    "name": "Scale AI",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/scaleai",
+    "atsType": "greenhouse",
+    "atsId": "scaleai",
+    "allRoles": true
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor (Anysphere)",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/cursor",
+    "atsType": "ashby",
+    "atsId": "cursor",
+    "allRoles": true
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity AI",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/perplexity",
+    "atsType": "ashby",
+    "atsId": "perplexity",
+    "allRoles": true
+  },
+  {
+    "id": "writer-ai",
+    "name": "Writer",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/writer",
+    "atsType": "ashby",
+    "atsId": "writer",
+    "allRoles": true
+  },
+  {
+    "id": "togetherai",
+    "name": "Together AI",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/togetherai",
+    "atsType": "greenhouse",
+    "atsId": "togetherai",
+    "allRoles": true
+  },
+  {
+    "id": "modal",
+    "name": "Modal Labs",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/modal",
+    "atsType": "ashby",
+    "atsId": "modal",
+    "allRoles": true
+  },
+  {
+    "id": "runway",
+    "name": "Runway ML",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/runway",
+    "atsType": "ashby",
+    "atsId": "runway",
+    "allRoles": true
+  },
+  {
+    "id": "elevenlabs",
+    "name": "ElevenLabs",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/elevenlabs",
+    "atsType": "ashby",
+    "atsId": "elevenlabs",
+    "allRoles": true
+  },
+  {
+    "id": "harvey",
+    "name": "Harvey AI",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/harvey",
+    "atsType": "ashby",
+    "atsId": "harvey",
+    "allRoles": true
+  },
+  {
+    "id": "descript",
+    "name": "Descript",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/descript",
+    "atsType": "greenhouse",
+    "atsId": "descript",
+    "allRoles": true
+  },
+  {
+    "id": "stripe",
+    "name": "Stripe",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/stripe",
+    "atsType": "greenhouse",
+    "atsId": "stripe",
+    "allRoles": true
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/figma",
+    "atsType": "greenhouse",
+    "atsId": "figma",
+    "allRoles": true
+  },
+  {
+    "id": "notion",
+    "name": "Notion",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/notion",
+    "atsType": "ashby",
+    "atsId": "notion",
+    "allRoles": true
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/vercel",
+    "atsType": "greenhouse",
+    "atsId": "vercel",
+    "allRoles": true
+  },
+  {
+    "id": "linear",
+    "name": "Linear",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/linear",
+    "atsType": "ashby",
+    "atsId": "linear",
+    "allRoles": true
+  },
+  {
+    "id": "raycast",
+    "name": "Raycast",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/raycast",
+    "atsType": "ashby",
+    "atsId": "raycast",
+    "allRoles": true
+  },
+  {
+    "id": "loom",
+    "name": "Loom",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/loom",
+    "atsType": "ashby",
+    "atsId": "loom",
+    "allRoles": true
+  },
+  {
+    "id": "superhuman",
+    "name": "Superhuman",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/superhuman",
+    "atsType": "ashby",
+    "atsId": "superhuman",
+    "allRoles": true
+  },
+  {
+    "id": "retool",
+    "name": "Retool",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/retool",
+    "atsType": "ashby",
+    "atsId": "retool",
+    "allRoles": true
+  },
+  {
+    "id": "airtable",
+    "name": "Airtable",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/airtable",
+    "atsType": "greenhouse",
+    "atsId": "airtable",
+    "allRoles": true
+  },
+  {
+    "id": "twilio",
+    "name": "Twilio",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/twilio",
+    "atsType": "greenhouse",
+    "atsId": "twilio",
+    "allRoles": true
+  },
+  {
+    "id": "datadog",
+    "name": "Datadog",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/datadog",
+    "atsType": "greenhouse",
+    "atsId": "datadog",
+    "allRoles": true
+  },
+  {
+    "id": "snowflake",
+    "name": "Snowflake",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/snowflake",
+    "atsType": "ashby",
+    "atsId": "snowflake",
+    "allRoles": true
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/mongodb",
+    "atsType": "greenhouse",
+    "atsId": "mongodb",
+    "allRoles": true
+  },
+  {
+    "id": "elastic",
+    "name": "Elastic",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/elastic",
+    "atsType": "greenhouse",
+    "atsId": "elastic",
+    "allRoles": true
+  },
+  {
+    "id": "gitlab",
+    "name": "GitLab",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/gitlab",
+    "atsType": "greenhouse",
+    "atsId": "gitlab",
+    "allRoles": true
+  },
+  {
+    "id": "atlassian",
+    "name": "Atlassian",
+    "country": "global",
+    "careerUrl": "https://jobs.lever.co/atlassian",
+    "atsType": "lever",
+    "atsId": "atlassian",
+    "allRoles": true
+  },
+  {
+    "id": "discord",
+    "name": "Discord",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/discord",
+    "atsType": "greenhouse",
+    "atsId": "discord",
+    "allRoles": true
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/cloudflare",
+    "atsType": "greenhouse",
+    "atsId": "cloudflare",
+    "allRoles": true
+  },
+  {
+    "id": "fastly",
+    "name": "Fastly",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/fastly",
+    "atsType": "greenhouse",
+    "atsId": "fastly",
+    "allRoles": true
+  },
+  {
+    "id": "hubspot",
+    "name": "HubSpot",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/hubspot",
+    "atsType": "greenhouse",
+    "atsId": "hubspot",
+    "allRoles": true
+  },
+  {
+    "id": "asana",
+    "name": "Asana",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/asana",
+    "atsType": "greenhouse",
+    "atsId": "asana",
+    "allRoles": true
+  },
+  {
+    "id": "intercom",
+    "name": "Intercom",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/intercom",
+    "atsType": "greenhouse",
+    "atsId": "intercom",
+    "allRoles": true
+  },
+  {
+    "id": "bitwarden",
+    "name": "Bitwarden",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/bitwarden",
+    "atsType": "greenhouse",
+    "atsId": "bitwarden",
+    "allRoles": true
+  },
+  {
+    "id": "ramp",
+    "name": "Ramp",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/ramp",
+    "atsType": "ashby",
+    "atsId": "ramp",
+    "allRoles": true
+  },
+  {
+    "id": "brex",
+    "name": "Brex",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/brex",
+    "atsType": "greenhouse",
+    "atsId": "brex",
+    "allRoles": true
+  },
+  {
+    "id": "deel",
+    "name": "Deel",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/deel",
+    "atsType": "ashby",
+    "atsId": "deel",
+    "allRoles": true
+  },
+  {
+    "id": "gusto",
+    "name": "Gusto",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/gusto",
+    "atsType": "greenhouse",
+    "atsId": "gusto",
+    "allRoles": true
+  },
+  {
+    "id": "lattice",
+    "name": "Lattice",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/lattice",
+    "atsType": "greenhouse",
+    "atsId": "lattice",
+    "allRoles": true
+  },
+  {
+    "id": "cultureamp",
+    "name": "Culture Amp",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/cultureamp",
+    "atsType": "greenhouse",
+    "atsId": "cultureamp",
+    "allRoles": true
+  },
+  {
+    "id": "mercury",
+    "name": "Mercury",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/mercury",
+    "atsType": "greenhouse",
+    "atsId": "mercury",
+    "allRoles": true
+  },
+  {
+    "id": "wealthsimple",
+    "name": "Wealthsimple",
+    "country": "ca",
+    "careerUrl": "https://jobs.lever.co/wealthsimple",
+    "atsType": "lever",
+    "atsId": "wealthsimple",
+    "allRoles": true
+  },
+  {
+    "id": "robinhood",
+    "name": "Robinhood",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/robinhood",
+    "atsType": "greenhouse",
+    "atsId": "robinhood",
+    "allRoles": true
+  },
+  {
+    "id": "plaid",
+    "name": "Plaid",
+    "country": "us",
+    "careerUrl": "https://jobs.lever.co/plaid",
+    "atsType": "lever",
+    "atsId": "plaid",
+    "allRoles": true
+  },
+  {
+    "id": "freshworks",
+    "name": "Freshworks",
+    "country": "global",
+    "careerUrl": "https://jobs.lever.co/freshworks",
+    "atsType": "lever",
+    "atsId": "freshworks",
+    "allRoles": true
+  },
+  {
+    "id": "clickup",
+    "name": "ClickUp",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/clickup",
+    "atsType": "ashby",
+    "atsId": "clickup",
+    "allRoles": true
+  },
+  {
+    "id": "1password",
+    "name": "1Password",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/1password",
+    "atsType": "ashby",
+    "atsId": "1password",
+    "allRoles": true
+  },
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null,
+    "allRoles": true
+  },
+  {
+    "id": "airbnb",
+    "name": "Airbnb",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/airbnb",
+    "atsType": "greenhouse",
+    "atsId": "airbnb",
+    "allRoles": true
+  },
+  {
+    "id": "lyft",
+    "name": "Lyft",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/lyft",
+    "atsType": "greenhouse",
+    "atsId": "lyft",
+    "allRoles": true
+  },
+  {
+    "id": "palantir",
+    "name": "Palantir",
+    "country": "global",
+    "careerUrl": null,
+    "atsType": null,
+    "atsId": null,
     "allRoles": true
   }
 ]

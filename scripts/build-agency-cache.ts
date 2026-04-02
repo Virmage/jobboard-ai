@@ -215,6 +215,71 @@ const AGENCIES: AgencyDef[] = [
   // NOTE: Crypto.com, Hyperliquid, Paradex, Gate.io, MEXC, Jupiter, Aave, Chainlink
   // do not use Greenhouse/Lever/Ashby with discoverable slugs — they use custom job pages
   // or Workday. These cannot be auto-scraped via ATS API.
+
+  // === AI companies ===
+  { id: "openai", name: "OpenAI", country: "us", ats: "ashby", slug: "openai", allRoles: true },
+  { id: "anthropic", name: "Anthropic", country: "us", ats: "greenhouse", slug: "anthropic", allRoles: true },
+  { id: "deepmind", name: "Google DeepMind", country: "global", ats: "greenhouse", slug: "deepmind", allRoles: true },
+  { id: "xai", name: "xAI (Grok)", country: "us", ats: "greenhouse", slug: "xai", allRoles: true },
+  { id: "mistral", name: "Mistral AI", country: "global", ats: "lever", slug: "mistral", allRoles: true },
+  { id: "cohere", name: "Cohere", country: "global", ats: "ashby", slug: "cohere", allRoles: true },
+  { id: "scaleai", name: "Scale AI", country: "us", ats: "greenhouse", slug: "scaleai", allRoles: true },
+  { id: "cursor", name: "Cursor (Anysphere)", country: "us", ats: "ashby", slug: "cursor", allRoles: true },
+  { id: "perplexity", name: "Perplexity AI", country: "us", ats: "ashby", slug: "perplexity", allRoles: true },
+  { id: "writer-ai", name: "Writer", country: "us", ats: "ashby", slug: "writer", allRoles: true },
+  { id: "togetherai", name: "Together AI", country: "us", ats: "greenhouse", slug: "togetherai", allRoles: true },
+  { id: "modal", name: "Modal Labs", country: "us", ats: "ashby", slug: "modal", allRoles: true },
+  { id: "runway", name: "Runway ML", country: "us", ats: "ashby", slug: "runway", allRoles: true },
+  { id: "elevenlabs", name: "ElevenLabs", country: "global", ats: "ashby", slug: "elevenlabs", allRoles: true },
+  { id: "harvey", name: "Harvey AI", country: "us", ats: "ashby", slug: "harvey", allRoles: true },
+  { id: "descript", name: "Descript", country: "us", ats: "greenhouse", slug: "descript", allRoles: true },
+
+  // === Leading tech companies ===
+  { id: "stripe", name: "Stripe", country: "global", ats: "greenhouse", slug: "stripe", allRoles: true },
+  { id: "figma", name: "Figma", country: "us", ats: "greenhouse", slug: "figma", allRoles: true },
+  { id: "notion", name: "Notion", country: "us", ats: "ashby", slug: "notion", allRoles: true },
+  { id: "vercel", name: "Vercel", country: "global", ats: "greenhouse", slug: "vercel", allRoles: true },
+  { id: "linear", name: "Linear", country: "global", ats: "ashby", slug: "linear", allRoles: true },
+  { id: "raycast", name: "Raycast", country: "global", ats: "ashby", slug: "raycast", allRoles: true },
+  { id: "loom", name: "Loom", country: "us", ats: "ashby", slug: "loom", allRoles: true },
+  { id: "superhuman", name: "Superhuman", country: "us", ats: "ashby", slug: "superhuman", allRoles: true },
+  { id: "retool", name: "Retool", country: "us", ats: "ashby", slug: "retool", allRoles: true },
+  { id: "airtable", name: "Airtable", country: "us", ats: "greenhouse", slug: "airtable", allRoles: true },
+  { id: "twilio", name: "Twilio", country: "global", ats: "greenhouse", slug: "twilio", allRoles: true },
+  { id: "datadog", name: "Datadog", country: "global", ats: "greenhouse", slug: "datadog", allRoles: true },
+  { id: "snowflake", name: "Snowflake", country: "global", ats: "ashby", slug: "snowflake", allRoles: true },
+  { id: "mongodb", name: "MongoDB", country: "global", ats: "greenhouse", slug: "mongodb", allRoles: true },
+  { id: "elastic", name: "Elastic", country: "global", ats: "greenhouse", slug: "elastic", allRoles: true },
+  { id: "gitlab", name: "GitLab", country: "global", ats: "greenhouse", slug: "gitlab", allRoles: true },
+  { id: "atlassian", name: "Atlassian", country: "global", ats: "lever", slug: "atlassian", allRoles: true },
+  { id: "discord", name: "Discord", country: "us", ats: "greenhouse", slug: "discord", allRoles: true },
+  { id: "cloudflare", name: "Cloudflare", country: "global", ats: "greenhouse", slug: "cloudflare", allRoles: true },
+  { id: "fastly", name: "Fastly", country: "global", ats: "greenhouse", slug: "fastly", allRoles: true },
+  { id: "hubspot", name: "HubSpot", country: "global", ats: "greenhouse", slug: "hubspot", allRoles: true },
+  { id: "asana", name: "Asana", country: "global", ats: "greenhouse", slug: "asana", allRoles: true },
+  { id: "intercom", name: "Intercom", country: "global", ats: "greenhouse", slug: "intercom", allRoles: true },
+  { id: "bitwarden", name: "Bitwarden", country: "global", ats: "greenhouse", slug: "bitwarden", allRoles: true },
+
+  // === Fintech ===
+  { id: "ramp", name: "Ramp", country: "us", ats: "ashby", slug: "ramp", allRoles: true },
+  { id: "brex", name: "Brex", country: "us", ats: "greenhouse", slug: "brex", allRoles: true },
+  { id: "deel", name: "Deel", country: "global", ats: "ashby", slug: "deel", allRoles: true },
+  { id: "gusto", name: "Gusto", country: "us", ats: "greenhouse", slug: "gusto", allRoles: true },
+  { id: "lattice", name: "Lattice", country: "us", ats: "greenhouse", slug: "lattice", allRoles: true },
+  { id: "cultureamp", name: "Culture Amp", country: "global", ats: "greenhouse", slug: "cultureamp", allRoles: true },
+  { id: "mercury", name: "Mercury", country: "us", ats: "greenhouse", slug: "mercury", allRoles: true },
+  { id: "wealthsimple", name: "Wealthsimple", country: "ca", ats: "lever", slug: "wealthsimple", allRoles: true },
+  { id: "robinhood", name: "Robinhood", country: "us", ats: "greenhouse", slug: "robinhood", allRoles: true },
+  { id: "plaid", name: "Plaid", country: "us", ats: "lever", slug: "plaid", allRoles: true },
+  { id: "freshworks", name: "Freshworks", country: "global", ats: "lever", slug: "freshworks", allRoles: true },
+  { id: "clickup", name: "ClickUp", country: "us", ats: "ashby", slug: "clickup", allRoles: true },
+  { id: "1password", name: "1Password", country: "global", ats: "ashby", slug: "1password", allRoles: true },
+
+  // === Big tech (Greenhouse/Lever confirmed) ===
+  { id: "netflix", name: "Netflix", country: "global", ats: "lever", slug: "netflix", allRoles: true },
+  { id: "airbnb", name: "Airbnb", country: "global", ats: "greenhouse", slug: "airbnb", allRoles: true },
+  { id: "lyft", name: "Lyft", country: "us", ats: "greenhouse", slug: "lyft", allRoles: true },
+  { id: "palantir", name: "Palantir", country: "global", ats: "lever", slug: "palantir", allRoles: true },
 ];
 
 // ---------------------------------------------------------------------------
