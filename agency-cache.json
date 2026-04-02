@@ -1024,5 +1024,257 @@
     "atsType": null,
     "atsId": null,
     "allRoles": true
+  },
+  {
+    "id": "paradigm",
+    "name": "Paradigm",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/paradigm",
+    "atsType": "greenhouse",
+    "atsId": "paradigm",
+    "allRoles": true
+  },
+  {
+    "id": "paradigm-ashby",
+    "name": "Paradigm (Ashby)",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/paradigm",
+    "atsType": "ashby",
+    "atsId": "paradigm",
+    "allRoles": true
+  },
+  {
+    "id": "variant-fund",
+    "name": "Variant Fund",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/variant-fund",
+    "atsType": "ashby",
+    "atsId": "variant-fund",
+    "allRoles": true
+  },
+  {
+    "id": "delphi-digital",
+    "name": "Delphi Digital",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/delphi",
+    "atsType": "ashby",
+    "atsId": "delphi",
+    "allRoles": true
+  },
+  {
+    "id": "coinbase",
+    "name": "Coinbase",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/coinbase",
+    "atsType": "greenhouse",
+    "atsId": "coinbase",
+    "allRoles": true
+  },
+  {
+    "id": "binance-gh",
+    "name": "Binance",
+    "country": "global",
+    "careerUrl": "https://jobs.lever.co/binance",
+    "atsType": "lever",
+    "atsId": "binance",
+    "allRoles": true
+  },
+  {
+    "id": "kraken",
+    "name": "Kraken",
+    "country": "us",
+    "careerUrl": "https://jobs.lever.co/kraken",
+    "atsType": "lever",
+    "atsId": "kraken",
+    "allRoles": true
+  },
+  {
+    "id": "opensea",
+    "name": "OpenSea",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/opensea",
+    "atsType": "ashby",
+    "atsId": "opensea",
+    "allRoles": true
+  },
+  {
+    "id": "uniswap",
+    "name": "Uniswap Labs",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/uniswap",
+    "atsType": "ashby",
+    "atsId": "uniswap",
+    "allRoles": true
+  },
+  {
+    "id": "compound",
+    "name": "Compound Finance",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/compound",
+    "atsType": "ashby",
+    "atsId": "compound",
+    "allRoles": true
+  },
+  {
+    "id": "starknet",
+    "name": "StarkWare / Starknet",
+    "country": "global",
+    "careerUrl": "https://jobs.lever.co/starknet",
+    "atsType": "lever",
+    "atsId": "starknet",
+    "allRoles": true
+  },
+  {
+    "id": "matter-labs",
+    "name": "Matter Labs (zkSync)",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/matter-labs",
+    "atsType": "ashby",
+    "atsId": "matter-labs",
+    "allRoles": true
+  },
+  {
+    "id": "ritual",
+    "name": "Ritual",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/ritual",
+    "atsType": "greenhouse",
+    "atsId": "ritual",
+    "allRoles": true
+  },
+  {
+    "id": "alchemy",
+    "name": "Alchemy",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/alchemy",
+    "atsType": "greenhouse",
+    "atsId": "alchemy",
+    "allRoles": true
+  },
+  {
+    "id": "alchemy-ashby",
+    "name": "Alchemy (Ashby)",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/alchemy",
+    "atsType": "ashby",
+    "atsId": "alchemy",
+    "allRoles": true
+  },
+  {
+    "id": "quicknode",
+    "name": "QuickNode",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/quicknode",
+    "atsType": "ashby",
+    "atsId": "quicknode",
+    "allRoles": true
+  },
+  {
+    "id": "dynamic",
+    "name": "Dynamic (Web3 Auth)",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/dynamic",
+    "atsType": "ashby",
+    "atsId": "dynamic",
+    "allRoles": true
+  },
+  {
+    "id": "turnkey",
+    "name": "Turnkey",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/turnkey",
+    "atsType": "ashby",
+    "atsId": "turnkey",
+    "allRoles": true
+  },
+  {
+    "id": "fireblocks",
+    "name": "Fireblocks",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/fireblocks",
+    "atsType": "greenhouse",
+    "atsId": "fireblocks",
+    "allRoles": true
+  },
+  {
+    "id": "anchorage",
+    "name": "Anchorage Digital",
+    "country": "us",
+    "careerUrl": "https://jobs.lever.co/anchorage",
+    "atsType": "lever",
+    "atsId": "anchorage",
+    "allRoles": true
+  },
+  {
+    "id": "bitgo",
+    "name": "BitGo",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/bitgo",
+    "atsType": "greenhouse",
+    "atsId": "bitgo",
+    "allRoles": true
+  },
+  {
+    "id": "conduit",
+    "name": "Conduit",
+    "country": "us",
+    "careerUrl": "https://jobs.lever.co/conduit",
+    "atsType": "lever",
+    "atsId": "conduit",
+    "allRoles": true
+  },
+  {
+    "id": "conduit-ashby",
+    "name": "Conduit (Ashby)",
+    "country": "us",
+    "careerUrl": "https://jobs.ashbyhq.com/conduit",
+    "atsType": "ashby",
+    "atsId": "conduit",
+    "allRoles": true
+  },
+  {
+    "id": "aztec-labs",
+    "name": "Aztec Labs",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/aztec-labs",
+    "atsType": "ashby",
+    "atsId": "aztec-labs",
+    "allRoles": true
+  },
+  {
+    "id": "consensys",
+    "name": "Consensys (MetaMask)",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/consensys",
+    "atsType": "greenhouse",
+    "atsId": "consensys",
+    "allRoles": true
+  },
+  {
+    "id": "polygon-labs",
+    "name": "Polygon Labs",
+    "country": "global",
+    "careerUrl": "https://jobs.ashbyhq.com/polygon-labs",
+    "atsType": "ashby",
+    "atsId": "polygon-labs",
+    "allRoles": true
+  },
+  {
+    "id": "nansen",
+    "name": "Nansen",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/nansen",
+    "atsType": "greenhouse",
+    "atsId": "nansen",
+    "allRoles": true
+  },
+  {
+    "id": "messari",
+    "name": "Messari",
+    "country": "us",
+    "careerUrl": "https://boards.greenhouse.io/messari",
+    "atsType": "greenhouse",
+    "atsId": "messari",
+    "allRoles": true
   }
 ]

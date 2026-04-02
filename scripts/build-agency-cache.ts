@@ -176,6 +176,38 @@ const AGENCIES: AgencyDef[] = [
   { id: "khosla-lever", name: "Khosla Ventures", country: "us", ats: "lever", slug: "khoslaventures", allRoles: true },
   { id: "felicis-lever", name: "Felicis Ventures", country: "us", ats: "lever", slug: "felicis", allRoles: true },
   { id: "redpoint-lever", name: "Redpoint Ventures", country: "us", ats: "lever", slug: "redpoint", allRoles: true },
+
+  // === Crypto VC firms (confirmed active boards) ===
+  { id: "paradigm", name: "Paradigm", country: "us", ats: "greenhouse", slug: "paradigm", allRoles: true },
+  { id: "paradigm-ashby", name: "Paradigm (Ashby)", country: "us", ats: "ashby", slug: "paradigm", allRoles: true },
+  { id: "variant-fund", name: "Variant Fund", country: "us", ats: "ashby", slug: "variant-fund", allRoles: true },
+  { id: "delphi-digital", name: "Delphi Digital", country: "us", ats: "ashby", slug: "delphi", allRoles: true },
+
+  // === Crypto protocols & infrastructure (confirmed active) ===
+  { id: "coinbase", name: "Coinbase", country: "us", ats: "greenhouse", slug: "coinbase", allRoles: true },
+  { id: "binance-gh", name: "Binance", country: "global", ats: "lever", slug: "binance", allRoles: true },
+  { id: "kraken", name: "Kraken", country: "us", ats: "lever", slug: "kraken", allRoles: true },
+  { id: "opensea", name: "OpenSea", country: "us", ats: "ashby", slug: "opensea", allRoles: true },
+  { id: "uniswap", name: "Uniswap Labs", country: "us", ats: "ashby", slug: "uniswap", allRoles: true },
+  { id: "compound", name: "Compound Finance", country: "us", ats: "ashby", slug: "compound", allRoles: true },
+  { id: "starknet", name: "StarkWare / Starknet", country: "global", ats: "lever", slug: "starknet", allRoles: true },
+  { id: "matter-labs", name: "Matter Labs (zkSync)", country: "global", ats: "ashby", slug: "matter-labs", allRoles: true },
+  { id: "ritual", name: "Ritual", country: "us", ats: "greenhouse", slug: "ritual", allRoles: true },
+  { id: "alchemy", name: "Alchemy", country: "us", ats: "greenhouse", slug: "alchemy", allRoles: true },
+  { id: "alchemy-ashby", name: "Alchemy (Ashby)", country: "us", ats: "ashby", slug: "alchemy", allRoles: true },
+  { id: "quicknode", name: "QuickNode", country: "us", ats: "ashby", slug: "quicknode", allRoles: true },
+  { id: "dynamic", name: "Dynamic (Web3 Auth)", country: "us", ats: "ashby", slug: "dynamic", allRoles: true },
+  { id: "turnkey", name: "Turnkey", country: "us", ats: "ashby", slug: "turnkey", allRoles: true },
+  { id: "fireblocks", name: "Fireblocks", country: "global", ats: "greenhouse", slug: "fireblocks", allRoles: true },
+  { id: "anchorage", name: "Anchorage Digital", country: "us", ats: "lever", slug: "anchorage", allRoles: true },
+  { id: "bitgo", name: "BitGo", country: "us", ats: "greenhouse", slug: "bitgo", allRoles: true },
+  { id: "conduit", name: "Conduit", country: "us", ats: "lever", slug: "conduit", allRoles: true },
+  { id: "conduit-ashby", name: "Conduit (Ashby)", country: "us", ats: "ashby", slug: "conduit", allRoles: true },
+  { id: "aztec-labs", name: "Aztec Labs", country: "global", ats: "ashby", slug: "aztec-labs", allRoles: true },
+  { id: "consensys", name: "Consensys (MetaMask)", country: "global", ats: "greenhouse", slug: "consensys", allRoles: true },
+  { id: "polygon-labs", name: "Polygon Labs", country: "global", ats: "ashby", slug: "polygon-labs", allRoles: true },
+  { id: "nansen", name: "Nansen", country: "global", ats: "greenhouse", slug: "nansen", allRoles: true },
+  { id: "messari", name: "Messari", country: "us", ats: "greenhouse", slug: "messari", allRoles: true },
 ];
 
 // ---------------------------------------------------------------------------
