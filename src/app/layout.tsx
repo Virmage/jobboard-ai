@@ -2,14 +2,36 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AgentJobs — The Job Search Tool for AI Agents",
+  title: {
+    default: "AgentJobs — Find Jobs at OpenAI, Anthropic, Stripe & 100+ Top Companies",
+    template: "%s | AgentJobs",
+  },
   description:
-    "Search 14,000+ jobs across every industry. Works with Claude, ChatGPT, and any AI assistant via REST API, MCP, or ChatGPT Actions.",
+    "Search 14,000+ jobs at OpenAI, Anthropic, Stripe, Coinbase and 100+ top companies. Ask ChatGPT to find your next job — updated every 6 hours.",
+  keywords: [
+    "job search", "AI jobs", "tech jobs", "crypto jobs", "ChatGPT job search",
+    "OpenAI jobs", "Anthropic jobs", "remote jobs", "startup jobs",
+  ],
+  authors: [{ name: "AgentJobs" }],
   openGraph: {
-    title: "AgentJobs — The Job Search Tool for AI Agents",
+    title: "AgentJobs — Find Jobs at OpenAI, Anthropic, Stripe & 100+ Top Companies",
     description:
-      "Search 14,000+ jobs across every industry. Works with Claude, ChatGPT, and any AI assistant via REST API, MCP, or ChatGPT Actions.",
+      "Search 14,000+ jobs at the world's best companies. Ask ChatGPT to find your next job.",
     type: "website",
+    siteName: "AgentJobs",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AgentJobs — Find Jobs at OpenAI, Anthropic, Stripe & 100+ Top Companies",
+    description: "Search 14,000+ jobs at top companies. Ask ChatGPT to find your next job.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
