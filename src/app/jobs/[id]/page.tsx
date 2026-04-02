@@ -163,7 +163,6 @@ export default async function JobDetailPage({ params }: PageProps) {
                   Featured
                 </span>
               )}
-              <FreshnessBadge label={freshness.label} tier={freshness.tier} />
               {job.isRemote && (
                 <span className="rounded bg-purple/10 px-2 py-0.5 text-[10px] font-medium text-purple">
                   Remote

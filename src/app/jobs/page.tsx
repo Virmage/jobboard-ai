@@ -178,7 +178,6 @@ function JobCard({ job }: { job: Job }) {
                 Featured
               </span>
             )}
-            <FreshnessBadge freshness={job.freshness} />
             {job.isRemote && (
               <span className="rounded bg-purple/10 px-1.5 py-0.5 text-[10px] font-medium text-purple">
                 Remote
