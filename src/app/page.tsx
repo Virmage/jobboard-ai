@@ -69,13 +69,31 @@ function Hero() {
           Your <span className="text-[#10a37f]">AI Recruiter.</span>
         </h1>
 
-        <p className="mx-auto mt-7 max-w-2xl text-center text-lg text-white/80 leading-relaxed">
-          AgentJobs searches 43,000+ live jobs at OpenAI, Anthropic, Stripe, Coinbase,
-          and 100+ top companies — then acts like a recruiter who works for you.
-          Just tell it what you want.
+        <p className="mx-auto mt-6 max-w-xl text-center text-lg text-white/80 leading-relaxed">
+          Tell ChatGPT what job you want. AgentJobs searches 43,000+ roles at the world&apos;s best companies and finds your best matches — like a recruiter, but free.
         </p>
 
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        {/* 3-step instruction */}
+        <div className="mx-auto mt-10 flex max-w-2xl flex-col items-stretch gap-3 sm:flex-row">
+          {[
+            { n: "1", text: "Click "Add to ChatGPT" below", sub: "Free, one click, no account" },
+            { n: "2", text: "Describe what you're looking for", sub: "Role, location, salary, company type" },
+            { n: "3", text: "Get matched jobs instantly", sub: "Direct links to apply at each company" },
+          ].map((s) => (
+            <div key={s.n} className="flex flex-1 items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#10a37f]/15 font-mono text-xs font-bold text-[#10a37f]">
+                {s.n}
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-white leading-snug">{s.text}</p>
+                <p className="mt-0.5 text-xs text-white/50">{s.sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <AddToGPTButton large />
           <Link
             href="/jobs"
