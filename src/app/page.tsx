@@ -70,7 +70,7 @@ function Hero() {
         </h1>
 
         <p className="mx-auto mt-6 max-w-xl text-center text-lg text-white/80 leading-relaxed">
-          Not sure what role is right? Want to know what&apos;s hiring at OpenAI? Need help figuring out your next move? Just chat. AgentJobs searches 43,000+ live jobs and gives you the guidance of a recruiter — free, inside ChatGPT.
+          Not sure what role is right? Want to know roles at OpenAI? Need help figuring out your next title? Just chat. AgentJobs is your recruiter. Free, inside ChatGPT.
         </p>
 
         {/* 3-step instruction */}
