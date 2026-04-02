@@ -4,8 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-// TODO: Replace with your real GPT URL once published
-const GPT_URL = "https://chatgpt.com/g/g-agentjobs";
+const GPT_URL = "https://chatgpt.com/g/g-69c0a8b41d008191a6ad244646f7619e-agentjobs";
 
 const NAV_LINKS = [
   { href: "/jobs", label: "Browse Jobs" },

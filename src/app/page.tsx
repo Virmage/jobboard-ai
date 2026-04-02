@@ -3,9 +3,7 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 
-// TODO: Replace with your real ChatGPT GPT URL once published
-// Format: https://chatgpt.com/g/g-XXXXXXXX-agentjobs
-const GPT_URL = "https://chatgpt.com/g/g-agentjobs";
+const GPT_URL = "https://chatgpt.com/g/g-69c0a8b41d008191a6ad244646f7619e-agentjobs";
 
 export const metadata: Metadata = {
   title: "AgentJobs — Search Jobs at OpenAI, Anthropic, Stripe & 100+ Top Companies",
