@@ -114,6 +114,7 @@ import { scanEFinancialCareers } from "./sources/efinancialcareers";
 import { scanSmartRecruiters } from "./sources/smartrecruiters";
 import { scanHackerNews } from "./sources/hackernews";
 import { scanWellfound } from "./sources/wellfound";
+import { scanRemoteRocketship } from "./sources/remoterocketship";
 
 // Source scanners — Government AU/CA
 import { scanWorkforceAU } from "./sources/workforce-au";
@@ -827,17 +828,19 @@ export async function runFullScan(
 
   // ===== Batch 15: ATS platforms (different hosts) =====
   console.log("\n--- Batch 15: ATS platforms ---");
-  const [smartRecruitersJobs, hackerNewsJobs, wellfoundJobs] =
+  const [smartRecruitersJobs, hackerNewsJobs, wellfoundJobs, remoteRocketshipJobs] =
     await Promise.all([
       runSource("SmartRecruiters", () => scanSmartRecruiters(), errors),
       runSource("HackerNews", () => scanHackerNews(), errors),
       runSource("Wellfound", () => scanWellfound(), errors),
+      runSource("RemoteRocketship", () => scanRemoteRocketship(), errors),
     ]);
   recordBatch(
     [
       { name: "SmartRecruiters", jobs: smartRecruitersJobs },
       { name: "HackerNews", jobs: hackerNewsJobs },
       { name: "Wellfound", jobs: wellfoundJobs },
+      { name: "RemoteRocketship", jobs: remoteRocketshipJobs },
     ],
     allRawJobs,
     sourceBreakdown,
