@@ -74,20 +74,20 @@ function Hero() {
         </p>
 
         {/* 3-step instruction */}
-        <div className="mx-auto mt-10 flex max-w-2xl flex-col items-stretch gap-3 sm:flex-row">
+        <div className="mx-auto mt-10 flex max-w-2xl items-center justify-center gap-0">
           {[
-            { n: "1", text: 'Click "Add to ChatGPT" below', sub: "Free, one click, no account" },
-            { n: "2", text: "Describe what you're looking for", sub: "Role, location, salary, company type" },
-            { n: "3", text: "Get matched jobs instantly", sub: "Direct links to apply at each company" },
-          ].map((s) => (
-            <div key={s.n} className="flex flex-1 items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5">
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#10a37f]/15 font-mono text-xs font-bold text-[#10a37f]">
-                {s.n}
-              </span>
-              <div>
-                <p className="text-sm font-semibold text-white leading-snug">{s.text}</p>
-                <p className="mt-0.5 text-xs text-white/50">{s.sub}</p>
+            { n: "1", text: 'Add to ChatGPT' },
+            { n: "2", text: "Chat with your recruiter, AgentJobs" },
+            { n: "3", text: "Get matched jobs" },
+          ].map((s, i) => (
+            <div key={s.n} className="flex items-center">
+              <div className="flex items-center gap-2.5 px-4">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#10a37f]/15 font-mono text-xs font-bold text-[#10a37f]">
+                  {s.n}
+                </span>
+                <p className="text-sm font-medium text-white/80 whitespace-nowrap">{s.text}</p>
               </div>
+              {i < 2 && <span className="text-white/20 shrink-0">→</span>}
             </div>
           ))}
         </div>
