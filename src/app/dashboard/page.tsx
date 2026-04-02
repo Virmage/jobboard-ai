@@ -328,7 +328,7 @@ function DashboardContent() {
         ]);
 
         if (listingsRes.status === 401 || analyticsRes.status === 401) {
-          setIsAuthenticated(false);
+          router.push("/dashboard?auth=0");
           return;
         }
 
