@@ -66,9 +66,7 @@ function Hero() {
 
         {/* Headline */}
         <h1 className="text-center text-5xl font-extrabold tracking-[-0.03em] text-white sm:text-6xl lg:text-[76px] leading-[1.05]">
-          Your AI recruiter
-          <br />
-          <span className="text-[#10a37f]">knows every open role.</span>
+          Your <span className="text-[#10a37f]">AI Recruiter.</span>
         </h1>
 
         <p className="mx-auto mt-7 max-w-2xl text-center text-lg text-white/80 leading-relaxed">
