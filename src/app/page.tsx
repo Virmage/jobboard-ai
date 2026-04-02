@@ -279,7 +279,7 @@ function Stats() {
 }
 
 // ---------------------------------------------------------------------------
-// Recruiter vs Job Board
+// Recruiter vs Job Board vs ChatGPT Search
 // ---------------------------------------------------------------------------
 function RecruiterVsJobBoard() {
   return (
@@ -291,33 +291,31 @@ function RecruiterVsJobBoard() {
           </span>
         </div>
         <h2 className="mb-4 text-center text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-          A recruiter, not a job board
+          ChatGPT can search. This recruits.
         </h2>
         <p className="mx-auto mb-14 max-w-lg text-center text-base text-white/70 leading-relaxed">
-          Job boards make you do the work. AgentJobs is the first AI recruiter
-          that works for you — free, no sign-up, instant.
+          ChatGPT&apos;s built-in search is a start — but it scrapes the web. AgentJobs is a dedicated recruiter with 43,000+ curated jobs, personal follow-ups, and real career guidance.
         </p>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {/* Old way */}
-          <div className="rounded-2xl border border-white/8 bg-[#0f0f0f] p-8">
-            <div className="mb-7 flex items-center gap-3 border-b border-white/8 pb-5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 text-lg">😩</span>
+        <div className="grid gap-4 md:grid-cols-3">
+          {/* Job boards */}
+          <div className="rounded-2xl border border-white/8 bg-[#0f0f0f] p-7">
+            <div className="mb-6 flex items-center gap-3 border-b border-white/8 pb-5">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/5 text-base">😩</span>
               <div>
-                <p className="text-xs font-mono font-semibold uppercase tracking-widest text-white/35">Old way</p>
-                <p className="text-base font-bold text-white/60">Traditional job boards</p>
+                <p className="text-[10px] font-mono font-semibold uppercase tracking-widest text-white/30">Option A</p>
+                <p className="text-sm font-bold text-white/55">Job boards</p>
               </div>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-3.5">
               {[
-                "Manually set filters, hoping you get the combo right",
-                "Scroll through hundreds of irrelevant listings",
-                "Apply to roles already closed or filled",
+                "Set filters manually and hope for the best",
+                "Scroll through hundreds of irrelevant results",
                 "Miss jobs listed under different titles",
-                "No context on the company or what they really want",
+                "Apply to roles already filled",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-white/60">
-                  <svg className="mt-0.5 h-4 w-4 shrink-0 text-white/25" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <li key={item} className="flex items-start gap-2.5 text-sm text-white/50">
+                  <svg className="mt-0.5 h-4 w-4 shrink-0 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                   {item}
@@ -326,24 +324,54 @@ function RecruiterVsJobBoard() {
             </ul>
           </div>
 
-          {/* New way */}
-          <div className="glow-border rounded-2xl border border-[#10a37f]/25 bg-[#0d1a16] p-8">
-            <div className="mb-7 flex items-center gap-3 border-b border-[#10a37f]/15 pb-5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#10a37f]/15 text-lg">✨</span>
+          {/* ChatGPT search */}
+          <div className="rounded-2xl border border-white/8 bg-[#0f0f0f] p-7">
+            <div className="mb-6 flex items-center gap-3 border-b border-white/8 pb-5">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/5">
+                <OpenAILogo className="h-4 w-4 text-white/40" />
+              </span>
               <div>
-                <p className="text-xs font-mono font-semibold uppercase tracking-widest text-[#10a37f]/70">New way</p>
-                <p className="text-base font-bold text-white">AgentJobs — AI recruiter</p>
+                <p className="text-[10px] font-mono font-semibold uppercase tracking-widest text-white/30">Option B</p>
+                <p className="text-sm font-bold text-white/55">ChatGPT search</p>
               </div>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-3.5">
               {[
-                "Describe what you want in plain English — no forms",
-                "Searches 43,000+ jobs and surfaces the best matches",
-                "Asks smart follow-up questions like a real recruiter",
-                "Suggests related titles you hadn't considered",
-                "Groups results by location, adds context on each company",
+                "Scrapes the web — not a curated jobs database",
+                "Misses roles on private career pages",
+                "No salary, freshness, or location data",
+                "Generic answers, not recruiter-level guidance",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-white/85">
+                <li key={item} className="flex items-start gap-2.5 text-sm text-white/50">
+                  <svg className="mt-0.5 h-4 w-4 shrink-0 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* AgentJobs */}
+          <div className="glow-border rounded-2xl border border-[#10a37f]/25 bg-[#0d1a16] p-7">
+            <div className="mb-6 flex items-center gap-3 border-b border-[#10a37f]/15 pb-5">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#10a37f]/15">
+                <OpenAILogo className="h-4 w-4 text-[#10a37f]" />
+              </span>
+              <div>
+                <p className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#10a37f]/60">Option C</p>
+                <p className="text-sm font-bold text-white">AgentJobs</p>
+              </div>
+            </div>
+            <ul className="space-y-3.5">
+              {[
+                "43,000+ verified jobs from 103+ career pages",
+                "Asks follow-up questions to refine your search",
+                "Suggests related titles you hadn't considered",
+                "Salary, location, and freshness on every result",
+                "Career guidance, not just a list of links",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm text-white/85">
                   <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#10a37f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
