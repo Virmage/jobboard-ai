@@ -70,7 +70,7 @@ function Hero() {
         </h1>
 
         <p className="mx-auto mt-6 max-w-xl text-center text-lg text-white/80 leading-relaxed">
-          Tell ChatGPT what job you want. AgentJobs searches 43,000+ roles at the world&apos;s best companies and finds your best matches — like a recruiter, but free.
+          Not sure what role is right? Want to know what&apos;s hiring at OpenAI? Need help figuring out your next move? Just chat. AgentJobs searches 43,000+ live jobs and gives you the guidance of a recruiter — free, inside ChatGPT.
         </p>
 
         {/* 3-step instruction */}
@@ -141,27 +141,45 @@ function ChatDemo() {
         </div>
 
         <div className="p-5 space-y-4">
-          {/* User message */}
+          {/* User message 1 */}
           <div className="flex justify-end">
             <div className="max-w-[85%] rounded-2xl rounded-br-md bg-[#252525] px-4 py-3 text-sm text-white">
-              I want a creative director role — Sydney or remote
+              I&apos;m a senior designer, not sure if I should go for creative director roles or stay IC. What do you think?
             </div>
           </div>
 
-          {/* Agent response */}
+          {/* Agent response 1 */}
           <div className="flex gap-3">
             <div className="mt-0.5 h-7 w-7 shrink-0 rounded-full bg-[#10a37f]/15 border border-[#10a37f]/25 flex items-center justify-center">
               <OpenAILogo className="h-3.5 w-3.5 text-[#10a37f]" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-white/85 mb-3">
-                Found <span className="font-bold text-white">11 roles</span> — here are the strongest matches:
+              <p className="text-[13px] text-white/85 leading-relaxed">
+                Good question. CD roles at tech companies are usually hybrid — still hands-on, but with team responsibility. Do you enjoy mentoring or prefer pure craft? That&apos;ll shape which direction makes sense. What kind of company are you targeting?
+              </p>
+            </div>
+          </div>
+
+          {/* User message 2 */}
+          <div className="flex justify-end">
+            <div className="max-w-[85%] rounded-2xl rounded-br-md bg-[#252525] px-4 py-3 text-sm text-white">
+              AI or tech companies, Sydney or remote. Salary around $180k.
+            </div>
+          </div>
+
+          {/* Agent response 2 */}
+          <div className="flex gap-3">
+            <div className="mt-0.5 h-7 w-7 shrink-0 rounded-full bg-[#10a37f]/15 border border-[#10a37f]/25 flex items-center justify-center">
+              <OpenAILogo className="h-3.5 w-3.5 text-[#10a37f]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[13px] text-white/85 mb-2.5">
+                Found <span className="font-bold text-white">9 roles</span> matching — top picks:
               </p>
               <div className="space-y-2 mb-3">
                 {[
-                  { title: "Executive Creative Director", company: "Ogilvy", location: "Sydney, AU", badge: "Hybrid", color: "text-amber-400 bg-amber-400/10 border-amber-400/20" },
                   { title: "Creative Director", company: "Canva", location: "Sydney / Remote", badge: "Remote ✓", color: "text-[#10a37f] bg-[#10a37f]/10 border-[#10a37f]/20" },
-                  { title: "Group Creative Director", company: "72andSunny", location: "Global Remote", badge: "Remote ✓", color: "text-[#10a37f] bg-[#10a37f]/10 border-[#10a37f]/20" },
+                  { title: "Head of Design", company: "Atlassian", location: "Sydney, AU", badge: "Hybrid", color: "text-amber-400 bg-amber-400/10 border-amber-400/20" },
                 ].map((job) => (
                   <div key={job.title} className="flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-white/[0.03] px-3.5 py-2.5">
                     <div className="min-w-0">
@@ -174,10 +192,9 @@ function ChatDemo() {
                   </div>
                 ))}
               </div>
-              {/* Recruiter follow-up */}
               <div className="rounded-xl border border-[#10a37f]/20 bg-[#10a37f]/6 px-4 py-3">
                 <p className="text-[13px] text-white/85 leading-snug">
-                  💡 Also open to <span className="font-semibold text-white">Head of Brand</span> or <span className="font-semibold text-white">ECD</span> titles? That unlocks 6 more strong matches.
+                  💡 Also worth looking at <span className="font-semibold text-white">Head of Brand</span> roles — same level, often more creative freedom at tech companies.
                 </p>
               </div>
             </div>
@@ -353,9 +370,9 @@ function HowItWorks() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
         </svg>
       ),
-      title: "Tell it what you want",
-      body: "Open ChatGPT with AgentJobs. Describe the role, location, salary, company type — in plain English. No filters, no forms.",
-      code: '"Senior ML engineer, AI startup, remote, $200k+"',
+      title: "Describe your situation",
+      body: "Tell it where you're at — the role you want, where you're stuck, or just ask what's hiring. No forms, no filters, just talk.",
+      code: '"Not sure if I should go CD or stay IC — help me figure it out"',
     },
     {
       n: "02",
@@ -364,8 +381,8 @@ function HowItWorks() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
       ),
-      title: "It searches every open role",
-      body: "AgentJobs hits 43,000+ live jobs across 103+ company career pages — OpenAI, Stripe, Coinbase, Vercel and more — updated every 6 hours.",
+      title: "Your recruiter goes to work",
+      body: "AgentJobs asks the right follow-up questions, then searches 43,000+ live jobs across 103+ company career pages — updated every 6 hours.",
       code: "Scanning 103 boards · 43,247 positions indexed",
     },
     {
@@ -375,9 +392,9 @@ function HowItWorks() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: "Apply directly, no middleman",
-      body: "Get curated results with salary info and direct apply links. Your recruiter suggests titles you hadn't considered and asks follow-up questions to refine.",
-      code: "→ careers.openai.com/apply/senior-ml-engineer",
+      title: "Get matches + guidance",
+      body: "Curated results with direct apply links. Plus related titles you hadn't considered, company context, and advice on your next move.",
+      code: '💡 Also worth looking at "Head of Brand" — same level, more creative freedom',
     },
   ];
 
@@ -390,7 +407,7 @@ function HowItWorks() {
           </span>
         </div>
         <h2 className="mb-14 text-center text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-          Three steps. Zero friction.
+          Like texting a recruiter who actually knows their stuff.
         </h2>
 
         <div className="grid gap-5 md:grid-cols-3">
@@ -482,58 +499,91 @@ function JobCategories() {
 }
 
 // ---------------------------------------------------------------------------
-// Example Queries
+// Ask Anything
 // ---------------------------------------------------------------------------
-const EXAMPLE_QUERIES = [
-  { q: "Creative director roles in Sydney or remote", tag: "Creative" },
-  { q: "Senior ML engineer at AI companies, $200k+", tag: "AI" },
-  { q: "Product manager at crypto startups, remote", tag: "Web3" },
-  { q: "What's open at OpenAI or Anthropic right now?", tag: "AI" },
-  { q: "Head of design at a Series B startup", tag: "Design" },
-  { q: "Data scientist roles in Singapore or Hong Kong", tag: "APAC" },
-  { q: "DevOps engineer at a fast-growing fintech", tag: "Engineering" },
-  { q: "Account executive SaaS, OTE over $180k", tag: "Sales" },
+const CONVERSATIONS = [
+  {
+    icon: "🤔",
+    label: "Career direction",
+    q: "I'm a senior designer. Not sure if I should go for CD roles or stay IC — what do you think?",
+    a: "Great question. CD at a tech company usually means you're still hands-on, but with team responsibility. Do you enjoy mentoring?",
+    color: "border-purple-400/20 bg-purple-400/[0.03]",
+    labelColor: "text-purple-300 bg-purple-400/10 border-purple-400/20",
+  },
+  {
+    icon: "🏢",
+    label: "Company exploration",
+    q: "What roles are open at Anthropic or OpenAI right now?",
+    a: "Found 23 open roles across both. Anthropic has 8 in research and 4 in product. Want me to filter by your background?",
+    color: "border-[#10a37f]/20 bg-[#10a37f]/[0.03]",
+    labelColor: "text-[#10a37f] bg-[#10a37f]/10 border-[#10a37f]/20",
+  },
+  {
+    icon: "🔍",
+    label: "Role discovery",
+    q: "I do brand strategy for DeFi protocols. What job titles should I be searching?",
+    a: "You're sitting at the intersection of Brand Strategist, Web3 Marketing Lead, and Head of Comms. Let me search all three.",
+    color: "border-amber-400/20 bg-amber-400/[0.03]",
+    labelColor: "text-amber-300 bg-amber-400/10 border-amber-400/20",
+  },
+  {
+    icon: "📍",
+    label: "Specific search",
+    q: "Senior ML engineer, remote, AI startup, $200k+",
+    a: "Found 14 roles matching. Top pick: Mistral AI — Senior Research Engineer, remote-first, $190–$230k. Want details?",
+    color: "border-blue-400/20 bg-blue-400/[0.03]",
+    labelColor: "text-blue-300 bg-blue-400/10 border-blue-400/20",
+  },
 ];
 
-const TAG_COLORS: Record<string, string> = {
-  Creative: "border-purple-400/30 bg-purple-400/8 text-purple-300",
-  AI: "border-[#10a37f]/30 bg-[#10a37f]/8 text-[#10a37f]",
-  Web3: "border-amber-400/30 bg-amber-400/8 text-amber-300",
-  Design: "border-pink-400/30 bg-pink-400/8 text-pink-300",
-  APAC: "border-blue-400/30 bg-blue-400/8 text-blue-300",
-  Engineering: "border-cyan-400/30 bg-cyan-400/8 text-cyan-300",
-  Sales: "border-orange-400/30 bg-orange-400/8 text-orange-300",
-};
-
-function ExampleQueries() {
+function AskAnything() {
   return (
     <section className="border-t border-white/8 bg-[#080808] px-6 py-20">
       <div className="mx-auto max-w-5xl">
         <div className="mb-2">
           <span className="font-mono text-xs font-semibold uppercase tracking-[0.15em] text-[#10a37f]">
-            Ask your recruiter
+            Ask your recruiter anything
           </span>
         </div>
         <h2 className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-          Just describe what you want
+          More than search. It&apos;s a conversation.
         </h2>
-        <p className="mb-10 text-base text-white/65">No filters. No forms. No noise.</p>
+        <p className="mb-12 text-base text-white/65 max-w-lg">
+          Not just &ldquo;find me X role&rdquo; — get career guidance, discover titles you didn&apos;t know existed, explore what&apos;s hiring at specific companies.
+        </p>
 
-        <div className="grid gap-2.5 sm:grid-cols-2">
-          {EXAMPLE_QUERIES.map((item) => (
-            <Link
-              key={item.q}
-              href={`/jobs?q=${encodeURIComponent(item.q)}`}
-              className="group flex items-center gap-4 rounded-xl border border-white/8 bg-[#0f0f0f] px-5 py-3.5 transition-all hover:border-white/15 hover:bg-[#141414]"
+        <div className="grid gap-4 sm:grid-cols-2">
+          {CONVERSATIONS.map((item) => (
+            <a
+              key={item.label}
+              href={GPT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group rounded-2xl border p-5 transition-all hover:scale-[1.01] ${item.color}`}
             >
-              <svg className="h-4 w-4 shrink-0 text-white/25 transition-colors group-hover:text-[#10a37f]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-              </svg>
-              <span className="flex-1 text-sm text-white/75 transition-colors group-hover:text-white">{item.q}</span>
-              <span className={`shrink-0 rounded-full border px-2.5 py-0.5 font-mono text-[11px] font-semibold ${TAG_COLORS[item.tag] ?? "border-white/15 bg-white/5 text-white/50"}`}>
-                {item.tag}
-              </span>
-            </Link>
+              <div className="mb-3 flex items-center gap-2">
+                <span className="text-lg">{item.icon}</span>
+                <span className={`rounded-full border px-2.5 py-0.5 font-mono text-[11px] font-semibold ${item.labelColor}`}>
+                  {item.label}
+                </span>
+              </div>
+              {/* User message */}
+              <div className="mb-2 flex justify-end">
+                <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-white/8 px-3.5 py-2.5 text-sm text-white/85">
+                  {item.q}
+                </div>
+              </div>
+              {/* Agent reply */}
+              <div className="flex gap-2.5">
+                <div className="mt-0.5 h-5 w-5 shrink-0 rounded-full bg-[#10a37f]/15 border border-[#10a37f]/25 flex items-center justify-center">
+                  <OpenAILogo className="h-2.5 w-2.5 text-[#10a37f]" />
+                </div>
+                <p className="text-[13px] text-white/60 leading-relaxed">{item.a}</p>
+              </div>
+              <p className="mt-3 text-right text-[11px] text-white/25 transition-colors group-hover:text-[#10a37f]/50">
+                Try this in ChatGPT →
+              </p>
+            </a>
           ))}
         </div>
       </div>
@@ -595,8 +645,8 @@ export default function Home() {
         <Stats />
         <RecruiterVsJobBoard />
         <HowItWorks />
+        <AskAnything />
         <JobCategories />
-        <ExampleQueries />
         <FinalCTA />
       </main>
       <Footer />
