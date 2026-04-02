@@ -1276,5 +1276,23 @@
     "atsType": "greenhouse",
     "atsId": "messari",
     "allRoles": true
+  },
+  {
+    "id": "bybit",
+    "name": "Bybit",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/bybit",
+    "atsType": "greenhouse",
+    "atsId": "bybit",
+    "allRoles": true
+  },
+  {
+    "id": "okx",
+    "name": "OKX",
+    "country": "global",
+    "careerUrl": "https://boards.greenhouse.io/okx",
+    "atsType": "greenhouse",
+    "atsId": "okx",
+    "allRoles": true
   }
 ]

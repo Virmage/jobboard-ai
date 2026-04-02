@@ -208,6 +208,13 @@ const AGENCIES: AgencyDef[] = [
   { id: "polygon-labs", name: "Polygon Labs", country: "global", ats: "ashby", slug: "polygon-labs", allRoles: true },
   { id: "nansen", name: "Nansen", country: "global", ats: "greenhouse", slug: "nansen", allRoles: true },
   { id: "messari", name: "Messari", country: "us", ats: "greenhouse", slug: "messari", allRoles: true },
+
+  // === Major exchanges (user-requested) ===
+  { id: "bybit", name: "Bybit", country: "global", ats: "greenhouse", slug: "bybit", allRoles: true },
+  { id: "okx", name: "OKX", country: "global", ats: "greenhouse", slug: "okx", allRoles: true },
+  // NOTE: Crypto.com, Hyperliquid, Paradex, Gate.io, MEXC, Jupiter, Aave, Chainlink
+  // do not use Greenhouse/Lever/Ashby with discoverable slugs — they use custom job pages
+  // or Workday. These cannot be auto-scraped via ATS API.
 ];
 
 // ---------------------------------------------------------------------------
