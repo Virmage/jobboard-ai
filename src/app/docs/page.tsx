@@ -249,7 +249,7 @@ export default function DocsPage() {
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-green" />
               Base URL:{" "}
               <code className="rounded bg-surface-raised border border-border px-1.5 py-0.5 text-text-secondary">
-                https://agentjobs.com
+                https://agentjobsai.com
               </code>
             </div>
           </div>
@@ -334,7 +334,7 @@ export default function DocsPage() {
                   lang: "bash",
                   label: "cURL",
                   code: `curl -H "X-API-Key: aj_your_api_key_here" \\
-  https://agentjobs.com/api/v1/jobs?role=engineer`,
+  https://agentjobsai.com/api/v1/jobs?role=engineer`,
                 },
                 {
                   lang: "python",
@@ -342,7 +342,7 @@ export default function DocsPage() {
                   code: `import requests
 
 response = requests.get(
-    "https://agentjobs.com/api/v1/jobs",
+    "https://agentjobsai.com/api/v1/jobs",
     headers={"X-API-Key": "aj_your_api_key_here"},
     params={"role": "engineer"}
 )
@@ -352,7 +352,7 @@ jobs = response.json()["jobs"]`,
                   lang: "javascript",
                   label: "JavaScript",
                   code: `const response = await fetch(
-  "https://agentjobs.com/api/v1/jobs?role=engineer",
+  "https://agentjobsai.com/api/v1/jobs?role=engineer",
   { headers: { "X-API-Key": "aj_your_api_key_here" } }
 );
 const { jobs } = await response.json();`,
@@ -481,13 +481,13 @@ const { jobs } = await response.json();`,
                   lang: "bash",
                   label: "cURL",
                   code: `curl -H "X-API-Key: aj_your_key" \\
-  "https://agentjobs.com/api/v1/jobs?q=creative+director&industry=crypto&remote=true"`,
+  "https://agentjobsai.com/api/v1/jobs?q=creative+director&industry=crypto&remote=true"`,
                 },
                 {
                   lang: "python",
                   label: "Python",
                   code: `response = requests.get(
-    "https://agentjobs.com/api/v1/jobs",
+    "https://agentjobsai.com/api/v1/jobs",
     headers={"X-API-Key": "aj_your_key"},
     params={"q": "creative director", "industry": "crypto", "remote": True}
 )`,
@@ -501,7 +501,7 @@ const { jobs } = await response.json();`,
   remote: "true"
 });
 
-const res = await fetch(\`https://agentjobs.com/api/v1/jobs?\${params}\`, {
+const res = await fetch(\`https://agentjobsai.com/api/v1/jobs?\${params}\`, {
   headers: { "X-API-Key": "aj_your_key" }
 });`,
                 },
@@ -516,7 +516,7 @@ const res = await fetch(\`https://agentjobs.com/api/v1/jobs?\${params}\`, {
       "salary": "$180k-$220k",
       "isRemote": true,
       "isFeatured": true,
-      "freshness": { "score": 0.92, "label": "verified 2h ago", "tier": "fresh" },
+      "freshness": { "score": 0.92, "label": "2 days ago", "tier": "fresh" },
       "industry": { "name": "Crypto", "slug": "crypto" },
       "taxonomy": { "canonicalTitle": "Creative Director", "slug": "creative-director" }
     }
@@ -546,7 +546,7 @@ const res = await fetch(\`https://agentjobs.com/api/v1/jobs?\${params}\`, {
                   lang: "bash",
                   label: "cURL",
                   code: `curl -H "X-API-Key: aj_your_key" \\
-  https://agentjobs.com/api/v1/jobs/a1b2c3d4-e5f6-7890-abcd-ef1234567890`,
+  https://agentjobsai.com/api/v1/jobs/a1b2c3d4-e5f6-7890-abcd-ef1234567890`,
                 },
               ]}
               response={`{
@@ -574,7 +574,7 @@ const res = await fetch(\`https://agentjobs.com/api/v1/jobs?\${params}\`, {
                   lang: "bash",
                   label: "cURL",
                   code: `curl -H "X-API-Key: aj_your_key" \\
-  https://agentjobs.com/api/v1/industries`,
+  https://agentjobsai.com/api/v1/industries`,
                 },
               ]}
               response={`{
@@ -606,7 +606,7 @@ const res = await fetch(\`https://agentjobs.com/api/v1/jobs?\${params}\`, {
                   lang: "bash",
                   label: "cURL",
                   code: `curl -H "X-API-Key: aj_your_key" \\
-  "https://agentjobs.com/api/v1/roles/suggest?q=creative+director"`,
+  "https://agentjobsai.com/api/v1/roles/suggest?q=creative+director"`,
                 },
               ]}
               response={`{
@@ -636,7 +636,7 @@ const res = await fetch(\`https://agentjobs.com/api/v1/jobs?\${params}\`, {
                   lang: "bash",
                   label: "cURL",
                   code: `curl -H "X-API-Key: aj_your_key" \\
-  https://agentjobs.com/api/v1/taxonomy`,
+  https://agentjobsai.com/api/v1/taxonomy`,
                 },
               ]}
             />
@@ -807,7 +807,7 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
             </div>
 
             <CodeBlock title="OpenAPI Spec URL" lang="text">
-              {`https://agentjobs.com/api/openapi.json`}
+              {`https://agentjobsai.com/api/openapi.json`}
             </CodeBlock>
           </Section>
 
@@ -832,7 +832,7 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
   },
   "api": {
     "type": "openapi",
-    "url": "https://agentjobs.com/api/openapi.json"
+    "url": "https://agentjobsai.com/api/openapi.json"
   }
 }`}</CodeBlock>
           </Section>
@@ -849,7 +849,7 @@ X-RateLimit-Reset: 1711036800`}</CodeBlock>
             </p>
 
             <CodeBlock title="HTML" lang="html">{`<script
-  src="https://agentjobs.com/api/widget?industry=crypto&role=creative-director&max=5&theme=dark"
+  src="https://agentjobsai.com/api/widget?industry=crypto&role=creative-director&max=5&theme=dark"
   async>
 </script>`}</CodeBlock>
           </Section>

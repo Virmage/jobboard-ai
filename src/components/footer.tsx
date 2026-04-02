@@ -8,7 +8,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 text-sm font-semibold text-text-primary">
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-accent text-xs font-bold text-white">
-                J
+                A
               </span>
               AgentJobs
             </div>
@@ -116,7 +116,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/docs#analytics"
+                  href="/dashboard"
                   className="text-sm text-text-tertiary transition-colors hover:text-text-secondary"
                 >
                   Analytics
@@ -130,18 +130,12 @@ export function Footer() {
             &copy; {new Date().getFullYear()} AgentJobs. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a
-              href="#"
+            <Link
+              href="/privacy"
               className="text-xs text-text-tertiary transition-colors hover:text-text-secondary"
             >
               Privacy
-            </a>
-            <a
-              href="#"
-              className="text-xs text-text-tertiary transition-colors hover:text-text-secondary"
-            >
-              Terms
-            </a>
+            </Link>
           </div>
         </div>
       </div>
