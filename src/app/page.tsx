@@ -76,7 +76,7 @@ function Hero() {
         {/* 3-step instruction */}
         <div className="mx-auto mt-10 flex max-w-2xl flex-col items-stretch gap-3 sm:flex-row">
           {[
-            { n: "1", text: "Click "Add to ChatGPT" below", sub: "Free, one click, no account" },
+            { n: "1", text: 'Click "Add to ChatGPT" below', sub: "Free, one click, no account" },
             { n: "2", text: "Describe what you're looking for", sub: "Role, location, salary, company type" },
             { n: "3", text: "Get matched jobs instantly", sub: "Direct links to apply at each company" },
           ].map((s) => (
