@@ -207,7 +207,7 @@ function CompanyTicker() {
         <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-28 bg-gradient-to-l from-[#0a0a0a] to-transparent" />
         <div className="flex animate-marquee whitespace-nowrap">
           {[...COMPANIES, ...COMPANIES].map((name, i) => (
-            <span key={i} className="inline-flex items-center mx-8 text-sm font-semibold text-white/40 hover:text-white/70 transition-colors cursor-default shrink-0">
+            <span key={i} className="inline-flex items-center mx-8 text-sm font-semibold text-white hover:text-[#10a37f] transition-colors cursor-default shrink-0">
               {name}
             </span>
           ))}
