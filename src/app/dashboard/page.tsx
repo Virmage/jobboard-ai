@@ -328,7 +328,7 @@ function DashboardContent() {
         ]);
 
         if (listingsRes.status === 401 || analyticsRes.status === 401) {
-          setAuthed(false);
+          setIsAuthenticated(false);
           return;
         }
 
