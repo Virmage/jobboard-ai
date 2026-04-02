@@ -3,14 +3,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "AgentJobs — Find Jobs at OpenAI, Anthropic, Stripe & 100+ Top Companies",
+    default: "AgentJobs — Your AI Recruiter for Jobs at OpenAI, Anthropic, Stripe & More",
     template: "%s | AgentJobs",
   },
   description:
-    "Search 14,000+ jobs at OpenAI, Anthropic, Stripe, Coinbase and 100+ top companies. Ask ChatGPT to find your next job — updated every 6 hours.",
+    "AgentJobs is your AI recruiter. Searches 43,000+ jobs at OpenAI, Anthropic, Stripe, Coinbase and 100+ top companies — just tell ChatGPT what you want.",
   keywords: [
-    "job search", "AI jobs", "tech jobs", "crypto jobs", "ChatGPT job search",
-    "OpenAI jobs", "Anthropic jobs", "remote jobs", "startup jobs",
+    "AI recruiter", "job search", "AI jobs", "tech jobs", "crypto jobs",
+    "ChatGPT job search", "OpenAI jobs", "Anthropic jobs", "remote jobs", "startup jobs",
   ],
   authors: [{ name: "AgentJobs" }],
   openGraph: {

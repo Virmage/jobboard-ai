@@ -85,3 +85,22 @@ code {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Subtle dot-grid background pattern */
+.bg-dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Subtle line grid */
+.bg-line-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glow border effect */
+.glow-border {
+  box-shadow: 0 0 0 1px rgba(16, 163, 127, 0.3), 0 0 20px rgba(16, 163, 127, 0.08);
+}

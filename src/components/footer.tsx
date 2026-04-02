@@ -13,8 +13,8 @@ export function Footer() {
               AgentJobs
             </div>
             <p className="mt-3 text-sm text-text-tertiary leading-relaxed">
-              The job board built for AI agents. Structured data, real-time
-              scanning, universal access.
+              Your AI recruiter. 43,000+ jobs at the world&apos;s best companies,
+              searchable in plain English via ChatGPT.
             </p>
           </div>
           <div>
