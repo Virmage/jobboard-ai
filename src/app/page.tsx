@@ -294,7 +294,7 @@ function RecruiterVsJobBoard() {
           ChatGPT can search. This recruits.
         </h2>
         <p className="mx-auto mb-14 max-w-lg text-center text-base text-white/70 leading-relaxed">
-          ChatGPT&apos;s built-in search is a start — but it scrapes the web. AgentJobs is a dedicated recruiter with 43,000+ curated jobs, personal follow-ups, and real career guidance.
+          ChatGPT search gives you a list of links. AgentJobs gives you a recruiter — one that asks the right questions, reads between the lines, and gives you an answer, not just results.
         </p>
 
         <div className="grid gap-4 md:grid-cols-3">
@@ -337,10 +337,10 @@ function RecruiterVsJobBoard() {
             </div>
             <ul className="space-y-3.5">
               {[
-                "Scrapes the web — not a curated jobs database",
-                "Misses roles on private career pages",
-                "No salary, freshness, or location data",
-                "Generic answers, not recruiter-level guidance",
+                "Returns a list of links, not a recruiter response",
+                "No follow-up questions — you get one generic answer",
+                "Can't tell you why Sydney is dry right now",
+                "Won't suggest titles you hadn't thought to search",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-white/50">
                   <svg className="mt-0.5 h-4 w-4 shrink-0 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -365,11 +365,11 @@ function RecruiterVsJobBoard() {
             </div>
             <ul className="space-y-3.5">
               {[
-                "43,000+ verified jobs from 103+ career pages",
-                "Asks follow-up questions to refine your search",
-                "Suggests related titles you hadn't considered",
-                "Salary, location, and freshness on every result",
-                "Career guidance, not just a list of links",
+                "Asks follow-up questions to understand your situation",
+                "Tells you why a market is hot or dry right now",
+                "Flags the standout roles, not just all of them",
+                "Suggests titles you hadn't thought to search",
+                "Gives you a plan, not just a list",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm text-white/85">
                   <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#10a37f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
