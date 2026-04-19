@@ -91,8 +91,8 @@ test("report skips trades with null entry_price", () => {
     },
   ];
   const report = renderReport(trades);
-  if (!report.includes("Skipped:                   1")) {
-    throw new Error("skipped count wrong");
+  if (!/Skipped:\s+1/.test(report)) {
+    throw new Error(`skipped count wrong: ${report}`);
   }
 });
 

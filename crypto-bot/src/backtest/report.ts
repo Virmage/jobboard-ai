@@ -62,14 +62,16 @@ export function renderReport(results: TradeResult[]): string {
   const perpsLive = usable.filter(
     (r) => r.venue === "binance_perp" && r.perps_available_at_tweet,
   );
+  const hlPerps = usable.filter((r) => r.venue === "hyperliquid_perp");
   const dexOnly = usable.filter((r) => r.venue === "dex");
 
   lines.push("");
-  lines.push(`Total calls:               ${results.length}`);
-  lines.push(`Backtestable:              ${usable.length}`);
-  lines.push(`  -> Binance perps (live): ${perpsLive.length}`);
-  lines.push(`  -> DEX hypothetical:     ${dexOnly.length}`);
-  lines.push(`Skipped:                   ${skipped.length}`);
+  lines.push(`Total calls:                   ${results.length}`);
+  lines.push(`Backtestable:                  ${usable.length}`);
+  lines.push(`  -> Binance perps (live):     ${perpsLive.length}`);
+  lines.push(`  -> Hyperliquid perps:        ${hlPerps.length}`);
+  lines.push(`  -> DEX hypothetical:         ${dexOnly.length}`);
+  lines.push(`Skipped:                       ${skipped.length}`);
 
   if (skipped.length > 0) {
     lines.push("");
@@ -83,6 +85,7 @@ export function renderReport(results: TradeResult[]): string {
 
   for (const [label, subset] of [
     ["Binance perps (shortable at tweet time)", perpsLive],
+    ["Hyperliquid perps (shortable at tweet time)", hlPerps],
     ["DEX-only (hypothetical short)", dexOnly],
   ] as const) {
     if (subset.length === 0) continue;
@@ -114,7 +117,12 @@ export function renderReport(results: TradeResult[]): string {
   lines.push("");
   lines.push("--- Per-trade detail ---");
   for (const r of usable) {
-    const venue = r.venue === "binance_perp" ? "PERP" : "DEX";
+    const venue =
+      r.venue === "binance_perp"
+        ? "BINANCE"
+        : r.venue === "hyperliquid_perp"
+          ? "HYPERLIQUID"
+          : "DEX";
     const name = `${r.call.project_name}${r.call.ticker ? ` ($${r.call.ticker})` : ""}`;
     lines.push(`[${venue}] ${name}   ${new Date(r.entry_ts).toISOString()}`);
     for (const [horizon, ret] of Object.entries(r.returns_short)) {

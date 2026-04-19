@@ -4,6 +4,11 @@ import {
   priceAt as binancePriceAt,
   type PerpSymbolInfo,
 } from "../prices/binance";
+import {
+  listHyperliquidPerps,
+  findHyperliquidSymbol,
+  priceAtHl,
+} from "../prices/hyperliquid";
 import { findTopPool, priceAtDex } from "../prices/geckoterminal";
 import {
   HORIZONS_MS,
@@ -11,6 +16,8 @@ import {
   type TradeResult,
   type Venue,
 } from "./types";
+
+type HLAsset = Awaited<ReturnType<typeof listHyperliquidPerps>>[number];
 
 const DEFAULT_ENTRY_DELAY_MS = 5 * 60 * 1000;
 
@@ -24,19 +31,34 @@ export async function runBacktest(
   opts: RunOptions = {},
 ): Promise<TradeResult[]> {
   const entryDelay = opts.entryDelayMs ?? DEFAULT_ENTRY_DELAY_MS;
-  const perpSymbols = await listPerpSymbols();
+  const [perpSymbols, hlSymbols] = await Promise.all([
+    listPerpSymbols(),
+    safeListHl(),
+  ]);
   const results: TradeResult[] = [];
   for (let i = 0; i < calls.length; i++) {
     const call = calls[i];
-    results.push(await backtestOne(call, perpSymbols, entryDelay));
+    results.push(await backtestOne(call, perpSymbols, hlSymbols, entryDelay));
     opts.onProgress?.(i + 1, calls.length, call);
   }
   return results;
 }
 
+async function safeListHl(): Promise<HLAsset[]> {
+  try {
+    return await listHyperliquidPerps();
+  } catch (e) {
+    console.warn(
+      `Hyperliquid listing unavailable: ${e instanceof Error ? e.message : e}`,
+    );
+    return [];
+  }
+}
+
 async function backtestOne(
   call: KnownCall,
   perpSymbols: PerpSymbolInfo[],
+  hlSymbols: HLAsset[],
   entryDelayMs: number,
 ): Promise<TradeResult> {
   const tweetMs = Date.parse(call.tweet_ts);
@@ -50,18 +72,50 @@ async function backtestOne(
 
   if (call.ticker) {
     const perp = findPerpSymbol(perpSymbols, call.ticker);
-    if (perp) {
-      const hadPerpsAtTweet = perp.onboardDate <= tweetMs;
-      if (!hadPerpsAtTweet) {
-        return await tryDex(call, entryMs, {
-          perps_available_at_tweet: false,
-        });
-      }
+    if (perp && perp.onboardDate <= tweetMs) {
       return await backtestBinance(call, perp, tweetMs, entryMs);
+    }
+
+    const hl = findHyperliquidSymbol(hlSymbols, call.ticker);
+    if (hl) {
+      const result = await backtestHl(call, hl.name, entryMs);
+      if (result.entry_price != null) return result;
     }
   }
 
   return await tryDex(call, entryMs, { perps_available_at_tweet: false });
+}
+
+async function backtestHl(
+  call: KnownCall,
+  symbol: string,
+  entryMs: number,
+): Promise<TradeResult> {
+  const entryPrice = await priceAtHl(symbol, entryMs);
+  if (entryPrice == null) {
+    return emptyResult(call, entryMs, "hyperliquid_perp", {
+      symbol_or_pool: symbol,
+      perps_available_at_tweet: false,
+      skipped_reason: "no Hyperliquid data at entry (not listed yet, or delisted)",
+    });
+  }
+  const exit_prices: Record<string, number | null> = {};
+  const returns_short: Record<string, number | null> = {};
+  for (const [label, delta] of Object.entries(HORIZONS_MS)) {
+    const px = await priceAtHl(symbol, entryMs + delta);
+    exit_prices[label] = px;
+    returns_short[label] = px == null ? null : (entryPrice - px) / entryPrice;
+  }
+  return {
+    call,
+    venue: "hyperliquid_perp",
+    symbol_or_pool: symbol,
+    entry_ts: entryMs,
+    entry_price: entryPrice,
+    exit_prices,
+    returns_short,
+    perps_available_at_tweet: true,
+  };
 }
 
 async function backtestBinance(

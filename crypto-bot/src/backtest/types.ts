@@ -10,7 +10,11 @@ export interface KnownCall {
   notes?: string;
 }
 
-export type Venue = "binance_perp" | "dex" | "unavailable";
+export type Venue =
+  | "binance_perp"
+  | "hyperliquid_perp"
+  | "dex"
+  | "unavailable";
 
 export interface TradeResult {
   call: KnownCall;
