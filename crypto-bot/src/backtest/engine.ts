@@ -12,9 +12,10 @@ import {
   type Venue,
 } from "./types";
 
-const ENTRY_DELAY_MS = 5 * 60 * 1000;
+const DEFAULT_ENTRY_DELAY_MS = 5 * 60 * 1000;
 
 export interface RunOptions {
+  entryDelayMs?: number;
   onProgress?: (done: number, total: number, call: KnownCall) => void;
 }
 
@@ -22,11 +23,12 @@ export async function runBacktest(
   calls: KnownCall[],
   opts: RunOptions = {},
 ): Promise<TradeResult[]> {
+  const entryDelay = opts.entryDelayMs ?? DEFAULT_ENTRY_DELAY_MS;
   const perpSymbols = await listPerpSymbols();
   const results: TradeResult[] = [];
   for (let i = 0; i < calls.length; i++) {
     const call = calls[i];
-    results.push(await backtestOne(call, perpSymbols));
+    results.push(await backtestOne(call, perpSymbols, entryDelay));
     opts.onProgress?.(i + 1, calls.length, call);
   }
   return results;
@@ -35,9 +37,10 @@ export async function runBacktest(
 async function backtestOne(
   call: KnownCall,
   perpSymbols: PerpSymbolInfo[],
+  entryDelayMs: number,
 ): Promise<TradeResult> {
   const tweetMs = Date.parse(call.tweet_ts);
-  const entryMs = tweetMs + ENTRY_DELAY_MS;
+  const entryMs = tweetMs + entryDelayMs;
 
   if (Number.isNaN(tweetMs)) {
     return emptyResult(call, entryMs, "unavailable", {
