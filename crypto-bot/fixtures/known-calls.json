@@ -1,20 +1,33 @@
 [
   {
-    "id": "munchables-2024-03-26",
-    "tweet_ts": "2024-03-26T21:30:00Z",
-    "tweet_url": "https://x.com/zachxbt/status/1772867494827348430",
-    "project_name": "Munchables",
-    "chain": "base",
-    "notes": "Publicly documented Blast-based GameFi exploit, ~$62M drained, insider dev. Add ERC20 contract address if you want DEX leg of backtest."
-  },
-  {
-    "id": "ravedao-REPLACE",
-    "tweet_ts": "REPLACE_WITH_TWEET_TIMESTAMP",
-    "tweet_url": "REPLACE_WITH_TWEET_URL",
+    "id": "rave-2026-04-14",
+    "tweet_ts": "2026-04-14T03:22:56Z",
+    "tweet_url": "https://x.com/zachxbt/status/2043892735418216486",
     "project_name": "RaveDAO",
     "ticker": "RAVE",
-    "chain": "REPLACE_WITH_CHAIN",
-    "contract_address": "REPLACE_WITH_CONTRACT_OR_OMIT",
-    "notes": "User mentioned this case; fill in real timestamp + chain + contract address to include."
+    "notes": "ZachXBT called out RAVE during the pump. 3 team wallets held ~90% of supply; 18.58M RAVE moved to Bitget hours before the surge. Token crashed ~85% on April 18, 2026. Listed on Binance, Bitget, Gate. Exact tweet timestamp derived from snowflake ID."
+  },
+  {
+    "id": "alt-2025-07-22",
+    "tweet_ts": "2025-07-22T12:00:00Z",
+    "project_name": "AltLayer",
+    "ticker": "ALT",
+    "notes": "ZachXBT exposed Crypto Beast for orchestrating $11M ALT dump. Note: main -97% crash happened July 14, 2025 BEFORE the July 22 tweet — this backtest will show 'post-mortem' return (probably flat/small). Good as a counterexample. Approximate tweet time; refine if you find the tweet URL."
+  },
+  {
+    "id": "oramama-2026-03-23",
+    "tweet_ts": "2026-03-23T07:57:23Z",
+    "tweet_url": "https://x.com/zachxbt/status/2035989271652466773",
+    "project_name": "ORAMAMA",
+    "ticker": "ORAMAMA",
+    "chain": "solana",
+    "notes": "Solana PumpSwap memecoin. Pump-and-dump by coordinated X accounts on Feb 22, 2026; zachxbt's March 23 tweet was post-rug. Token already dead by tweet time — backtest will likely skip (no liquidity/perps) or show ~0 return. Good negative control."
+  },
+  {
+    "id": "munchables-2024-03-26",
+    "tweet_ts": "2024-03-26T21:30:00Z",
+    "project_name": "Munchables",
+    "chain": "base",
+    "notes": "Blast-based GameFi exploit, ~$62M drained, insider dev. No Munchables token — the project had no liquid token. Backtest will skip. Keeping for reference."
   }
 ]
