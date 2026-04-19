@@ -8,6 +8,7 @@ interface CliArgs {
   input: string;
   output: string;
   json: string;
+  minSeverity: number;
 }
 
 function parseArgs(argv: string[]): CliArgs {
@@ -15,6 +16,7 @@ function parseArgs(argv: string[]): CliArgs {
     input: "crypto-bot/fixtures/known-calls.json",
     output: "crypto-bot/out/backtest-report.txt",
     json: "crypto-bot/out/backtest-trades.json",
+    minSeverity: 0,
   };
   for (let i = 0; i < argv.length; i++) {
     const flag = argv[i];
@@ -32,6 +34,10 @@ function parseArgs(argv: string[]): CliArgs {
         args.json = next;
         i++;
         break;
+      case "--min-severity":
+        args.minSeverity = Number(next);
+        i++;
+        break;
       case "-h":
       case "--help":
         printHelp();
@@ -47,9 +53,10 @@ function printHelp(): void {
       "Usage: tsx crypto-bot/src/backtest-cli.ts [options]",
       "",
       "Options:",
-      "  --input <path>    Known-calls JSON (default: crypto-bot/fixtures/known-calls.json)",
-      "  --output <path>   Text report path (default: crypto-bot/out/backtest-report.txt)",
-      "  --json <path>     Raw trades JSON (default: crypto-bot/out/backtest-trades.json)",
+      "  --input <path>        Known-calls JSON (default: crypto-bot/fixtures/known-calls.json)",
+      "  --output <path>       Text report path",
+      "  --json <path>         Raw trades JSON",
+      "  --min-severity <n>    Only backtest calls with severity >= n (default: 0, no filter)",
     ].join("\n"),
   );
 }
@@ -77,15 +84,36 @@ function loadCalls(path: string): KnownCall[] {
 
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
-  const calls = loadCalls(args.input);
-  console.log(`Loaded ${calls.length} backtestable calls from ${args.input}`);
+  const allCalls = loadCalls(args.input);
+  const calls =
+    args.minSeverity > 0
+      ? allCalls.filter((c) => (c.severity ?? 0) >= args.minSeverity)
+      : allCalls;
+
+  console.log(`Loaded ${allCalls.length} calls from ${args.input}`);
+  if (args.minSeverity > 0) {
+    const dropped = allCalls.length - calls.length;
+    console.log(
+      `Filtered to ${calls.length} (min severity ${args.minSeverity}, dropped ${dropped})`,
+    );
+    if (dropped > 0) {
+      const droppedCalls = allCalls.filter(
+        (c) => (c.severity ?? 0) < args.minSeverity,
+      );
+      for (const c of droppedCalls) {
+        console.log(
+          `  skipped: [sev ${c.severity ?? 0}] ${c.project_name}${c.ticker ? ` ($${c.ticker})` : ""}`,
+        );
+      }
+    }
+  }
 
   if (calls.length === 0) {
-    console.error("Nothing to backtest. Add entries to your known-calls file.");
+    console.error("Nothing to backtest after filtering.");
     process.exit(1);
   }
 
-  console.log("Running backtest (fetching Binance + GeckoTerminal prices)...");
+  console.log("\nRunning backtest (fetching Binance + GeckoTerminal prices)...");
   const results = await runBacktest(calls, {
     onProgress: (done, total, call) => {
       process.stdout.write(

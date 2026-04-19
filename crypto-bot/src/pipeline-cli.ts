@@ -15,6 +15,7 @@ interface CliArgs {
   cache: string;
   outDir: string;
   minConfidence: number;
+  minSeverity: number;
   concurrency: number;
   skipClassify: boolean;
   skipBacktest: boolean;
@@ -26,6 +27,7 @@ function parseArgs(argv: string[]): CliArgs {
     cache: "crypto-bot/out/tweets-cache.json",
     outDir: "crypto-bot/out",
     minConfidence: 0.6,
+    minSeverity: 8,
     concurrency: 4,
     skipClassify: false,
     skipBacktest: false,
@@ -52,6 +54,10 @@ function parseArgs(argv: string[]): CliArgs {
         break;
       case "--min-confidence":
         args.minConfidence = Number(n);
+        i++;
+        break;
+      case "--min-severity":
+        args.minSeverity = Number(n);
         i++;
         break;
       case "--concurrency":
@@ -87,6 +93,7 @@ function printHelp(): void {
       "  --cache <path>            Cache fetched tweets here",
       "  --out <dir>               Output directory (default: crypto-bot/out)",
       "  --min-confidence <n>      Classifier confidence threshold (default: 0.6)",
+      "  --min-severity <n>        Severity threshold 0-10 (default: 8). Only extreme bearish calls trade.",
       "  --concurrency <n>         Parallel classifier workers (default: 4)",
       "  --skip-classify           Skip classification step",
       "  --skip-backtest           Skip backtest step",
@@ -123,12 +130,14 @@ async function loadTweets(args: CliArgs): Promise<Tweet[]> {
 function callsFromClassifications(
   classified: ClassifiedTweet[],
   minConfidence: number,
+  minSeverity: number,
 ): KnownCall[] {
   const calls: KnownCall[] = [];
   for (const row of classified) {
     const c = row.classification;
     if (!c.is_negative || !c.actionable) continue;
     if (c.confidence < minConfidence) continue;
+    if (c.severity < minSeverity) continue;
     for (const proj of c.mentioned_projects) {
       calls.push({
         id: `${row.tweet.id}-${proj.ticker ?? proj.name}`.slice(0, 40),
@@ -138,7 +147,8 @@ function callsFromClassifications(
         ticker: proj.ticker,
         chain: proj.chain,
         contract_address: proj.contract_address,
-        notes: c.reason,
+        severity: c.severity,
+        notes: `[sev ${c.severity}] ${c.reason}`,
       });
     }
   }
@@ -187,12 +197,30 @@ async function main(): Promise<void> {
     `\nClassifier summary: ${negatives.length} negative / ${actionable.length} actionable / ${classified.length} total`,
   );
 
-  const calls = callsFromClassifications(classified, args.minConfidence);
+  const calls = callsFromClassifications(
+    classified,
+    args.minConfidence,
+    args.minSeverity,
+  );
   const callsPath = `${args.outDir}/derived-calls.json`;
   writeFileSync(callsPath, JSON.stringify(calls, null, 2));
+  const severityDist = new Map<number, number>();
+  for (const row of classified) {
+    if (row.classification.is_negative) {
+      const bucket = Math.floor(row.classification.severity);
+      severityDist.set(bucket, (severityDist.get(bucket) ?? 0) + 1);
+    }
+  }
   console.log(
-    `Derived ${calls.length} backtestable calls (min_confidence=${args.minConfidence}) -> ${callsPath}`,
+    `Derived ${calls.length} backtestable calls (min_confidence=${args.minConfidence}, min_severity=${args.minSeverity}) -> ${callsPath}`,
   );
+  if (severityDist.size > 0) {
+    const buckets = [...severityDist.entries()].sort((a, b) => a[0] - b[0]);
+    console.log(
+      "  Severity distribution (negative tweets only): " +
+        buckets.map(([sev, n]) => `${sev}:${n}`).join("  "),
+    );
+  }
 
   if (calls.length === 0) {
     console.log("\nNo actionable calls derived. Nothing to backtest.");

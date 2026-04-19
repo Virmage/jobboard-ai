@@ -5,35 +5,40 @@
     "tweet_url": "https://x.com/zachxbt/status/2043892735418216486",
     "project_name": "RaveDAO",
     "ticker": "RAVE",
-    "notes": "Primary case. zachxbt called it out DURING the 11,000% pump. 3 team wallets held ~90%, 18.58M RAVE moved to Bitget hours before surge. Token crashed ~85% on Apr 18 (4 days after tweet). Listed on Binance, Bitget, Gate."
+    "severity": 9,
+    "notes": "Very high severity: named insider wallets holding 90%+ of supply, 18.58M RAVE movement to Bitget documented onchain, direct accusation of pump-and-dump, $25k bounty offered. Binance + Bitget investigating. Crash 4 days later."
   },
   {
     "id": "alt-2025-07-22",
     "tweet_ts": "2025-07-22T12:00:00Z",
     "project_name": "AltLayer",
     "ticker": "ALT",
-    "notes": "Post-mortem. Main -97% crash was July 14, 2025 (9-10am) — BEFORE the July 22 tweet. Tests whether post-mortem exposés still have edge. Listed on Binance perps."
+    "severity": 8,
+    "notes": "High severity on EVIDENCE (45 wallets traced to Crypto Beast via Celestia funding, $11M exit) but POST-MORTEM: crash already happened July 14. Tests whether severity alone is enough, or if we need 'tweet is ante-crash' as a separate filter."
   },
   {
-    "id": "zachxbt-teaser-2026-02-24",
+    "id": "zachxbt-teaser-hype-2026-02-24",
     "tweet_ts": "2026-02-24T18:00:00Z",
     "project_name": "HYPE (hit by teaser)",
     "ticker": "HYPE",
-    "notes": "Feb 24 2026 'major investigation' teaser. zachxbt didn't name any project, but HYPE dropped 4.4% on speculation. Final exposé (Axiom on Feb 26) hit none of these tokens. Tests whether zachxbt teasers themselves are tradeable."
+    "severity": 2,
+    "notes": "Low severity: teaser tweet didn't name HYPE at all. Market speculation. Should be FILTERED OUT by min-severity=8. Included to test filter."
   },
   {
     "id": "zachxbt-teaser-met-2026-02-24",
     "tweet_ts": "2026-02-24T18:00:00Z",
     "project_name": "MET (hit by teaser)",
     "ticker": "MET",
-    "notes": "Feb 24 2026 teaser. MET dropped 6.5% on speculation. Polymarket had Meteora as top guess (47%) for who zachxbt would expose. Actual exposé was Axiom — MET was false positive."
+    "severity": 2,
+    "notes": "Low severity: teaser, no named target. Should be filtered out."
   },
   {
     "id": "zachxbt-teaser-pump-2026-02-24",
     "tweet_ts": "2026-02-24T18:00:00Z",
     "project_name": "PUMP (hit by teaser)",
     "ticker": "PUMP",
-    "notes": "Feb 24 2026 teaser. PUMP dropped 6.6% on speculation that Pump.fun would be the target. Actual exposé was Axiom — PUMP was false positive."
+    "severity": 2,
+    "notes": "Low severity: teaser, no named target. Should be filtered out."
   },
   {
     "id": "hawk-2024-12-04",
@@ -41,7 +46,8 @@
     "project_name": "Hawk Tuah (HAWK)",
     "ticker": "HAWK",
     "chain": "solana",
-    "notes": "Haliey Welch memecoin launched Dec 4 2024. Went from $500M market cap to $60M in 20 minutes. zachxbt critiqued her same day. Post-crash exposé — minimal predictive edge expected. Need Solana contract address for DEX leg."
+    "severity": 5,
+    "notes": "Mid severity: zachxbt criticized same day as launch-and-crash but didn't provide deep onchain evidence - mostly opinion commentary on a clearly-bad launch. Post-crash anyway."
   },
   {
     "id": "libra-2025-02-14",
@@ -49,7 +55,8 @@
     "project_name": "LIBRA (Milei scam)",
     "ticker": "LIBRA",
     "chain": "solana",
-    "notes": "Argentine president Milei promoted LIBRA on Feb 14 2025. Pumped 3,000% then dumped 95% in hours ($4.4B erased). zachxbt covered the unfolding rug. Same-day pump-and-dump. Need Solana contract for DEX lookup."
+    "severity": 9,
+    "notes": "Very high severity: same-day coverage of $4.4B rug, Kelsier team named, Milei tweet deleted. But same-day pump-and-dump = can't realistically enter a short before the crash completes."
   },
   {
     "id": "lick-2026-01-23",
@@ -57,7 +64,8 @@
     "project_name": "LICK (US Marshals wallet meme)",
     "ticker": "LICK",
     "chain": "solana",
-    "notes": "Solana pump.fun memecoin, zachxbt tweeted Jan 23 2026 linking the deployer to $46M in alleged stolen US Marshals funds. Need Solana contract for DEX lookup."
+    "severity": 8,
+    "notes": "High severity: direct link to $46M allegedly stolen US Marshals funds with Telegram audio evidence. Named operator. Already post-crash by tweet time (pump.fun memecoin)."
   },
   {
     "id": "oramama-2026-03-23",
@@ -66,13 +74,15 @@
     "project_name": "ORAMAMA",
     "ticker": "ORAMAMA",
     "chain": "solana",
-    "notes": "Solana PumpSwap memecoin. Pump-and-dump by coordinated X accounts on Feb 22, 2026; zachxbt's March 23 tweet was post-rug. Already dead by tweet time."
+    "severity": 7,
+    "notes": "Strong onchain evidence of 10-account coordinated cluster but tweet was one month post-rug. Dead token."
   },
   {
     "id": "munchables-2024-03-26",
     "tweet_ts": "2024-03-26T21:30:00Z",
     "project_name": "Munchables",
     "chain": "base",
-    "notes": "Blast-based GameFi exploit, ~$62M drained, insider dev. No Munchables token — project had no liquid token. Backtest will skip."
+    "severity": 10,
+    "notes": "Max severity: active exploit attribution with onchain proof, $62M drained, insider dev named. But no token = not backtestable. Included as a severity benchmark."
   }
 ]

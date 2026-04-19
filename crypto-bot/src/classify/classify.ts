@@ -20,6 +20,7 @@ function parseClassification(
     tweet_id: tweetId,
     is_negative: Boolean(parsed.is_negative),
     confidence: Number(parsed.confidence ?? 0),
+    severity: Number(parsed.severity ?? 0),
     reason: String(parsed.reason ?? ""),
     mentioned_projects: Array.isArray(parsed.mentioned_projects)
       ? parsed.mentioned_projects
@@ -86,6 +87,7 @@ export async function classifyBatch(
             tweet_id: tweet.id,
             is_negative: false,
             confidence: 0,
+            severity: 0,
             reason: `ERROR: ${err instanceof Error ? err.message : String(err)}`,
             mentioned_projects: [],
             actionable: false,

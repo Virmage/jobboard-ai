@@ -6,6 +6,7 @@ export interface KnownCall {
   ticker?: string;
   chain?: string;
   contract_address?: string;
+  severity?: number;
   notes?: string;
 }
 

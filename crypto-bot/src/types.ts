@@ -19,6 +19,7 @@ export interface Classification {
   tweet_id: string;
   is_negative: boolean;
   confidence: number;
+  severity: number;
   reason: string;
   mentioned_projects: MentionedProject[];
   actionable: boolean;
