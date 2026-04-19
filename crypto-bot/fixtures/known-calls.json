@@ -46,8 +46,9 @@
     "project_name": "Hawk Tuah (HAWK)",
     "ticker": "HAWK",
     "chain": "solana",
+    "contract_address": "HAWKThXRcNL9ZGZKqgUXLm4W8tnRZ7U6MVdEepSutj34",
     "severity": 5,
-    "notes": "Mid severity: zachxbt criticized same day as launch-and-crash but didn't provide deep onchain evidence - mostly opinion commentary on a clearly-bad launch. Post-crash anyway."
+    "notes": "Mid severity: zachxbt criticized same day as launch-and-crash but didn't provide deep onchain evidence - mostly opinion commentary on a clearly-bad launch. Post-crash anyway. Contract from Solana explorer."
   },
   {
     "id": "libra-2025-02-14",
