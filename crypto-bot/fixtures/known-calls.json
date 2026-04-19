@@ -5,14 +5,59 @@
     "tweet_url": "https://x.com/zachxbt/status/2043892735418216486",
     "project_name": "RaveDAO",
     "ticker": "RAVE",
-    "notes": "ZachXBT called out RAVE during the pump. 3 team wallets held ~90% of supply; 18.58M RAVE moved to Bitget hours before the surge. Token crashed ~85% on April 18, 2026. Listed on Binance, Bitget, Gate. Exact tweet timestamp derived from snowflake ID."
+    "notes": "Primary case. zachxbt called it out DURING the 11,000% pump. 3 team wallets held ~90%, 18.58M RAVE moved to Bitget hours before surge. Token crashed ~85% on Apr 18 (4 days after tweet). Listed on Binance, Bitget, Gate."
   },
   {
     "id": "alt-2025-07-22",
     "tweet_ts": "2025-07-22T12:00:00Z",
     "project_name": "AltLayer",
     "ticker": "ALT",
-    "notes": "ZachXBT exposed Crypto Beast for orchestrating $11M ALT dump. Note: main -97% crash happened July 14, 2025 BEFORE the July 22 tweet — this backtest will show 'post-mortem' return (probably flat/small). Good as a counterexample. Approximate tweet time; refine if you find the tweet URL."
+    "notes": "Post-mortem. Main -97% crash was July 14, 2025 (9-10am) — BEFORE the July 22 tweet. Tests whether post-mortem exposés still have edge. Listed on Binance perps."
+  },
+  {
+    "id": "zachxbt-teaser-2026-02-24",
+    "tweet_ts": "2026-02-24T18:00:00Z",
+    "project_name": "HYPE (hit by teaser)",
+    "ticker": "HYPE",
+    "notes": "Feb 24 2026 'major investigation' teaser. zachxbt didn't name any project, but HYPE dropped 4.4% on speculation. Final exposé (Axiom on Feb 26) hit none of these tokens. Tests whether zachxbt teasers themselves are tradeable."
+  },
+  {
+    "id": "zachxbt-teaser-met-2026-02-24",
+    "tweet_ts": "2026-02-24T18:00:00Z",
+    "project_name": "MET (hit by teaser)",
+    "ticker": "MET",
+    "notes": "Feb 24 2026 teaser. MET dropped 6.5% on speculation. Polymarket had Meteora as top guess (47%) for who zachxbt would expose. Actual exposé was Axiom — MET was false positive."
+  },
+  {
+    "id": "zachxbt-teaser-pump-2026-02-24",
+    "tweet_ts": "2026-02-24T18:00:00Z",
+    "project_name": "PUMP (hit by teaser)",
+    "ticker": "PUMP",
+    "notes": "Feb 24 2026 teaser. PUMP dropped 6.6% on speculation that Pump.fun would be the target. Actual exposé was Axiom — PUMP was false positive."
+  },
+  {
+    "id": "hawk-2024-12-04",
+    "tweet_ts": "2024-12-04T23:00:00Z",
+    "project_name": "Hawk Tuah (HAWK)",
+    "ticker": "HAWK",
+    "chain": "solana",
+    "notes": "Haliey Welch memecoin launched Dec 4 2024. Went from $500M market cap to $60M in 20 minutes. zachxbt critiqued her same day. Post-crash exposé — minimal predictive edge expected. Need Solana contract address for DEX leg."
+  },
+  {
+    "id": "libra-2025-02-14",
+    "tweet_ts": "2025-02-14T23:00:00Z",
+    "project_name": "LIBRA (Milei scam)",
+    "ticker": "LIBRA",
+    "chain": "solana",
+    "notes": "Argentine president Milei promoted LIBRA on Feb 14 2025. Pumped 3,000% then dumped 95% in hours ($4.4B erased). zachxbt covered the unfolding rug. Same-day pump-and-dump. Need Solana contract for DEX lookup."
+  },
+  {
+    "id": "lick-2026-01-23",
+    "tweet_ts": "2026-01-23T12:00:00Z",
+    "project_name": "LICK (US Marshals wallet meme)",
+    "ticker": "LICK",
+    "chain": "solana",
+    "notes": "Solana pump.fun memecoin, zachxbt tweeted Jan 23 2026 linking the deployer to $46M in alleged stolen US Marshals funds. Need Solana contract for DEX lookup."
   },
   {
     "id": "oramama-2026-03-23",
@@ -21,13 +66,13 @@
     "project_name": "ORAMAMA",
     "ticker": "ORAMAMA",
     "chain": "solana",
-    "notes": "Solana PumpSwap memecoin. Pump-and-dump by coordinated X accounts on Feb 22, 2026; zachxbt's March 23 tweet was post-rug. Token already dead by tweet time — backtest will likely skip (no liquidity/perps) or show ~0 return. Good negative control."
+    "notes": "Solana PumpSwap memecoin. Pump-and-dump by coordinated X accounts on Feb 22, 2026; zachxbt's March 23 tweet was post-rug. Already dead by tweet time."
   },
   {
     "id": "munchables-2024-03-26",
     "tweet_ts": "2024-03-26T21:30:00Z",
     "project_name": "Munchables",
     "chain": "base",
-    "notes": "Blast-based GameFi exploit, ~$62M drained, insider dev. No Munchables token — the project had no liquid token. Backtest will skip. Keeping for reference."
+    "notes": "Blast-based GameFi exploit, ~$62M drained, insider dev. No Munchables token — project had no liquid token. Backtest will skip."
   }
 ]
