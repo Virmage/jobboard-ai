@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ravedao-example",
+    "author": "zachxbt",
+    "created_at": "2026-04-10T14:22:00Z",
+    "text": "Investigation into @ravedao_ reveals the founders @fakefounder1 and @fakefounder2 are the same team behind two prior solana rugs ($SQUIB and $BONKAI) that drained ~$4M combined. The $RAVE token allocation shows 42% held by wallets funded from the same Binance hot wallet as the prior rugs. Screenshots + onchain evidence in thread.",
+    "url": "https://x.com/zachxbt/status/ravedao-example"
+  },
+  {
+    "id": "bitforex-example",
+    "author": "zachxbt",
+    "created_at": "2026-03-28T09:15:00Z",
+    "text": "It's been 48 hours since Bitforex halted withdrawals and their team has gone dark. $56M in user funds locked. This is looking like another exit scam - users should assume funds are gone.",
+    "url": "https://x.com/zachxbt/status/bitforex-example"
+  },
+  {
+    "id": "phish-warning",
+    "author": "zachxbt",
+    "created_at": "2026-04-05T18:00:00Z",
+    "text": "Reminder: @jup_ag team will NEVER DM you first. Multiple phishing sites impersonating Jupiter are circulating today. Do not connect your wallet to any site you did not navigate to yourself.",
+    "url": "https://x.com/zachxbt/status/phish-warning"
+  },
+  {
+    "id": "industry-commentary",
+    "author": "zachxbt",
+    "created_at": "2026-04-12T12:00:00Z",
+    "text": "The volume of memecoin rugs on Solana this month is unreal. Over 1,200 tokens pulled liquidity in the past 30 days per @dexscreener data. Investors need to do more onchain DD before aping.",
+    "url": "https://x.com/zachxbt/status/industry-commentary"
+  },
+  {
+    "id": "positive-shoutout",
+    "author": "zachxbt",
+    "created_at": "2026-04-01T10:30:00Z",
+    "text": "Great work by @tayvano_ and @samczsun on the latest lazarus-linked cluster analysis. The attribution quality keeps improving.",
+    "url": "https://x.com/zachxbt/status/positive-shoutout"
+  },
+  {
+    "id": "scammer-no-token",
+    "author": "zachxbt",
+    "created_at": "2026-03-20T22:14:00Z",
+    "text": "Identified the operator behind the @fake_airdrop_claim scam - wallet 0xabc...def has drained ~$900k from victims across 3 months. Same individual operated 2 prior phishing clusters. Do not sign any txns from that wallet.",
+    "url": "https://x.com/zachxbt/status/scammer-no-token"
+  },
+  {
+    "id": "insider-dumping",
+    "author": "zachxbt",
+    "created_at": "2026-04-08T16:45:00Z",
+    "text": "Onchain analysis of @someprojectxyz reveals 6 wallets controlled by team members (confirmed via funding trail) have been quietly dumping $XYZ into liquidity for the past 10 days - ~$2.1M sold while team publicly claimed 'no team sells.' $XYZ on ethereum, contract 0x1234567890abcdef1234567890abcdef12345678",
+    "url": "https://x.com/zachxbt/status/insider-dumping"
+  },
+  {
+    "id": "reply-no-claim",
+    "author": "zachxbt",
+    "created_at": "2026-04-11T08:00:00Z",
+    "text": "agreed",
+    "url": "https://x.com/zachxbt/status/reply-no-claim",
+    "is_reply": true,
+    "reply_to": "someone_else"
+  },
+  {
+    "id": "hack-attribution",
+    "author": "zachxbt",
+    "created_at": "2026-04-02T11:00:00Z",
+    "text": "The @munchables_ exploit (~$62M) was an insider job. The developer who held the upgrade keys transferred them to an attacker-controlled multisig 3 weeks before the drain. Full writeup attached.",
+    "url": "https://x.com/zachxbt/status/hack-attribution"
+  },
+  {
+    "id": "fake-partnership",
+    "author": "zachxbt",
+    "created_at": "2026-03-25T15:20:00Z",
+    "text": "@NeonLabsFinance has been claiming a 'strategic partnership' with Chainlink in their marketing for 6 months. Chainlink team confirms there is no such partnership and have sent a cease and desist. $NEON is trading on uniswap, ~$18M MC.",
+    "url": "https://x.com/zachxbt/status/fake-partnership"
+  }
+]
