@@ -1,0 +1,27 @@
+[
+  {
+    "id": "smoketest-eth-2024-03-12",
+    "tweet_ts": "2024-03-12T14:00:00Z",
+    "project_name": "Smoke test (ETH) - not a real zachxbt call",
+    "ticker": "ETH",
+    "notes": "Sanity check that Binance plumbing is working. Expect small return; not a real signal."
+  },
+  {
+    "id": "munchables-2024-03-26",
+    "tweet_ts": "2024-03-26T21:30:00Z",
+    "tweet_url": "https://x.com/zachxbt/status/1772867494827348430",
+    "project_name": "Munchables",
+    "chain": "base",
+    "notes": "Publicly documented Blast-based GameFi exploit, ~$62M drained, insider dev. ERC20 contract address unknown to me — fill in if you want DEX leg of backtest."
+  },
+  {
+    "id": "ravedao-REPLACE",
+    "tweet_ts": "REPLACE_WITH_TWEET_TIMESTAMP",
+    "tweet_url": "REPLACE_WITH_TWEET_URL",
+    "project_name": "RaveDAO",
+    "ticker": "RAVE",
+    "chain": "REPLACE_WITH_CHAIN",
+    "contract_address": "REPLACE_WITH_CONTRACT_OR_OMIT",
+    "notes": "User mentioned this case; please fill in real timestamp + chain + contract address to include it in the backtest."
+  }
+]
