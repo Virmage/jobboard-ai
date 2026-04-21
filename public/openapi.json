@@ -2,12 +2,12 @@
   "openapi": "3.1.0",
   "info": {
     "title": "AgentJobs API",
-    "description": "Search 14,000+ jobs across all industries. Built for AI agents.",
+    "description": "Search 43,000+ jobs across all industries. Built for AI agents.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://jobboard-ai-rllv.vercel.app",
+      "url": "https://agentjobsai.com",
       "description": "Production"
     }
   ],

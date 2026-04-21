@@ -8,7 +8,7 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://jobboard-ai-rllv.vercel.app";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://agentjobsai.com";
 
 // ---------------------------------------------------------------------------
 // Frequency → millisecond thresholds
