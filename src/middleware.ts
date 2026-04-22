@@ -32,7 +32,7 @@ function cleanupStaleEntries() {
 // ---------------------------------------------------------------------------
 // Rate limiting constants
 // ---------------------------------------------------------------------------
-const ANON_RATE_LIMIT = process.env.NODE_ENV === "development" ? 1000 : 10; // requests per window
+const ANON_RATE_LIMIT = process.env.NODE_ENV === "development" ? 1000 : 200; // requests per window
 const ANON_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const DEFAULT_AUTH_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
