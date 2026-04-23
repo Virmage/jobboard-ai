@@ -47,68 +47,83 @@ function AddToGPTButton({ large = false }: { large?: boolean }) {
 // ---------------------------------------------------------------------------
 function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pt-28 pb-16">
-      {/* Grid pattern */}
-      <div className="bg-line-grid pointer-events-none absolute inset-0" />
-      {/* Radial fade over grid */}
-      <div className="pointer-events-none absolute inset-0 bg-radial-[ellipse_at_top] from-[#0a0a0a]/0 via-[#0a0a0a]/60 to-[#0a0a0a]" />
-      {/* Green glow */}
-      <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[500px] w-[700px] rounded-full bg-[#10a37f]/8 blur-[120px]" />
+    <section className="relative overflow-hidden px-6 pt-28 pb-20">
+      {/* Arrow grid texture */}
+      <div className="bg-arrows pointer-events-none absolute inset-0 opacity-100" />
+      {/* Fade arrows out toward center/bottom */}
+      <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, transparent 0%, #06090f 70%)" }} />
+      <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, #06090f 100%)" }} />
+
+      {/* Blue glow — bottom center, Lumina-style */}
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 h-[500px] w-[900px] rounded-full bg-[#0e4fbd]/20 blur-[130px]" />
+      {/* Green accent glow — offset */}
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/4 translate-y-1/3 h-[300px] w-[500px] rounded-full bg-[#10a37f]/12 blur-[100px]" />
 
       <div className="relative mx-auto max-w-4xl">
         {/* Label */}
-        <div className="mb-7 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#10a37f]/30 bg-[#10a37f]/8 px-4 py-1.5 text-xs font-mono font-medium text-[#10a37f]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#10a37f] animate-pulse inline-block" />
-            43,000+ active jobs across 100+ top companies
+        <div className="mb-8 flex justify-center">
+          <div className="inline-flex items-center gap-2 rounded-sm border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-[11px] font-mono font-medium uppercase tracking-[0.12em] text-white/50">
+            <span className="h-1 w-1 rounded-full bg-[#10a37f] animate-pulse inline-block" />
+            43,000+ active jobs · 100+ top companies
           </div>
         </div>
 
-        {/* Headline */}
-        <h1 className="text-center text-5xl font-extrabold tracking-[-0.03em] text-white sm:text-6xl lg:text-[76px] leading-[1.05]">
-          Your <span className="text-[#10a37f]">AI Recruiter.</span>
+        {/* Headline — editorial mixed typography */}
+        <h1 className="text-center leading-[1.0] tracking-[-0.02em] text-white">
+          <span className="block text-5xl font-extrabold sm:text-6xl lg:text-7xl">
+            Your
+          </span>
+          <span
+            className="block text-[#10a37f]"
+            style={{
+              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: 600,
+              fontSize: "clamp(4rem, 12vw, 8.5rem)",
+              lineHeight: 1.0,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            AI Recruiter.
+          </span>
         </h1>
 
-        <p className="mx-auto mt-6 max-w-xl text-center text-lg text-white/80 leading-relaxed">
+        <p className="mx-auto mt-8 max-w-lg text-center text-base text-white/55 leading-relaxed">
           Not sure what role is right? Want to know roles at OpenAI? Need help figuring out your next title? Just chat. AgentJobs is your recruiter. Free, inside ChatGPT.
         </p>
 
-        {/* 3-step instruction */}
-        <div className="mx-auto mt-10 flex max-w-2xl items-center justify-center gap-0">
-          {[
-            { n: "1", text: 'Add to ChatGPT' },
-            { n: "2", text: "Chat with your recruiter, AgentJobs" },
-            { n: "3", text: "Get matched jobs" },
-          ].map((s, i) => (
-            <div key={s.n} className="flex items-center">
-              <div className="flex items-center gap-2.5 px-4">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#10a37f]/15 font-mono text-xs font-bold text-[#10a37f]">
-                  {s.n}
-                </span>
-                <p className="text-sm font-medium text-white/80 whitespace-nowrap">{s.text}</p>
-              </div>
-              {i < 2 && <span className="text-white/20 shrink-0">→</span>}
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        {/* CTAs */}
+        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <AddToGPTButton large />
           <Link
             href="/jobs"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-4 text-base font-medium text-white transition-all hover:bg-white/10 hover:border-white/25"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/12 px-6 py-4 text-base font-medium text-white/70 transition-all hover:border-white/25 hover:text-white"
           >
             Browse 43,000+ jobs
-            <svg className="h-4 w-4 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </Link>
         </div>
 
-        <p className="mt-4 text-center text-xs font-mono text-white/30">
-          Free forever &nbsp;·&nbsp; No account needed &nbsp;·&nbsp; Direct from company career pages
-        </p>
+        {/* 3-step */}
+        <div className="mx-auto mt-8 flex max-w-xl items-center justify-center gap-0">
+          {[
+            { n: "1", text: "Add to ChatGPT" },
+            { n: "2", text: "Chat with AgentJobs" },
+            { n: "3", text: "Get matched" },
+          ].map((s, i) => (
+            <div key={s.n} className="flex items-center">
+              <div className="flex items-center gap-2 px-3">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/10 font-mono text-[10px] font-bold text-white/30">
+                  {s.n}
+                </span>
+                <p className="text-xs font-medium text-white/40 whitespace-nowrap">{s.text}</p>
+              </div>
+              {i < 2 && <span className="text-white/15 shrink-0 text-xs">→</span>}
+            </div>
+          ))}
+        </div>
       </div>
 
       <ChatDemo />
@@ -236,8 +251,8 @@ function CompanyTicker() {
         Your recruiter has direct access to every open role at
       </p>
       <div className="relative">
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-28 bg-gradient-to-r from-[#0a0a0a] to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-28 bg-gradient-to-l from-[#0a0a0a] to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-28 bg-gradient-to-r from-[#06090f] to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-28 bg-gradient-to-l from-[#06090f] to-transparent" />
         <div className="flex animate-marquee whitespace-nowrap">
           {[...COMPANIES, ...COMPANIES].map((name, i) => (
             <span key={i} className="inline-flex items-center mx-8 text-sm font-semibold text-white hover:text-[#10a37f] transition-colors cursor-default shrink-0">
@@ -266,7 +281,7 @@ function Stats() {
       <div className="mx-auto max-w-5xl">
         <div className="grid grid-cols-2 gap-px bg-white/8 rounded-2xl overflow-hidden sm:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label} className="flex flex-col items-center justify-center bg-[#0a0a0a] px-6 py-8 text-center">
+            <div key={s.label} className="flex flex-col items-center justify-center bg-[#06090f] px-6 py-8 text-center">
               <div className="text-3xl font-extrabold tracking-tight text-white sm:text-[2.5rem]">{s.value}</div>
               <div className="mt-1.5 text-sm font-bold text-white/80">{s.label}</div>
               <div className="mt-1 text-xs font-mono text-white/35">{s.sub}</div>
@@ -626,7 +641,7 @@ function FinalCTA() {
   return (
     <section className="relative border-t border-white/8 px-6 py-24 overflow-hidden">
       <div className="bg-dot-grid pointer-events-none absolute inset-0 opacity-50" />
-      <div className="pointer-events-none absolute inset-0 bg-radial-[ellipse_at_center] from-[#0a0a0a]/0 via-[#0a0a0a]/70 to-[#0a0a0a]" />
+      <div className="pointer-events-none absolute inset-0 bg-radial-[ellipse_at_center] from-[#06090f]/0 via-[#06090f]/70 to-[#06090f]" />
       <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[300px] w-[500px] rounded-full bg-[#10a37f]/6 blur-[100px]" />
 
       <div className="relative mx-auto max-w-2xl text-center">

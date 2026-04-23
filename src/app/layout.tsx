@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${cormorant.variable}`}>
       <head>
         <link
           rel="alternate"
@@ -50,7 +59,7 @@ export default function RootLayout({
           href="/api/feeds"
         />
       </head>
-      <body className="min-h-screen bg-[#0a0a0a] text-gray-100 antialiased">
+      <body className="min-h-screen bg-[#06090f] text-gray-100 antialiased">
         {children}
       </body>
     </html>
