@@ -47,57 +47,67 @@ function AddToGPTButton({ large = false }: { large?: boolean }) {
 // ---------------------------------------------------------------------------
 function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pt-28 pb-20">
-      {/* Arrow grid texture */}
-      <div className="bg-arrows pointer-events-none absolute inset-0 opacity-100" />
-      {/* Fade arrows out toward center/bottom */}
-      <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 60% at 50% 0%, transparent 0%, #06090f 70%)" }} />
-      <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, #06090f 100%)" }} />
+    <section className="relative overflow-hidden px-6 pt-24 pb-0">
+      {/* Dense arrow grid — full top half */}
+      <div className="bg-arrows pointer-events-none absolute inset-0" />
+      {/* Fade: arrows visible top, dissolve into glow */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "linear-gradient(to bottom, transparent 25%, #06090f 65%)" }}
+      />
+      {/* Horizontal fade edges */}
+      <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(to right, #06090f 0%, transparent 15%, transparent 85%, #06090f 100%)" }} />
 
-      {/* Blue glow — bottom center, Lumina-style */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 h-[500px] w-[900px] rounded-full bg-[#0e4fbd]/20 blur-[130px]" />
-      {/* Green accent glow — offset */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/4 translate-y-1/3 h-[300px] w-[500px] rounded-full bg-[#10a37f]/12 blur-[100px]" />
+      {/* Big blue glow — Lumina style, low center */}
+      <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 rounded-full bg-[#1248c8]/25 blur-[160px]" style={{ width: "120%", height: "500px", bottom: "120px" }} />
+      {/* Green tint on top of blue */}
+      <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 rounded-full bg-[#10a37f]/10 blur-[120px]" style={{ width: "70%", height: "300px", bottom: "180px" }} />
 
-      <div className="relative mx-auto max-w-4xl">
+      <div className="relative mx-auto max-w-7xl">
         {/* Label */}
-        <div className="mb-8 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-sm border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-[11px] font-mono font-medium uppercase tracking-[0.12em] text-white/50">
-            <span className="h-1 w-1 rounded-full bg-[#10a37f] animate-pulse inline-block" />
+        <div className="mb-12 flex justify-center">
+          <div className="inline-flex items-center gap-2.5 border border-white/10 bg-white/[0.03] px-4 py-1.5 text-[11px] font-mono uppercase tracking-[0.14em] text-white/40">
+            <span className="h-[5px] w-[5px] rounded-full bg-[#10a37f] animate-pulse inline-block" />
             43,000+ active jobs · 100+ top companies
           </div>
         </div>
 
-        {/* Headline — editorial mixed typography */}
-        <h1 className="text-center leading-[1.0] tracking-[-0.02em] text-white">
-          <span className="block text-5xl font-extrabold sm:text-6xl lg:text-7xl">
-            Your
+        {/* Headline — fills the viewport width */}
+        <h1 className="text-center leading-[0.92] tracking-[-0.03em]">
+          {/* "Your AI" — bold sans */}
+          <span
+            className="block font-extrabold text-white"
+            style={{ fontSize: "clamp(4.5rem, 13vw, 12rem)" }}
+          >
+            Your AI
           </span>
+          {/* "Recruiter." — editorial serif italic, green */}
           <span
             className="block text-[#10a37f]"
             style={{
               fontFamily: "var(--font-cormorant), Georgia, serif",
               fontStyle: "italic",
               fontWeight: 600,
-              fontSize: "clamp(4rem, 12vw, 8.5rem)",
+              fontSize: "clamp(4.5rem, 14.5vw, 13.5rem)",
+              letterSpacing: "-0.025em",
               lineHeight: 1.0,
-              letterSpacing: "-0.02em",
             }}
           >
-            AI Recruiter.
+            Recruiter.
           </span>
         </h1>
 
-        <p className="mx-auto mt-8 max-w-lg text-center text-base text-white/55 leading-relaxed">
-          Not sure what role is right? Want to know roles at OpenAI? Need help figuring out your next title? Just chat. AgentJobs is your recruiter. Free, inside ChatGPT.
+        {/* Subtitle */}
+        <p className="mx-auto mt-10 max-w-md text-center text-[15px] text-white/45 leading-relaxed">
+          Not sure what role is right? Just chat — AgentJobs is your AI recruiter. Free, inside ChatGPT.
         </p>
 
         {/* CTAs */}
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <AddToGPTButton large />
           <Link
             href="/jobs"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/12 px-6 py-4 text-base font-medium text-white/70 transition-all hover:border-white/25 hover:text-white"
+            className="inline-flex items-center gap-2 border border-white/10 px-6 py-4 text-base font-medium text-white/55 transition-all hover:border-white/20 hover:text-white/80"
           >
             Browse 43,000+ jobs
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -106,24 +116,9 @@ function Hero() {
           </Link>
         </div>
 
-        {/* 3-step */}
-        <div className="mx-auto mt-8 flex max-w-xl items-center justify-center gap-0">
-          {[
-            { n: "1", text: "Add to ChatGPT" },
-            { n: "2", text: "Chat with AgentJobs" },
-            { n: "3", text: "Get matched" },
-          ].map((s, i) => (
-            <div key={s.n} className="flex items-center">
-              <div className="flex items-center gap-2 px-3">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/10 font-mono text-[10px] font-bold text-white/30">
-                  {s.n}
-                </span>
-                <p className="text-xs font-medium text-white/40 whitespace-nowrap">{s.text}</p>
-              </div>
-              {i < 2 && <span className="text-white/15 shrink-0 text-xs">→</span>}
-            </div>
-          ))}
-        </div>
+        <p className="mt-5 text-center text-[11px] font-mono uppercase tracking-[0.1em] text-white/20">
+          Free forever &nbsp;·&nbsp; No account needed &nbsp;·&nbsp; Direct apply links
+        </p>
       </div>
 
       <ChatDemo />

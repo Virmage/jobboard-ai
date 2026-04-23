@@ -107,8 +107,8 @@ code {
 
 /* Scattered arrow grid — Lumina-inspired background texture */
 .bg-arrows {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ctext x='8' y='28' font-size='16' fill='rgba(255%2C255%2C255%2C0.05)' font-family='system-ui'%3E%E2%86%97%3C/text%3E%3C/svg%3E");
-  background-size: 40px 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ctext x='7' y='32' font-size='22' fill='rgba(180%2C210%2C255%2C0.13)' font-family='system-ui'%3E%E2%86%97%3C/text%3E%3C/svg%3E");
+  background-size: 44px 44px;
 }
 
 /* Serif italic font utility */
