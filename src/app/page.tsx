@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { AlertSignup } from "@/components/alert-signup";
 
 const GPT_URL = "https://chatgpt.com/g/g-69c0a8b41d008191a6ad244646f7619e-agentjobs";
 
@@ -630,6 +631,29 @@ function AskAnything() {
 }
 
 // ---------------------------------------------------------------------------
+// Job Alerts Signup
+// ---------------------------------------------------------------------------
+function JobAlerts() {
+  return (
+    <section className="relative border-t border-white/8 px-6 py-20 overflow-hidden">
+      <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[300px] w-[600px] rounded-full bg-[#1248c8]/8 blur-[120px]" />
+      <div className="relative mx-auto max-w-2xl text-center">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#10a37f]">
+          Job Alerts
+        </p>
+        <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          Get new roles in your inbox
+        </h2>
+        <p className="mt-4 mb-10 text-base text-white/55 leading-relaxed max-w-md mx-auto">
+          Tell us what you&apos;re looking for and we&apos;ll email you fresh roles from our 43,000+ job database as soon as they appear.
+        </p>
+        <AlertSignup />
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Final CTA
 // ---------------------------------------------------------------------------
 function FinalCTA() {
@@ -685,6 +709,7 @@ export default function Home() {
         <HowItWorks />
         <AskAnything />
         <JobCategories />
+        <JobAlerts />
         <FinalCTA />
       </main>
       <Footer />
