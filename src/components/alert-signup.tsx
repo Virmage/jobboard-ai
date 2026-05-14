@@ -76,20 +76,26 @@ export function AlertSignup() {
 
       {/* Keywords + Location row */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <input
-          type="text"
-          value={keywords}
-          onChange={(e) => setKeywords(e.target.value)}
-          placeholder="Role / keywords (e.g. engineer, designer)"
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50 transition-colors"
-        />
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          placeholder="Location (e.g. London, Sydney, Remote)"
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50 transition-colors"
-        />
+        <div>
+          <input
+            type="text"
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+            placeholder="e.g. engineer, designer, PM"
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50 transition-colors"
+          />
+          <p className="mt-1.5 px-1 text-xs text-white/30">Separate multiple roles with commas</p>
+        </div>
+        <div>
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="e.g. London, Sydney, Remote"
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50 transition-colors"
+          />
+          <p className="mt-1.5 px-1 text-xs text-white/30">Separate multiple locations with commas</p>
+        </div>
       </div>
 
       {/* Frequency + Submit row */}

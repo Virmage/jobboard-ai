@@ -95,20 +95,26 @@ export function AlertsButton() {
                     placeholder="your@email.com"
                     className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50"
                   />
-                  <input
-                    type="text"
-                    value={keywords}
-                    onChange={(e) => setKeywords(e.target.value)}
-                    placeholder="Role / keywords (e.g. engineer, designer)"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50"
-                  />
-                  <input
-                    type="text"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    placeholder="Location (e.g. London, Sydney, Remote)"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50"
-                  />
+                  <div>
+                    <input
+                      type="text"
+                      value={keywords}
+                      onChange={(e) => setKeywords(e.target.value)}
+                      placeholder="e.g. engineer, designer, product manager"
+                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50"
+                    />
+                    <p className="mt-1.5 px-1 text-xs text-white/30">Separate multiple roles with commas</p>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      placeholder="e.g. London, Sydney, Remote"
+                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50"
+                    />
+                    <p className="mt-1.5 px-1 text-xs text-white/30">Separate multiple locations with commas</p>
+                  </div>
 
                   <div className="flex items-center gap-3">
                     <div className="flex rounded-xl border border-white/10 bg-white/5 overflow-hidden">
