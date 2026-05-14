@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { AlertSignup } from "@/components/alert-signup";
+import { AlertsButton } from "@/components/alerts-button";
 
 const GPT_URL = "https://chatgpt.com/g/g-69c0a8b41d008191a6ad244646f7619e-agentjobs";
 
@@ -106,15 +107,7 @@ function Hero() {
         {/* CTAs */}
         <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <AddToGPTButton large />
-          <Link
-            href="/jobs"
-            className="inline-flex items-center gap-2 border border-white/10 px-6 py-4 text-base font-medium text-white/55 transition-all hover:border-white/20 hover:text-white/80"
-          >
-            Browse 43,000+ jobs
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
+          <AlertsButton />
         </div>
 
         <p className="mt-5 text-center text-[11px] font-mono uppercase tracking-[0.1em] text-white/20">
