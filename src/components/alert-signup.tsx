@@ -17,14 +17,21 @@ export function AlertSignup() {
     setStatus("loading");
     setErrorMsg("");
 
+    // Convert comma-separated keywords → pipe-separated (backend splits on |)
+    const keywordTerms = keywords.split(",").map((k) => k.trim()).filter(Boolean).join("|");
+    // Convert comma-separated locations → location: prefix format
+    const locationTerms = location.split(",").map((l) => l.trim()).filter(Boolean).join(",");
+    const query = locationTerms
+      ? `location:${locationTerms}${keywordTerms ? `|${keywordTerms}` : ""}`
+      : keywordTerms || undefined;
+
     try {
       const res = await fetch("/api/alerts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
-          query: keywords || undefined,
-          region: location || undefined,
+          query,
           frequency,
         }),
       });
@@ -73,14 +80,14 @@ export function AlertSignup() {
           type="text"
           value={keywords}
           onChange={(e) => setKeywords(e.target.value)}
-          placeholder="Role / keywords (e.g. product manager)"
+          placeholder="Role / keywords (e.g. engineer, designer)"
           className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50 transition-colors"
         />
         <input
           type="text"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          placeholder="Location (e.g. London, Remote)"
+          placeholder="Location (e.g. London, Sydney, Remote)"
           className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-[#10a37f]/50 focus:outline-none focus:ring-1 focus:ring-[#10a37f]/50 transition-colors"
         />
       </div>

@@ -206,13 +206,18 @@ export async function checkAlerts(): Promise<void> {
     }
 
     // Location filter: keep only jobs matching the city/country OR remote/global
+    // locationFilter may contain multiple comma-separated cities e.g. "sydney,london"
     if (locationFilter) {
-      // Build city + country aliases (e.g. "sydney" also matches "australia", "nsw")
       const LOCATION_ALIASES: Record<string, string[]> = {
         sydney: ["sydney", "australia", "nsw", "new south wales"],
+        melbourne: ["melbourne", "australia", "vic", "victoria"],
+        london: ["london", "uk", "united kingdom", "england"],
+        "new york": ["new york", "nyc", "ny"],
+        "san francisco": ["san francisco", "sf", "bay area"],
       };
-      const aliases = LOCATION_ALIASES[locationFilter.toLowerCase()] ?? [locationFilter];
-      const cityRe = new RegExp(aliases.join("|"), "i");
+      const cities = locationFilter.split(",").map((c) => c.trim().toLowerCase()).filter(Boolean);
+      const terms = cities.flatMap((city) => LOCATION_ALIASES[city] ?? [city]);
+      const cityRe = new RegExp(terms.join("|"), "i");
       newJobs = newJobs.filter((job) => {
         const loc = job.location ?? "";
         const title = job.title ?? "";
